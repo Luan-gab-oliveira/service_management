@@ -1,53 +1,4 @@
-###Lista de Modulos Importados###
-from contextlib import contextmanager       
-
-from tkinter import simpledialog            
-#Importando a função simpledialog de Tkinter
-
-from impressao.imprimir import *            
-#Importando o arquivo inteiro de impressão
-
-from tkinter import messagebox              
-#Importando a função messagebox de Tkinter
-
-from datetime import *             
-#Importando a função datetime de datetime
-#REFERÊNCIA: https://acervolima.com/obtenha-a-data-atual-usando-python/
-
-import tkinter.font as tkFont               
-#Modulo para formação de fontes 
-
-from time import strptime                   
-#Modulo para manipulação do tempo de execução de algumas telas
-
-from datetime import datetime                   
-#Modulo para determinar Data e Hora Atual
-#REFERÊNCIA: https://acervolima.com/obtenha-a-data-atual-usando-python/
-
-from tkinter import Tk                      
-#Importando função Tk do Tkinter
-
-import pymysql.cursors
-#Importanto funções para trabalha em banco de dados 
-#pip install pymysql
-
-from tkinter import *                       
-#Modulo para geração das telas
-
-from PIL import Image, ImageTk                       
-#Modulo para manipulação de imagem
-#pip install Pillow
-
-import tkinter as tk                        
-#Modulo Para geração das telas e sua abreviação
-
-import os                                   
-#Modulo de Interação com o sistema Operacional
-
-import threading
-#Modulo para realização de tarefas em segundo plano
-
-from itertools import count, cycle
+from modules import *
 
 
 root = tk.Tk() #Variavel Princiapal das telas 
@@ -201,6 +152,7 @@ try:
         finally: #Executa independente da exeção 
             conexao.close() #Finaliza conexão
     ###Classe para Funções###
+    
     class func():
         global senha, opc, atendimento, senhal
         ###Funções de Fechamento de cada tela###
@@ -284,7 +236,8 @@ try:
 
                     cursor.execute(sql) #executa instrução sql
                     conexao.commit() #commit para o interprertador entender que deve executar a instrução
-                    imprimir(senha, opc)
+                    threading.Thread(target=imprimir(senha, opc)).start()
+                    # imprimir(senha, opc)
                     print(senha)
         ###Função Escolha Preferencial ou Convencional PREMIR Multiprofissionais###
         def abrir_janela2Mult(self): 
@@ -327,7 +280,7 @@ try:
             self.root2Consultas.geometry("1366x768") #Dimensões do tamanho da tela cheia
             self.root2Consultas.attributes('-fullscreen', True) #Modo tela Fullscreen ligado
             self.fullScreenState = False
-            self.root2Consultas.resizable(False, False) #Negar o redimensionamento da tela
+            self.root2Consultas.resizable(False, False) #Negar o redimensionamento da telato
             self.root2Consultas.minsize(width=800, height= 500) #Definir tamanho minimo da tela 
             self.frame2Consultas =Frame(self.root2Consultas, bg = cores[0]) #Definindo um Frame para a tela 
             self.frame2Consultas.place(relx= 0.02,rely= 0.02, relwidth= 0.96, relheight= 0.96)  #Localizando o Frame na tela 
@@ -736,32 +689,47 @@ try:
             self.root5.overrideredirect(True)
             self.root5.after(5000,self.root5.destroy)
 
+
+
+
+
+
+
+
+
+
+
     ###Tela Inicial###        
     class Application(func):
         def __init__(self): #Tela Incial Conv. e Pref.
-            try:
-                self.root = root #Variavel para atribuir tela principal
-                self.root.bind('<F11>', self.toggleFullScreen) #Variavel para ligar e desligar o modo Fullscreen
-                self.root.bind('<Escape>', self.quitFullScreen) #Variavel para escapar do modo Fullscreen
-                self.tela() #Variavel para atribuir Configurações da tela
-                self.frames() #Variavel para atribuir a divisão dos frames
-                self.widgets() #Variavel para atribuir botões na tela
-                root.mainloop() #Variavel que faz com que a tela permaneça aberta enquanto em uso 
-            except:
-                pass
-        def quitFullScreen(self, event):
-            self.fullScreenState = False
-            self.root.attributes("-fullscreen", self.fullScreenState)
-        def toggleFullScreen(self, event):
-            self.fullScreenState = True
-            self.root.attributes("-fullscreen", self.fullScreenState)
+            # try:
+            self.root = root #Variavel para atribuir tela principal
+            # self.root.bind('<F11>', self.toggleFullScreen) #Variavel para ligar e desligar o modo Fullscreen
+            # self.root.bind('<Escape>', self.quitFullScreen) #Variavel para escapar do modo Fullscreen
+            self.tela() #Variavel para atribuir Configurações da tela
+            self.frames() #Variavel para atribuir a divisão dos frames
+            self.widgets() #Variavel para atribuir botões na tela
+            root.mainloop() #Variavel que faz com que a tela permaneça aberta enquanto em uso 
+            # except:
+            #     pass
+
+        # def toggleFullScreen(self, event):
+        #     self.fullScreenState = True
+        #     self.root.attributes("-fullscreen", self.fullScreenState)
+
+        # def quitFullScreen(self, event):
+        #     self.fullScreenState = False
+        #     self.root.attributes("-fullscreen", self.fullScreenState)
+
         def tela(self):
+            self
             self.root.title('Sistema de Senhas Secretaria Municipal de Saúde.') #Atribuição do titulo
             self.root.configure(background= cores[2]) #Cor do plano de fundo da tela
             self.root.geometry("1366x768") #Código que faz a tela abrir em modo tela cheia
             self.root.attributes('-fullscreen', True) #Código que faz com que a tela fique em Fullscreen
             self.root.resizable(False, False) #Permite que o tamanho da tela seja reajustado
             self.root.minsize(width=800, height= 500) #Tamanhos minimos para diminuir a tela
+
         def frames(self):
             self.frame =Frame(self.root, bd = 4, bg = cores[0]) #Frame definido para a tela 4 com fundo branco
             self.frame.place(relx= 0.02,rely= 0.02, relwidth= 0.96, relheight= 0.96) #Definição do local do frame expresso em porcentagem de tela

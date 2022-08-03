@@ -1,4 +1,3 @@
-from cgitb import text
 from app_modules import *
 from app_client import *
 
