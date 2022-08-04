@@ -74,8 +74,7 @@ class Functions():
                             self.display_senha5.config(text=chamada3)
                         
                         if senha[1] == setor:
-                            self.voice(senha[0])
-                        
+                            self.voice(senha[0])      
                 except:
                     continue
 
@@ -131,7 +130,7 @@ class PainelGUI(Functions):
         pos_x = self.width_screnn/2 - width_root/2
         pos_y = self.height_screnn/2 - height_root/2
         geometry_root = '%dx%d+%d+%d' % (width_root,height_root,pos_x,pos_y)
-        self.root.title('Visor - Gerenciador de filas')
+        self.root.title('Painel de senhas')
         self.root.geometry(geometry_root)
         self.root.maxsize(width=self.width_screnn, height=self.height_screnn)
         self.root.minsize(width=800, height=600)
@@ -161,15 +160,25 @@ class PainelGUI(Functions):
     def widgets_frame1(self):
         self.label = Label(self.frame_1, text='SECRETARIA MUNICIPAL DE SAÚDE')
         self.label.config(
-            font=(fonts[0],32, 'bold'), foreground=coolors[2],
+            font=(fonts[0],40, 'bold'), foreground=coolors[2],
             background=coolors[4], justify='center'
         )
         self.label.place(relwidth=1,relheight=1)
 
+        self.img_sfs = PhotoImage(file=f'{get_dir}\images\sfs.png')
+        self.img = Label(self.frame_1, image=self.img_sfs, bd=0)
+        self.img.config(background=coolors[4])
+        self.img.place(relx=0.01, rely=0.2)
+
+        self.img_sus = PhotoImage(file=f'{get_dir}\images\sus.png')
+        self.img = Label(self.frame_1, image=self.img_sus, bd=0)
+        self.img.config(background=coolors[4])
+        self.img.place(relx=0.88, rely=0.2)
+
     def widgets_frame2(self):
         self.label = Label(self.frame_2, text='Senha')
         self.label.config(
-            font=(fonts[0],32,'bold'), foreground=coolors[5],
+            font=(fonts[0],50,'bold'), foreground=coolors[5],
             background=coolors[1], justify='center', anchor='s'
         )
         self.label.place(rely=0.10,relwidth=1,relheight=0.10)
@@ -177,36 +186,36 @@ class PainelGUI(Functions):
         # display senha chamada/atualizar
         self.display_senha1 = Label(self.frame_2, text='0000')
         self.display_senha1.config(
-            font=(fonts[0],90,'bold'), foreground=coolors[4],
+            font=(fonts[0],100,'bold'), foreground=coolors[4],
             background=coolors[1], justify='center', anchor='n'
         )
         self.display_senha1.place(rely=0.2,relwidth=1,relheight=0.3)
 
         self.label = Label(self.frame_2, text='Local')
         self.label.config(
-            font=(fonts[0],32,'bold'), foreground=coolors[5],
+            font=(fonts[0],50,'bold'), foreground=coolors[5],
             background=coolors[1], justify='center', anchor='s'
         )
         self.label.place(rely=0.5,relwidth=1,relheight=0.10)
 
-        self.display_local = Label(self.frame_2, text='####')
+        self.display_local = Label(self.frame_2, text='-')
         self.display_local.config(
-            font=(fonts[0],90,'bold'), foreground=coolors[4],
+            font=(fonts[0],100,'bold'), foreground=coolors[4],
             background=coolors[1], justify='center', anchor='n'
         )
         self.display_local.place(rely=0.6,relwidth=1,relheight=0.3)
 
         self.label = Label(self.frame_2, text='Favor dirigir-se ao local de atendiemento!')
         self.label.config(
-            font=(fonts[0],18), foreground=coolors[0],
-            background=coolors[1], justify='center',
+            font=(fonts[0],30), foreground=coolors[0],
+            background=coolors[1], justify='center'
         )
         self.label.place(rely=0.9,relwidth=1,relheight=0.10)
     
     def widgets_frame3(self):
         self.label = Label(self.frame_3, text='Senha chamada')
         self.label.config(
-            font=(fonts[0],16), foreground=coolors[2],
+            font=(fonts[0],22), foreground=coolors[2],
             background=coolors[0], justify='center'
         )
         self.label.place(rely=0 ,relwidth=1, relheight=0.05)
@@ -214,7 +223,7 @@ class PainelGUI(Functions):
          # label, senha chamada
         self.label = Label(self.frame_3, text='Senha')
         self.label.config(
-            font=(fonts[0],30), foreground=coolors[1],
+            font=(fonts[0],32), foreground=coolors[1],
             background=coolors[4], justify='center', anchor='s'
         )
         self.label.place(rely=0.05, relwidth=1,relheight=0.11)
@@ -222,7 +231,7 @@ class PainelGUI(Functions):
         # dislpay, senha chamada
         self.display_senha2 = Label(self.frame_3, text='0000')
         self.display_senha2.config(
-            font=(fonts[0],40,'bold'), foreground=coolors[2],
+            font=(fonts[0],55,'bold'), foreground=coolors[2],
             background=coolors[4], justify='center', anchor='n'
         )
         self.display_senha2.place(rely=0.16, relwidth=1,relheight=0.12)
@@ -230,15 +239,15 @@ class PainelGUI(Functions):
         # label, local/balcão
         self.label = Label(self.frame_3, text='Local')
         self.label.config(
-            font=(fonts[0],30), foreground=coolors[1],
+            font=(fonts[0],32), foreground=coolors[1],
             background=coolors[4], justify='center', anchor='s'
         )
         self.label.place(rely=0.28, relwidth=1,relheight=0.06)
 
         # dislpay, local/balcão
-        self.display_local2 = Label(self.frame_3, text='####')
+        self.display_local2 = Label(self.frame_3, text='-')
         self.display_local2.config(
-            font=(fonts[0],40,'bold'), foreground=coolors[2],
+            font=(fonts[0],55,'bold'), foreground=coolors[2],
             background=coolors[4], justify='center', anchor='n'
         )
         self.display_local2.place(rely=0.34, relwidth=1,relheight=0.15)
@@ -246,7 +255,7 @@ class PainelGUI(Functions):
         # label ultimas chamadas
         self.label = Label(self.frame_3, text='últimas chamadas')
         self.label.config(
-            font=(fonts[0],16), foreground=coolors[2],
+            font=(fonts[0],22), foreground=coolors[2],
             background=coolors[0], justify='center'
         )
         self.label.place(rely=0.49, relwidth=1,relheight=0.05)
@@ -254,7 +263,7 @@ class PainelGUI(Functions):
         # display senha 1
         self.display_senha3 = Label(self.frame_3, text='0000')
         self.display_senha3.config(
-            font=(fonts[0],30,'bold'), foreground=coolors[0],
+            font=(fonts[0],40,'bold'), foreground=coolors[0],
             background=coolors[5], justify='center'
         )
         self.display_senha3.place(rely=0.54 ,relwidth=1,relheight=0.12)
@@ -262,7 +271,7 @@ class PainelGUI(Functions):
         # diplay chamada 3
         self.display_senha4 = Label(self.frame_3, text='0000')
         self.display_senha4.config(
-            font=(fonts[0],30,'bold'), foreground=coolors[0],
+            font=(fonts[0],40,'bold'), foreground=coolors[0],
             background=coolors[6], justify='center'
         )
         self.display_senha4.place(rely=0.66,relwidth=1,relheight=0.12)    
@@ -270,7 +279,7 @@ class PainelGUI(Functions):
         # diplay chamada 3
         self.display_senha5 = Label(self.frame_3, text='0000')
         self.display_senha5.config(
-            font=(fonts[0],30,'bold'), foreground=coolors[0],
+            font=(fonts[0],40,'bold'), foreground=coolors[0],
             background=coolors[7], justify='center'
         )
         self.display_senha5.place(rely=0.78 , relwidth=1,relheight=0.12)
@@ -278,7 +287,7 @@ class PainelGUI(Functions):
     def widgets_frame4(self):
         self.label_data = Label(self.frame_4, text='São Francisco do Sul - SC')
         self.label_data.config(
-            font=(fonts[0],16), foreground=coolors[1],
+            font=(fonts[0],22), foreground=coolors[1],
             background=coolors[0], justify='center'
         )
         self.label_data.place(relwidth=1,relheight=1)
