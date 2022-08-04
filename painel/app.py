@@ -130,7 +130,9 @@ class PainelGUI(Functions):
         pos_x = self.width_screnn/2 - width_root/2
         pos_y = self.height_screnn/2 - height_root/2
         geometry_root = '%dx%d+%d+%d' % (width_root,height_root,pos_x,pos_y)
+        icon = fr'{get_dir}\images\sfs.ico'
         self.root.title('Painel de senhas')
+        self.root.iconbitmap(default=icon)
         self.root.geometry(geometry_root)
         self.root.maxsize(width=self.width_screnn, height=self.height_screnn)
         self.root.minsize(width=800, height=600)
