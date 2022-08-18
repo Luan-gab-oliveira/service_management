@@ -1,7 +1,7 @@
 ###Lista de Modulos Importados###
-from contextlib import contextmanager       
+from contextlib import contextmanager
 
-from tkinter import simpledialog            
+from tkinter import simpledialog   
 #Importando a função simpledialog de Tkinter
 
 from impressao.imprimir import *            

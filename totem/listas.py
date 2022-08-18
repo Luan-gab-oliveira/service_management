@@ -1,13 +1,6 @@
-from modules import os 
-###Definindo variaveis para Profissionais e especialidades###
-prof= [
-    "Dr. Caio",
-    "Dr. Jocenyr",
-    "Dra. Daffne",
-    "Dr. Alcélio",
-    "Dra. Lúcia",
-    "Dr. Ademar"
-    ]
+from Modulos import *
+
+###Definindo variaveis para especialidades###
 esp = [
     "Clínico Geral",
     "Ginecologista",
