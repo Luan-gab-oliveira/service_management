@@ -22,7 +22,11 @@ endobj
 <<
 /Contents 8 0 R /MediaBox [ 0 0 595.2756 841.8898 ] /Parent 7 0 R /Resources <<
 /Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ] /XObject <<
+<<<<<<< HEAD
 /FormXob.478a1fb1642e321ff8179909d450bcc1 3 0 R
+=======
+/FormXob.ce9dcc31fd2e148717172b789ddde12e 3 0 R
+>>>>>>> c1c51330ed6477b7f729fd9e97ad68f3c53255be
 >>
 >> /Rotate 0 /Trans <<
 
@@ -37,7 +41,11 @@ endobj
 endobj
 6 0 obj
 <<
+<<<<<<< HEAD
 /Author (anonymous) /CreationDate (D:20220817123019+03'00') /Creator (ReportLab PDF Library - www.reportlab.com) /Keywords () /ModDate (D:20220817123019+03'00') /Producer (ReportLab PDF Library - www.reportlab.com) 
+=======
+/Author (anonymous) /CreationDate (D:20220811111041+03'00') /Creator (ReportLab PDF Library - www.reportlab.com) /Keywords () /ModDate (D:20220811111041+03'00') /Producer (ReportLab PDF Library - www.reportlab.com) 
+>>>>>>> c1c51330ed6477b7f729fd9e97ad68f3c53255be
   /Subject (unspecified) /Title (untitled) /Trapped /False
 >>
 endobj
@@ -48,10 +56,17 @@ endobj
 endobj
 8 0 obj
 <<
+<<<<<<< HEAD
 /Filter [ /ASCII85Decode /FlateDecode ] /Length 380
 >>
 stream
 Gat&I4\rsL&-h&U^Z%^JaLSY'B:H"g/!.nTl[aV`8K4Xb1np67O(/5X$;2*_MCeXMhq09koMC"g/\kqNE^i;4@KXQ++jOL7Mtb'mX0e(PVn/O[6Z)]ritPt,BmES$\paJ2<Jm>S;,`U]hAAs]j2m"*@EfRg\gFrTMPjnhZe1$>%T-r)L0!A+Z&jUqnCYV"jKR=>\*[dOkY<;869H3Qob_>#r>="b<M5"b&;@ucZ/tWWAhmtSZ9q+]dgANtO<>3=+c0anEA9n*`t]5`9ldTOM@A8+bTEu7oA^/]Q[VV5RcMqHO`Na@mVWhNa^iK6f\oe^HcMiN,3F6)?4<;5Rf-u&Da3Lsef?;+hp0^0Pitc">,U\,@IR&*'OT=rK\H~>endstream
+=======
+/Filter [ /ASCII85Decode /FlateDecode ] /Length 376
+>>
+stream
+Gat%\9hPRS%#46J.rnUOCbh3F%r\MWGUSGkKH@eYrIBd[_-6lRZdV?rohkiY(m='1#Qpp_r&+YmD1HZK^^<C=/1;'1YR&3\;>CQa2*R()O4obs``?:hnl8jHb%3[DS%-G7o52rimT\5H36S;NeiM]sD9&Z/qcGrs;clIuR%YrYrUOKaekccZp^I`9>h$f3hsQ5:IuK^*hB?,uCElM.9\^Vb7%rcH'5rtkE/(J2Nt:n'_ji`geN[).88Khj04SKIBX+O.qt#IL.\26Wo>k+8bZR*beZ8:p$mStddu[5s@V\bPH3ot7E6clLV9PMU8OQ%2-$7/jdtqD=kQq.GD;X]oRL!b`p%QLLE[o1rMNga#%F^pp."2.R153j~>endstream
+>>>>>>> c1c51330ed6477b7f729fd9e97ad68f3c53255be
 endobj
 xref
 0 9
@@ -67,7 +82,11 @@ xref
 trailer
 <<
 /ID 
+<<<<<<< HEAD
 [<c6be8ca44404c71ffa692fcf50709140><c6be8ca44404c71ffa692fcf50709140>]
+=======
+[<d777786895d41ee969493a933cfa9fc8><d777786895d41ee969493a933cfa9fc8>]
+>>>>>>> c1c51330ed6477b7f729fd9e97ad68f3c53255be
 % ReportLab generated PDF document -- digest (http://www.reportlab.com)
 
 /Info 6 0 R
@@ -75,5 +94,9 @@ trailer
 /Size 9
 >>
 startxref
+<<<<<<< HEAD
 49195
+=======
+49191
+>>>>>>> c1c51330ed6477b7f729fd9e97ad68f3c53255be
 %%EOF
