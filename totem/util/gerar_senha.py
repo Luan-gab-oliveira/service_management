@@ -1,4 +1,4 @@
-from util.startserver import *
+from util.models import *
 from util.parametros import *
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4
@@ -48,7 +48,7 @@ def imprimir(senha, local):
 ###Função para conectar ao servidor###
 def gerar_senha(self):
     global senha, opc, atendimento, senhal
-    with startserver() as conexao: #chama a função para conectar ao banco mysql
+    with connect_server() as conexao: #chama a função para conectar ao banco mysql
         with conexao.cursor() as cursor:
             #caso exista uma sequencia para a opção selecionada na consulta, gera uma senha sequencial.
             if  cursor.execute(f'SELECT senha FROM {tabela} WHERE id IN (SELECT MAX(id) FROM {tabela} WHERE opcao = "{opc}" AND atendimento = "{atendimento}");')>0: #realiza consulta em banco

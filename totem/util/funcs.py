@@ -6,6 +6,7 @@ from util.listas import *
 class func():
     global senha, opc, atendimento, senhal
     ###Função para aviso de HORARIO EXCEDENTE
+
     def horario_ex(self):
         self.root_horario = tk.Toplevel() #Variavel para atribuir tela principal
         self.root_horario.title('Sistema de Senhas Secretaria Municipal de Saúde.') #Atribuir titulo a tela
@@ -113,7 +114,7 @@ class func():
     ###Função para conectar ao servidor###
     def gerar_senha(self):
         global senha, opc, atendimento, senhal
-        with startserver() as conexao: #chama a função para conectar ao banco mysql
+        with connect_server() as conexao: #chama a função para conectar ao banco mysql
             with conexao.cursor() as cursor:
                 #caso exista uma sequencia para a opção selecionada na consulta, gera uma senha sequencial.
                 if  cursor.execute(f'SELECT senha FROM {tabela} WHERE id IN (SELECT MAX(id) FROM {tabela} WHERE opcao = "{opc}" AND atendimento = "{atendimento}");')>0: #realiza consulta em banco
@@ -154,15 +155,15 @@ class func():
         figura_fundo_Mult.place(anchor= 'center',relx=0.5, rely=0.5) #Localizando a imagem na tela
 
         self.bt_conv_mult = PhotoImage(file= bt[8]) #Chamando imagem 
-        self.figura_bt_conv_mult = Button(self.frameMult, image=self.bt_conv_mult, relief=FLAT, bd = 0, command= self.fechar_conv) #Adicionando a imagem a um botão
+        self.figura_bt_conv_mult = Button(self.frameMult, image=self.bt_conv_mult, relief=FLAT, bd = 0, command=self.fechar_conv) #Adicionando a imagem a um botão
         self.figura_bt_conv_mult.place(relx= 0.31, rely=0.4, relwidth= 0.387, relheight= 0.18) #Localizando o botão na tela
 
         self.bt_prefe_mult = PhotoImage(file= bt[10]) #Chamando imagem 
-        self.figura_bt_prefe_mult = Button(self.frameMult, image=self.bt_prefe_mult, relief=FLAT, bd = 0, command= self.fechar_prefe)
+        self.figura_bt_prefe_mult = Button(self.frameMult, image=self.bt_prefe_mult, relief=FLAT, bd = 0, command=self.fechar_prefe)
         self.figura_bt_prefe_mult.place(relx= 0.31, rely=0.6, relwidth= 0.39, relheight= 0.2) #Localizando o botão na tela
 
         self.bt_voltar_mult = PhotoImage(file = bt[12]) #Chamando imagem 
-        self.figura_bt_voltar_mult = Button(self.frameMult, image = self.bt_voltar_mult, relief=FLAT, bd = 0, command= self.rootMult.destroy) #Adicionando a imagem a um botão
+        self.figura_bt_voltar_mult = Button(self.frameMult, image = self.bt_voltar_mult, relief=FLAT, bd = 0, command=self.rootMult.destroy) #Adicionando a imagem a um botão
         self.figura_bt_voltar_mult.place(anchor='center', relx= 0.13, rely=0.08, relwidth= 0.17, relheight= 0.08) #Localizando o botão na tela
     ###Função Escolha Preferencial ou Convencional PREMIR Consultas###
     def abrir_janela_Consultas(self): 
@@ -309,6 +310,7 @@ class func():
         self.btvoltar_imgFAC = PhotoImage(file = bt[12]) #Imagem Botão Voltar 
         self.btvoltar_FAC = Button(self.frame_FAC, image = self.btvoltar_imgFAC, relief=FLAT, bd = 0, command= self.root_FAC.destroy) #Adicionando a imagem a um botão
         self.btvoltar_FAC.place(anchor='center', relx= 0.13, rely=0.08, relwidth= 0.17, relheight= 0.08) #Localizando o botão na tela    
+    
     ###Função Escolha Preferencial ou Convencional AUTORIZAÇÃO DE EXAMES###
     def abrir_janela_AE(self): 
         if data >= "13:40":
