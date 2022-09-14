@@ -9,7 +9,7 @@ from datetime import date, datetime, timedelta
 def connect_server(): # função conectar banco
     conexao = pymysql.connect(
         host='192.168.2.8',
-        user='sms',
+        user='totem',
         password='fundosaude@2021',
         db='database_att',
         charset='utf8mb4',
