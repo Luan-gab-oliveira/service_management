@@ -35,7 +35,7 @@ atend = [
     ]
 
 ###Definindo variavel com o nome do local fonte dos arquivos###
-get_dir = os.getcwd()+ r'\totem\imagens'
+get_dir = os.getcwd()+ r'\imagens'
 
 ###Definindo Variaveis para Botões e seus diretorios###
 

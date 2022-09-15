@@ -1,4 +1,6 @@
-from util.modulos import *
+# from util.modulos import *
+import tkinter as tk
+from datetime import datetime                   
 
 root = tk.Tk()                                              #Variavel Princiapal das telas 
 w, h = root.winfo_screenwidth(), root.winfo_screenheight()  #Variavel que pega as medidas da tela como referência

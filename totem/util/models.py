@@ -1,5 +1,4 @@
 from contextlib import contextmanager
-from turtle import pensize
 import pymysql.cursors
 from datetime import date, datetime, timedelta     
 #Importanto funções para trabalha em banco de dados 

@@ -53,6 +53,31 @@ class func():
         self.root_horario.overrideredirect(True)
         self.root_horario.after(8000,self.root_horario.destroy)
 
+    def gerar_senha(self):
+        global senha, opc, atendimento, senhal
+        with connect_server() as conexao: #chama a função para conectar ao banco mysql
+            with conexao.cursor() as cursor:
+                #caso exista uma sequencia para a opção selecionada na consulta, gera uma senha sequencial.
+                if  cursor.execute(f'SELECT senha FROM {tabela} WHERE id IN (SELECT MAX(id) FROM {tabela} WHERE opcao = "{opc}" AND atendimento = "{atendimento}");')>0: #realiza consulta em banco
+                    resultado = str(cursor.fetchone()['senha']) #retorna resultado da consulta
+                    if atendimento == "preferencial": #Preferencial
+                        resultado = int(resultado[4:])+1 #converte o resutado, fatiando apenas os valores
+                    else: # Convencional
+                        resultado = int(resultado[3:])+1 #converte o resutado, fatiando apenas os valores
+
+                    resultado = str(resultado).rjust(3,'0') # adiciona 3 digitos ao resultado
+                    senha = senha + str(resultado) #seta senha
+                    sql = f"INSERT INTO {tabela} (opcao, atendimento, senha, data, status) VALUES ('{opc}','{atendimento}','{senha}','{data}', 'ESPERA')"  #seta intrução sql
+                
+                else: #caso não exista uma sequencia para a opção selecionada na consulta, gera uma nova senha no bloco else. 
+                    senha = senha + str('001') #seta senha
+                    sql = f"INSERT INTO {tabela} (opcao, atendimento, senha, data, status) VALUES ('{opc}','{atendimento}','{senha}','{data}', 'ESPERA')"  #seta intrução sql
+
+                cursor.execute(sql) #executa instrução sql
+                conexao.commit() #commit para o interprertador entender que deve executar a instrução
+                imprimir(senha, opc)
+                print(senha)
+
     ###Funções de Fechamento de cada tela###
     def fechar_conv(self): #Função fechamento de tela Conv. do TFD, AUT, FAA, FAB, FAE, PRE
         global senha, opc, atendimento, tela
@@ -139,7 +164,7 @@ class func():
 
         self.bt_voltar_mult = PhotoImage(file = bt[12]) #Chamando imagem 
         self.figura_bt_voltar_mult = Button(self.frameMult, image = self.bt_voltar_mult, relief=FLAT, bd = 0, command=self.rootMult.destroy) #Adicionando a imagem a um botão
-        self.figura_bt_voltar_mult.place(anchor='center', relx= 0.13, rely=0.08, relwidth= 0.17, relheight= 0.06) #Localizando o botão na tela
+        self.figura_bt_voltar_mult.place(anchor='center', relx= 0.13, rely=0.08, relwidth= 0.17, relheight= 0.075) #Localizando o botão na tela
     ###Função Escolha Preferencial ou Convencional PREMIR Consultas###
     def abrir_janela_Consultas(self): 
         self.rootConsultas = tk.Toplevel() #Variavel para atribuir tela principal
@@ -168,7 +193,7 @@ class func():
 
         self.bt_voltar_cons = PhotoImage(file = bt[12]) #Chamando imagem 
         self.figura_bt_voltar_cons = Button(self.frameConsultas, image = self.bt_voltar_cons, relief=FLAT, bd = 0, command= self.rootConsultas.destroy) #Adicionando a imagem a um botão
-        self.figura_bt_voltar_cons.place(anchor='center', relx= 0.13, rely=0.08, relwidth= 0.17, relheight= 0.06) #Localizando o botão na tela
+        self.figura_bt_voltar_cons.place(anchor='center', relx= 0.13, rely=0.08, relwidth= 0.17, relheight= 0.075) #Localizando o botão na tela
     ###Função Escolha Preferencial ou Convencional PREMIR Ultrassom###
     def abrir_janela_Ultrassom(self): 
         self.rootUltrassom = tk.Toplevel() #Variavel para atribuir tela principal
@@ -197,7 +222,7 @@ class func():
 
         self.bt_voltar_ultr = PhotoImage(file = bt[12]) #Chamando imagem 
         self.figura_voltar_ultr = Button(self.frameUltrassom, image = self.bt_voltar_ultr, relief=FLAT, bd = 0, command= self.rootUltrassom.destroy) #Adicionando a imagem a um botão
-        self.figura_voltar_ultr.place(anchor='center', relx= 0.13, rely=0.08, relwidth= 0.17, relheight= 0.06) #Localizando o botão na tela
+        self.figura_voltar_ultr.place(anchor='center', relx= 0.13, rely=0.08, relwidth= 0.17, relheight= 0.075) #Localizando o botão na tela
     ###Função Escolha Preferencial ou Convencional FARMACIA BASICA###
     def abrir_janela_AtencaoBasica(self): 
         self.root_AB = tk.Toplevel() #Variavel para atribuir tela principal
@@ -226,7 +251,7 @@ class func():
 
         self.btvoltar_imgAB = PhotoImage(file = bt[12]) #Imagem Botão Voltar 
         self.btvoltar_AB = Button(self.frame_AB, image = self.btvoltar_imgAB, relief=FLAT, bd = 0, command= self.root_AB.destroy) #Adicionando a imagem a um botão
-        self.btvoltar_AB.place(anchor='center', relx= 0.13, rely=0.08, relwidth= 0.17, relheight= 0.06) #Localizando o botão na tela
+        self.btvoltar_AB.place(anchor='center', relx= 0.13, rely=0.08, relwidth= 0.17, relheight= 0.075) #Localizando o botão na tela
     ###Função Escolha Preferencial ou Convencional FARMACIA ESTADO###
     def abrir_janela_Estado(self): 
         self.root_FE = tk.Toplevel() #Variavel para atribuir tela principal
@@ -255,7 +280,7 @@ class func():
 
         self.btvoltar_imgFE = PhotoImage(file = bt[12]) #Imagem Botão Voltar 
         self.btvoltar_FE = Button(self.frame_FE, image = self.btvoltar_imgFE, relief=FLAT, bd = 0, command= self.root_FE.destroy) #Adicionando a imagem a um botão
-        self.btvoltar_FE.place(anchor='center', relx= 0.13, rely=0.08, relwidth= 0.17, relheight= 0.06) #Localizando o botão na tela
+        self.btvoltar_FE.place(anchor='center', relx= 0.13, rely=0.08, relwidth= 0.17, relheight= 0.075) #Localizando o botão na tela
     ###Função Escolha Preferencial ou Convencional FARMACIA AUTO-CUSTO###
     def abrir_janela_AutoCusto(self): 
         self.root_FAC = tk.Toplevel() #Variavel para atribuir tela principal
@@ -284,7 +309,7 @@ class func():
 
         self.btvoltar_imgFAC = PhotoImage(file = bt[12]) #Imagem Botão Voltar 
         self.btvoltar_FAC = Button(self.frame_FAC, image = self.btvoltar_imgFAC, relief=FLAT, bd = 0, command= self.root_FAC.destroy) #Adicionando a imagem a um botão
-        self.btvoltar_FAC.place(anchor='center', relx= 0.13, rely=0.08, relwidth= 0.17, relheight= 0.06) #Localizando o botão na tela    
+        self.btvoltar_FAC.place(anchor='center', relx= 0.13, rely=0.08, relwidth= 0.17, relheight= 0.075) #Localizando o botão na tela    
     
     ###Função Escolha Preferencial ou Convencional AUTORIZAÇÃO DE EXAMES###
     def abrir_janela_AE(self): 
@@ -317,7 +342,7 @@ class func():
 
             self.btvoltar_imgAE = PhotoImage(file = bt[12]) #Imagem Botão Voltar 
             self.btvoltar_AE = Button(self.frameAE, image = self.btvoltar_imgAE, relief=FLAT, bd = 0, command= self.rootAE.destroy) #Adicionando a imagem a um botão
-            self.btvoltar_AE.place(anchor='center', relx= 0.13, rely=0.08, relwidth= 0.17, relheight= 0.06) #Localizando o botão na tela   
+            self.btvoltar_AE.place(anchor='center', relx= 0.13, rely=0.08, relwidth= 0.17, relheight= 0.075) #Localizando o botão na tela   
     ###Função para Tela Premir###
     def abrir_janela_Premir(self):
         if hora_atual >= "13:40":
@@ -363,7 +388,7 @@ class func():
 
             self.bt_voltar = PhotoImage(file = bt[12]) #Imagem botão Voltar
             self.btvoltar = Button(self.frame_premir, image = self.bt_voltar, relief=FLAT, bd = 0, command= self.root_premir.destroy) #Adicionando a imagem a um botão
-            self.btvoltar.place(anchor='center', relx= 0.13, rely=0.08, relwidth= 0.17, relheight= 0.06) #Localizando o botão na tela
+            self.btvoltar.place(anchor='center', relx= 0.13, rely=0.08, relwidth= 0.17, relheight= 0.075) #Localizando o botão na tela
 
             self.btconsultas2 = Button(self.frame_premir, text = f"•{esp[0]} \n•{esp[1]} \n•{esp[2]} \n•{esp[3]} \n•{esp[4]} \n•{esp[5]} \n•{esp[6]} \n•{esp[7]}", relief = FLAT, bd = 0, background = cores[4], activebackground = cores[4], command= self.abrir_janela_Consultas) #Adicionando texto a um botão
             self.btconsultas2.configure(font = fontexemplo0) #Configuração fonte padrão
@@ -437,7 +462,7 @@ class func():
             
             self.bt_img_voltar = PhotoImage(file = bt[12]) #Imagem botão Voltar 
             self.bt_voltar_farmacias = Button(self.frame_farmacia, image = self.bt_img_voltar, relief=FLAT, bd = 0, command= self.root_farmacia.destroy) #Adicionando a imagem a um botão
-            self.bt_voltar_farmacias.place(anchor='center', relx= 0.13, rely=0.08, relwidth= 0.17, relheight= 0.06) #Localizando o botão na tela
+            self.bt_voltar_farmacias.place(anchor='center', relx= 0.13, rely=0.08, relwidth= 0.17, relheight= 0.075) #Localizando o botão na tela
     ###Função para tela de espera de senha###
     def abrir_janela_espera(self):
         self.root_espera = tk.Toplevel()
@@ -496,3 +521,4 @@ class func():
         self.root_espera.attributes('-alpha', 1.0)
         self.root_espera.overrideredirect(True)
         self.root_espera.after(5000,self.root_espera.destroy)
+
