@@ -74,8 +74,10 @@ class Functions():
                             self.display_senha5.config(text=chamada3)
                         
                         if senha[1] == setor:
-                            self.voice(senha[0])      
-                except:
+                            self.voice(senha[0])    
+
+                except Exception as e:
+                    print(e)
                     continue
 
     def voice(self,senha):
@@ -85,7 +87,8 @@ class Functions():
             texto = f'Senha {senha}, favor dirigir-se ao local de atendiemento!'
             tts = gtts.gTTS(texto, lang='pt-br')
             tts.save(file_voice)
-        except:
+        except Exception as e:
+            print(e)
             i += 1
             file_voice = f'Media\Voices\\{senha}{data}.mp3'
             texto = f'Senha {senha}, favor dirigir-se ao local de atendiemento!'
@@ -112,9 +115,14 @@ class PainelGUI(Functions):
         self.widgets_frame2()
         self.widgets_frame3()
         self.widgets_frame4()
-        threading.Thread(target=self.start_conect).start()
+        self.tread_start_server()
         self.relogio()
         self.root.mainloop()
+    
+    def tread_start_server(self):
+        t1 = threading.Thread(target=self.start_conect)
+        t1.daemon = TRUE
+        t1.start()
 
     def toggleFullScreen(self, event):
         self.fullScreenState = not self.fullScreenState
