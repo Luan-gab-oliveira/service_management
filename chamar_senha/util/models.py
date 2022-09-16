@@ -1,35 +1,7 @@
-from util.modules import *
+# from util.modules import *
 from contextlib import contextmanager
 from configparser import ConfigParser
-import pymysql.cursors, threading
-
-def list_panels():
-    global listpanels
-    listpanels = []
-    sql = 'SELECT host, port FROM panels;'
-    consulta = consulta_database(sql)
-    for i in consulta:
-        listpanels.append([i['host'],i['port']])
-
-
-def chamar_senha(data):
-    global listpanels
-    for i in listpanels:
-        HOST = str(i[0])
-        PORT = int(i[1])
-        try:
-            threading.Thread(target=run_panel, args=[HOST, PORT, data]).start()
-        except:
-            continue
-            # messagebox.showwarning('Erro temporário!','Falha na comunicação com o servidor remoto!\nTente novamnete em alguns instantes!')
-
-def run_panel(HOST, PORT,data):
-    try:
-        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-            s.connect((HOST, PORT))
-            s.sendall(str.encode(str(data)))
-    except:
-        print(f'Erro de conexão: {HOST} {PORT}')
+import pymysql.cursors, threading, os, socket
 
 @contextmanager
 def start_connect():
@@ -67,4 +39,30 @@ def update_databe(sql):
             cursor.execute(sql)
             conexao.commit()
 
-list_panels()
+def list_panels():
+    listpanels = []
+    sql = 'SELECT host, port FROM panels;'
+    consulta = consulta_database(sql)
+    for i in consulta:
+        listpanels.append([i['host'],i['port']])
+    return listpanels
+        
+
+def chamar_senha(data):
+    listpanels = list_panels()
+    for i in listpanels:
+        HOST = str(i[0])
+        PORT = int(i[1])
+        try:
+            threading.Thread(target=run_panel, args=[HOST, PORT, data]).start()
+        except:
+            continue
+            # messagebox.showwarning('Erro temporário!','Falha na comunicação com o servidor remoto!\nTente novamnete em alguns instantes!')
+
+def run_panel(HOST, PORT,data):
+    try:
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+            s.connect((HOST, PORT))
+            s.sendall(str.encode(str(data)))
+    except:
+        print(f'Erro de conexão: {HOST} {PORT}')

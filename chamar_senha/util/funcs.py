@@ -68,6 +68,6 @@ class Functions():
             self.display_espera.config(text=espera)
             self.display_espera.after(200, self.update_statubar)
 
-    def open_settings(self):
-        ConfigGUI()
+    # def open_settings(self):
+    #     ConfigGUI()
 

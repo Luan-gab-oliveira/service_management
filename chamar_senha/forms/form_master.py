@@ -1,7 +1,8 @@
 from util.modules import *
 from util.funcs import *
+# from util.models import *
 
-get_dir = os.getcwd()+r'\chamar_senha'
+get_dir = os.getcwd()
 icon = fr'{get_dir}\images\sfs.ico'
 settings = f'{get_dir}\images\settings.png'
 fonts = ['Helvetica','Arial']
