@@ -30,7 +30,7 @@ class Functions():
                 'local': 'local',
                 'port': '50000'
                 }
-            with open(config_file, 'w', encoding='UTF-8') as file:
+            with open(config_file, 'w') as file:
                 config.write(file)
         
         config.read(config_file)
@@ -61,6 +61,7 @@ class Functions():
                             self.display_local.config(text=senha[1])
 
                         if senha[0] != senha_atual:    
+                            
                             senha_atual = senha[0]                            
                             chamada3 = chamada2
                             chamada2 = chamada1
