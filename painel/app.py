@@ -30,7 +30,7 @@ class Functions():
                 'local': 'local',
                 'port': '50000'
                 }
-            with open(config_file, 'w') as file:
+            with open(config_file, 'w', encoding='UTF-8') as file:
                 config.write(file)
         
         config.read(config_file)
@@ -61,7 +61,6 @@ class Functions():
                             self.display_local.config(text=senha[1])
 
                         if senha[0] != senha_atual:    
-                            
                             senha_atual = senha[0]                            
                             chamada3 = chamada2
                             chamada2 = chamada1
@@ -75,10 +74,9 @@ class Functions():
                             self.display_senha5.config(text=chamada3)
                         
                         if senha[1] == setor:
-                            self.voice(senha[0])    
-
-                except Exception as e:
-                    print(e)
+                            self.voice(senha[0])
+                        
+                except:
                     continue
 
     def voice(self,senha):
@@ -88,8 +86,7 @@ class Functions():
             texto = f'Senha {senha}, favor dirigir-se ao local de atendiemento!'
             tts = gtts.gTTS(texto, lang='pt-br')
             tts.save(file_voice)
-        except Exception as e:
-            print(e)
+        except:
             i += 1
             file_voice = f'Media\Voices\\{senha}{data}.mp3'
             texto = f'Senha {senha}, favor dirigir-se ao local de atendiemento!'
