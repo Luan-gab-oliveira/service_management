@@ -152,7 +152,7 @@ class func():
         #Imagens na Tela 
         self.fundo_mult = PhotoImage(file= planos[1]) #Plano de fundo principal
         figura_fundo_Mult = Label(self.frameMult, image= self.fundo_mult, bd= 0) #Chamando imagem 
-        figura_fundo_Mult.place(anchor= 'center',relx=0.5, rely=0.5, width= 500, height= 500) #Localizando a imagem na tela
+        figura_fundo_Mult.place(anchor= 'center',relx=0.5, rely=0.4, width= 500, height= 500) #Localizando a imagem na tela
 
         self.bt_conv_mult = PhotoImage(file= bt[8]) #Chamando imagem 
         self.figura_bt_conv_mult = Button(self.frameMult, image=self.bt_conv_mult, relief=FLAT, bd = 0, command=self.fechar_conv) #Adicionando a imagem a um botão
@@ -164,7 +164,7 @@ class func():
 
         self.bt_voltar_mult = PhotoImage(file = bt[12]) #Chamando imagem 
         self.figura_bt_voltar_mult = Button(self.frameMult, image = self.bt_voltar_mult, relief=FLAT, bd = 0, command=self.rootMult.destroy) #Adicionando a imagem a um botão
-        self.figura_bt_voltar_mult.place(anchor='center', relx= 0.13, rely=0.08, relwidth= 0.2, relheight= 0.1) #Localizando o botão na tela
+        self.figura_bt_voltar_mult.place(anchor='center', relx= 0.13, rely=0.08, width= 200, height= 80) #Localizando o botão na tela
     ###Função Escolha Preferencial ou Convencional PREMIR Consultas###
     def abrir_janela_Consultas(self): 
         self.rootConsultas = tk.Toplevel() #Variavel para atribuir tela principal
@@ -181,7 +181,7 @@ class func():
         #Imagens na Tela 
         self.fundo_Consultas = PhotoImage(file= planos[1]) #Plano de fundo principal
         figura_fundo_Consultas = Label(self.frameConsultas, image= self.fundo_Consultas, bd= 0) #Chamando imagem 
-        figura_fundo_Consultas.place(anchor= 'center',relx=0.5, rely=0.5, width= 500, height= 500) #Localizando a imagem na tela
+        figura_fundo_Consultas.place(anchor= 'center',relx=0.5, rely=0.4, width= 500, height= 500) #Localizando a imagem na tela
 
         self.bt_conv_cons = PhotoImage(file= bt[8]) #Chamando imagem 
         self.figura_bt_conv_cons = Button(self.frameConsultas, image=self.bt_conv_cons, relief=FLAT, bd = 0, command= self.fechar_conv) #Adicionando a imagem a um botão
@@ -193,7 +193,7 @@ class func():
 
         self.bt_voltar_cons = PhotoImage(file = bt[12]) #Chamando imagem 
         self.figura_bt_voltar_cons = Button(self.frameConsultas, image = self.bt_voltar_cons, relief=FLAT, bd = 0, command= self.rootConsultas.destroy) #Adicionando a imagem a um botão
-        self.figura_bt_voltar_cons.place(anchor='center', relx= 0.13, rely=0.08, relwidth= 0.2, relheight= 0.1) #Localizando o botão na tela
+        self.figura_bt_voltar_cons.place(anchor='center', relx= 0.13, rely=0.08, width= 200, height= 80) #Localizando o botão na tela
     ###Função Escolha Preferencial ou Convencional PREMIR Ultrassom###
     def abrir_janela_Ultrassom(self): 
         self.rootUltrassom = tk.Toplevel() #Variavel para atribuir tela principal
@@ -210,7 +210,7 @@ class func():
         #Imagens na Tela 
         self.fundo_ultr = PhotoImage(file= planos[1]) #Plano de fundo principal
         figura_fundo_ultr = Label(self.frameUltrassom, image= self.fundo_ultr, bd= 0) #Chamando imagem 
-        figura_fundo_ultr.place(anchor= 'center',relx=0.5, rely=0.5, width= 500, height= 500) #Localizando a imagem na tela
+        figura_fundo_ultr.place(anchor= 'center',relx=0.5, rely=0.4, width= 500, height= 500) #Localizando a imagem na tela
 
         self.bt_conv_ultr = PhotoImage(file= bt[8]) #Chamando imagem 
         self.figura_conv_ultr = Button(self.frameUltrassom, image=self.bt_conv_ultr, relief=FLAT, bd = 0, command= self.fechar_conv) #Adicionando a imagem a um botão
@@ -222,7 +222,7 @@ class func():
 
         self.bt_voltar_ultr = PhotoImage(file = bt[12]) #Chamando imagem 
         self.figura_voltar_ultr = Button(self.frameUltrassom, image = self.bt_voltar_ultr, relief=FLAT, bd = 0, command= self.rootUltrassom.destroy) #Adicionando a imagem a um botão
-        self.figura_voltar_ultr.place(anchor='center', relx= 0.13, rely=0.08, relwidth= 0.2, relheight= 0.1) #Localizando o botão na tela
+        self.figura_voltar_ultr.place(anchor='center', relx= 0.13, rely=0.08, width= 200, height= 80) #Localizando o botão na tela
     ###Função Escolha Preferencial ou Convencional FARMACIA BASICA###
     def abrir_janela_AtencaoBasica(self): 
         self.root_AB = tk.Toplevel() #Variavel para atribuir tela principal
@@ -239,7 +239,7 @@ class func():
         #Imagens na Tela 
         self.fundo_AB = PhotoImage(file= planos[1]) #Plano de fundo principal
         figura_fundo_AB = Label(self.frame_AB, image= self.fundo_AB, bd= 0) #Chamando imagem 
-        figura_fundo_AB.place(anchor= 'center',relx=0.5, rely=0.5, width= 500, height= 500) #Localizando a imagem na tela
+        figura_fundo_AB.place(anchor= 'center',relx=0.5, rely=0.4, width= 500, height= 500) #Localizando a imagem na tela
 
         self.btconv_imgAB = PhotoImage(file= bt[8]) #Imagem Botão Convencional
         self.btconv_AB = Button(self.frame_AB, image=self.btconv_imgAB, relief=FLAT, bd = 0, command= self.fechar_conv) #Adicionando a imagem a um botão
@@ -251,7 +251,7 @@ class func():
 
         self.btvoltar_imgAB = PhotoImage(file = bt[12]) #Imagem Botão Voltar 
         self.btvoltar_AB = Button(self.frame_AB, image = self.btvoltar_imgAB, relief=FLAT, bd = 0, command= self.root_AB.destroy) #Adicionando a imagem a um botão
-        self.btvoltar_AB.place(anchor='center', relx= 0.13, rely=0.08, relwidth= 0.2, relheight= 0.1) #Localizando o botão na tela
+        self.btvoltar_AB.place(anchor='center', relx= 0.13, rely=0.08, width= 200, height= 80) #Localizando o botão na tela
     ###Função Escolha Preferencial ou Convencional FARMACIA ESTADO###
     def abrir_janela_Estado(self): 
         self.root_FE = tk.Toplevel() #Variavel para atribuir tela principal
@@ -268,7 +268,7 @@ class func():
         #Imagens na Tela 
         self.fundo_FE = PhotoImage(file= planos[1]) #Plano de fundo principal
         figura_fundo_FE = Label(self.frame_FE, image= self.fundo_FE, bd= 0) #Chamando imagem 
-        figura_fundo_FE.place(anchor= 'center',relx=0.5, rely=0.5, width= 500, height= 500) #Localizando a imagem na tela
+        figura_fundo_FE.place(anchor= 'center',relx=0.5, rely=0.4, width= 500, height= 500) #Localizando a imagem na tela
 
         self.photo2200 = PhotoImage(file= bt[8]) #Imagem Botão Convencional
         self.btconv = Button(self.frame_FE, image=self.photo2200, relief=FLAT, bd = 0, command= self.fechar_conv) #Adicionando a imagem a um botão
@@ -280,7 +280,7 @@ class func():
 
         self.btvoltar_imgFE = PhotoImage(file = bt[12]) #Imagem Botão Voltar 
         self.btvoltar_FE = Button(self.frame_FE, image = self.btvoltar_imgFE, relief=FLAT, bd = 0, command= self.root_FE.destroy) #Adicionando a imagem a um botão
-        self.btvoltar_FE.place(anchor='center', relx= 0.13, rely=0.08, relwidth= 0.2, relheight= 0.1) #Localizando o botão na tela
+        self.btvoltar_FE.place(anchor='center', relx= 0.13, rely=0.08, width= 200, height= 80) #Localizando o botão na tela
     ###Função Escolha Preferencial ou Convencional FARMACIA AUTO-CUSTO###
     def abrir_janela_AutoCusto(self): 
         self.root_FAC = tk.Toplevel() #Variavel para atribuir tela principal
@@ -297,7 +297,7 @@ class func():
         #Imagens na Tela 
         self.fundo_FAC = PhotoImage(file= planos[1]) #Plano de fundo principal
         figura_fundo_FAC = Label(self.frame_FAC, image= self.fundo_FAC, bd= 0) #Chamando imagem 
-        figura_fundo_FAC.place(anchor= 'center',relx=0.5, rely=0.5, width= 500, height= 500) #Localizando a imagem na tela
+        figura_fundo_FAC.place(anchor= 'center',relx=0.5, rely=0.4, width= 500, height= 500) #Localizando a imagem na tela
 
         self.btconv_imgFAC = PhotoImage(file= bt[8]) #Imagem Botão Convencional
         self.btconv_FAC = Button(self.frame_FAC, image=self.btconv_imgFAC, relief=FLAT, bd = 0, command= self.fechar_conv) #Adicionando a imagem a um botão
@@ -309,7 +309,7 @@ class func():
 
         self.btvoltar_imgFAC = PhotoImage(file = bt[12]) #Imagem Botão Voltar 
         self.btvoltar_FAC = Button(self.frame_FAC, image = self.btvoltar_imgFAC, relief=FLAT, bd = 0, command= self.root_FAC.destroy) #Adicionando a imagem a um botão
-        self.btvoltar_FAC.place(anchor='center', relx= 0.13, rely=0.08, relwidth= 0.2, relheight= 0.1) #Localizando o botão na tela    
+        self.btvoltar_FAC.place(anchor='center', relx= 0.13, rely=0.08, width= 200, height= 80) #Localizando o botão na tela    
     
     ###Função Escolha Preferencial ou Convencional AUTORIZAÇÃO DE EXAMES###
     def abrir_janela_AE(self): 
@@ -330,7 +330,7 @@ class func():
             #Imagens na Tela 
             self.fundo_AE = PhotoImage(file= planos[1]) #Plano de fundo principal
             figura_fundo_AE = Label(self.frameAE, image= self.fundo_AE, bd= 0) #Chamando imagem 
-            figura_fundo_AE.place(anchor = "center", relx=0.5, rely=0.5, width= 500, height= 500) #Localizando a imagem na tela
+            figura_fundo_AE.place(anchor= 'center',relx=0.5, rely=0.4, width= 500, height= 500) #Localizando a imagem na tela
 
             self.btconv_imgAE = PhotoImage(file= bt[8]) #Imagem Botão Convencional
             self.btconv_AE = Button(self.frameAE, image=self.btconv_imgAE, relief=FLAT, bd = 0, command= self.fechar_conv) #Adicionando a imagem a um botão
@@ -342,7 +342,7 @@ class func():
 
             self.btvoltar_imgAE = PhotoImage(file = bt[12]) #Imagem Botão Voltar 
             self.btvoltar_AE = Button(self.frameAE, image = self.btvoltar_imgAE, relief=FLAT, bd = 0, command= self.rootAE.destroy) #Adicionando a imagem a um botão
-            self.btvoltar_AE.place(anchor='center', relx= 0.13, rely=0.08, relwidth= 0.2, relheight= 0.1) #Localizando o botão na tela   
+            self.btvoltar_AE.place(anchor='center', relx= 0.13, rely=0.08, width= 200, height= 80) #Localizando o botão na tela   
     ###Função para Tela Premir###
     def abrir_janela_Premir(self):
         if hora_atual >= "13:40":
@@ -360,7 +360,7 @@ class func():
 
 
             figura_fundo_premir = Label(self.frame_premir, image= self.fundo_premir, bd= 0) #Chamando imagem 
-            figura_fundo_premir.place(anchor= 'center',relx=0.5, rely=0.45, width= 500, height= 500) #Localizando a imagem na tela
+            figura_fundo_premir.place(anchor= 'center',relx=0.5, rely=0.4, width= 500, height= 500) #Localizando a imagem na tela
 
             bloco_meio = Label(self.frame_premir, image= self.bloco, bd= 0) #Chamando imagem 
             bloco_meio.place(anchor = "center", relx=0.17, rely=0.65) #Localizando a imagem na tela
@@ -423,7 +423,7 @@ class func():
             
 
             figura_fundo_farmacia = Label(self.frame_farmacia, image= self.fundo_farmacia, bd= 0) #Chamando imagem1
-            figura_fundo_farmacia.place(anchor= 'center',relx=0.5, rely=0.45, width= 500, height= 500) #Localizando a imagem na tela
+            figura_fundo_farmacia.place(anchor= 'center',relx=0.5, rely=0.4, width= 500, height= 500) #Localizando a imagem na tela
 
             figura_bloco_esquerda = Label(self.frame_farmacia, image= self.bloco_farmacia, bd= 0) #Chamando imagem 
             figura_bloco_esquerda.place(anchor = "center", relx=0.17, rely=0.65) #Localizando a imagem na tela
@@ -462,7 +462,7 @@ class func():
             
             self.bt_img_voltar = PhotoImage(file = bt[12]) #Imagem botão Voltar 
             self.bt_voltar_farmacias = Button(self.frame_farmacia, image = self.bt_img_voltar, relief=FLAT, bd = 0, command= self.root_farmacia.destroy) #Adicionando a imagem a um botão
-            self.bt_voltar_farmacias.place(anchor='center', relx= 0.13, rely=0.08, relwidth= 0.2, relheight= 0.1) #Localizando o botão na tela
+            self.bt_voltar_farmacias.place(anchor='center', relx= 0.13, rely=0.08, width= 200, height= 80) #Localizando o botão na tela
     ###Função para tela de espera de senha###
     def abrir_janela_espera(self):
         self.root_espera = tk.Toplevel()
