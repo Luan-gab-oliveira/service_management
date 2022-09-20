@@ -105,7 +105,7 @@ class func():
         elif tela == 7:
             self.rootAE.destroy() #Destruir janela 21
         elif tela == 8:
-            self.root22.destroy() #Destruir janela 2
+            self.rootTFD.destroy() #Destruir janela 2
 
     def fechar_prefe(self): #Função fechamento de tela Pref. do TFD, AUT, FAA, FAB, FAE, PRE
         global senha, opc, atendimento, tela, senhal
@@ -134,12 +134,42 @@ class func():
         elif tela == 7:
             self.rootAE.destroy() #Destruir janela 21
         elif tela == 8:
-            self.root22.destroy() #Destruir janela 2
+            self.rootTFD.destroy() #Destruir janela 2
+            
+    ###Função Escolha Preferencial ou Convencional TFD###
+    def abrir_janela_TFD(self): 
+        self.rootTFD = tk.Toplevel() #Variavel para atribuir tela principal
+        self.rootTFD.configure(background= cores[0]) #Cor de fundo
+        self.rootTFD.attributes('-fullscreen', True) #Modo tela Fullscreen ligado
+        self.fullScreenState = False
+        self.frameTFD =Frame(self.rootTFD, bg = cores[0]) #Definindo um Frame para a tela 
+        self.frameTFD.place(anchor='center',relx= 0.5,rely= 0.5, relwidth= 0.96, relheight= 0.96)  #Localizando o Frame na tela 
+        global senha, opc, atendimento, tela, senhal
+        senha = senhal[0]
+        opc = opcao[0] 
+        tela = 8
+
+        #Imagens na Tela 
+        self.fundo_TFD = PhotoImage(file= planos[1]) #Plano de fundo principal
+        figura_fundo_TFD = Label(self.frameTFD, image= self.fundo_TFD, bd= 0) #Chamando imagem 
+        figura_fundo_TFD.place(anchor= 'center',relx=0.5, rely=0.4, width= 500, height= 500) #Localizando a imagem na tela
+
+        self.bt_conv_tfd = PhotoImage(file= bt[8]) #Chamando imagem 
+        self.figura_bt_conv_tfd = Button(self.frameTFD, image=self.bt_conv_tfd, relief=FLAT, bd = 0, command= self.fechar_conv) #Adicionando a imagem a um botão
+        self.figura_bt_conv_tfd.place(anchor = "center", relx= 0.5, rely=0.55, width= 510, height= 150) #Localizando o botão na tela
+
+        self.bt_prefe_tfd = PhotoImage(file= bt[10]) #Chamando imagem 
+        self.figura_bt_prefe_tfd = Button(self.frameTFD, image=self.bt_prefe_tfd, relief=FLAT, bd = 0, command= self.fechar_prefe)
+        self.figura_bt_prefe_tfd.place(anchor = "center", relx= 0.5, rely=0.8, width= 510, height= 150) #Localizando o botão na tela
+
+        self.bt_voltar_tfd = PhotoImage(file = bt[12]) #Chamando imagem 
+        self.figura_bt_voltar_tfd = Button(self.frameTFD, image = self.bt_voltar_tfd, relief=FLAT, bd = 0, command= self.rootTFD.destroy) #Adicionando a imagem a um botão
+        self.figura_bt_voltar_tfd.place(anchor='center', relx= 0.13, rely=0.08, width= 200, height= 80) #Localizando o botão na tela
             
     ###Função Escolha Preferencial ou Convencional PREMIR Multiprofissionais###
     def abrir_janela_Mult(self): 
         self.rootMult = tk.Toplevel() #Variavel para atribuir tela principal
-        self.rootMult.configure(background= cores[2]) #Cor de fundo
+        self.rootMult.configure(background= cores[0]) #Cor de fundo
         self.rootMult.attributes('-fullscreen', True) #Modo tela Fullscreen ligado
         self.fullScreenState = False
         self.frameMult =Frame(self.rootMult, bg = cores[0]) #Definindo um Frame para a tela 
@@ -168,7 +198,7 @@ class func():
     ###Função Escolha Preferencial ou Convencional PREMIR Consultas###
     def abrir_janela_Consultas(self): 
         self.rootConsultas = tk.Toplevel() #Variavel para atribuir tela principal
-        self.rootConsultas.configure(background= cores[2]) #Cor de fundo
+        self.rootConsultas.configure(background= cores[0]) #Cor de fundo
         self.rootConsultas.attributes('-fullscreen', True) #Modo tela Fullscreen ligado
         self.fullScreenState = False
         self.frameConsultas =Frame(self.rootConsultas, bg = cores[0]) #Definindo um Frame para a tela 
@@ -197,7 +227,7 @@ class func():
     ###Função Escolha Preferencial ou Convencional PREMIR Ultrassom###
     def abrir_janela_Ultrassom(self): 
         self.rootUltrassom = tk.Toplevel() #Variavel para atribuir tela principal
-        self.rootUltrassom.configure(background= cores[2]) #Cor de fundo
+        self.rootUltrassom.configure(background= cores[0]) #Cor de fundo
         self.rootUltrassom.attributes('-fullscreen', True) #Modo tela Fullscreen ligado
         self.fullScreenState = False 
         self.frameUltrassom =Frame(self.rootUltrassom, bg = cores[0]) #Definindo um Frame para a tela 
@@ -226,7 +256,7 @@ class func():
     ###Função Escolha Preferencial ou Convencional FARMACIA BASICA###
     def abrir_janela_AtencaoBasica(self): 
         self.root_AB = tk.Toplevel() #Variavel para atribuir tela principal
-        self.root_AB.configure(background= cores[2]) #Cor de fundo
+        self.root_AB.configure(background= cores[0]) #Cor de fundo
         self.root_AB.attributes('-fullscreen', True) #Modo tela Fullscreen ligado
         self.fullScreenState = False 
         self.frame_AB =Frame(self.root_AB, bg = cores[0]) #Definindo um Frame para a tela 
@@ -255,7 +285,7 @@ class func():
     ###Função Escolha Preferencial ou Convencional FARMACIA ESTADO###
     def abrir_janela_Estado(self): 
         self.root_FE = tk.Toplevel() #Variavel para atribuir tela principal
-        self.root_FE.configure(background= cores[2]) #Cor de fundo
+        self.root_FE.configure(background= cores[0]) #Cor de fundo
         self.root_FE.attributes('-fullscreen', True) #Modo tela Fullscreen ligado
         self.fullScreenState = False
         self.frame_FE =Frame(self.root_FE, bg = cores[0]) #Definindo um Frame para a tela 
@@ -284,7 +314,7 @@ class func():
     ###Função Escolha Preferencial ou Convencional FARMACIA AUTO-CUSTO###
     def abrir_janela_AutoCusto(self): 
         self.root_FAC = tk.Toplevel() #Variavel para atribuir tela principal
-        self.root_FAC.configure(background= cores[2]) #Cor de fundo
+        self.root_FAC.configure(background= cores[0]) #Cor de fundo
         self.root_FAC.attributes('-fullscreen', True) #Modo tela Fullscreen ligado
         self.fullScreenState = False
         self.frame_FAC =Frame(self.root_FAC, bg = cores[0]) #Definindo um Frame para a tela 
@@ -317,7 +347,7 @@ class func():
             self.horario_ex()
         else:
             self.rootAE = tk.Toplevel() #Variavel para atribuir tela principal
-            self.rootAE.configure(background= cores[2]) #Cor de fundo
+            self.rootAE.configure(background= cores[0]) #Cor de fundo
             self.rootAE.attributes('-fullscreen', True) #Modo tela Fullscreen ligado
             self.fullScreenState = False
             self.frameAE =Frame(self.rootAE, bg = cores[0]) #Definindo um Frame para a tela 
@@ -349,7 +379,7 @@ class func():
             self.horario_ex()
         else:
             self.root_premir = tk.Toplevel()#Abertura da Tela 4 de Opções do Premir
-            self.root_premir.configure(background= cores[2]) #Cor do plano de fundo da tela 
+            self.root_premir.configure(background= cores[0]) #Cor do plano de fundo da tela 
             self.root_premir.attributes('-fullscreen', True) #Código que faz com que a tela fique em Fullscreen
             self.frame_premir =Frame(self.root_premir, bd = 4, bg = cores[0]) #Frame definido para a tela 4 com fundo branco
             self.frame_premir.place(anchor='center',relx= 0.5,rely= 0.5, relwidth= 0.96, relheight= 0.96) #Definição do local do frame expresso em porcentagem de tela
@@ -412,7 +442,7 @@ class func():
             self.horario_ex()
         else:
             self.root_farmacia = tk.Toplevel()#Abertura da Tela 4 de Opções do Premir
-            self.root_farmacia.configure(background= cores[2]) #Cor do plano de fundo da tela 
+            self.root_farmacia.configure(background= cores[0]) #Cor do plano de fundo da tela 
             self.root_farmacia.attributes('-fullscreen', True) #Código que faz com que a tela fique em Fullscreen
             self.frame_farmacia =Frame(self.root_farmacia, bd = 4, bg = cores[0]) #Frame definido para a tela 4 com fundo branco
             self.frame_farmacia.place(anchor='center',relx= 0.5,rely= 0.5, relwidth= 0.96, relheight= 0.96) #Definição do local do frame expresso em porcentagem de tela
@@ -467,7 +497,7 @@ class func():
     def abrir_janela_espera(self):
         self.root_espera = tk.Toplevel()
         self.root_espera.title('') #Atribuição do titulo
-        self.root_espera.configure(background= cores[2]) #Cor do plano de fundo da tela 
+        self.root_espera.configure(background= cores[1]) #Cor do plano de fundo da tela 
         self.root_espera.geometry('400x500') #Código que faz a tela abrir em modo tela cheia #Código que faz com que a tela fique em Fullscreen
         self.root_espera.attributes('-alpha', 0.0)
         self.root_espera.resizable(False, False) #Negar que o tamanho da tela seja reajustado

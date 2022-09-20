@@ -11,7 +11,7 @@ def imprimir(senha, local):
     try:
         txt_senha = senha
         txt_local = local   
-        data = datetime.now().strftime('%d/%m/%Y %H:%M')
+        data = datetime.now().strftime('%d/%m/%Y')
         texto_pdf = ['Atendimento','SENHA', txt_senha, 'LOCAL', txt_local, f'São francisco do Sul, {data}']
         font_style = 'Helvetica'
         font_size = [50,40,110,40,110,30]
