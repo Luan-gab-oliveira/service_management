@@ -100,7 +100,16 @@ class Functions():
                         senha_local = str(data[1])
                         if senha_local == setor:
                             
-                            playsound(r'media\toque.mp3',0)
+                            try: 
+                                playsound(r'Media\\toque.wav',0)
+                            except Exception as e:
+                                data = datetime.now().strftime('%d/%m/%Y %H:%M:%S')
+                                try:
+                                    with open(logs_errors, 'a') as file:
+                                        file.write(f'{data}: {e}\n')
+                                except IOError:
+                                    with open(logs_errors, 'w') as file:
+                                        file.write(f'{data}: {e}\n')
 
                             self.display_senha1.config(text=senha)
                             self.display_local.config(text=senha_local)
@@ -136,13 +145,13 @@ class Functions():
     def voice(self,senha):
         data = datetime.now().strftime('%d/%m/%Y %H:%M:%S')
         try:
-            file_voice = fr'media\Voices\\{senha}.mp3'
+            file_voice = f'Media\\Voices\\{senha}.mp3'
             texto = fr'Senha {senha}, favor dirigir-se ao local de atendiemento!'
             tts = gtts.gTTS(texto, lang='pt-br')
             tts.save(file_voice)
         except:
             i += 1
-            file_voice = fr'media\Voices\\{senha}{data}.mp3'
+            file_voice = f'Media\\Voices\\{senha}{data}.mp3'
             texto = fr'Senha {senha}, favor dirigir-se ao local de atendiemento!'
             tts = gtts.gTTS(texto, lang='pt-br')
             tts.save(file_voice)
