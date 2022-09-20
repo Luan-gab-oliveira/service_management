@@ -29,7 +29,7 @@ try:
         
         def tela(self):
             self.root.title('Sistema de Senhas Secretaria Municipal de Saúde.') #Atribuição do titulo
-            self.root.configure(background= cores[2]) #Cor do plano de fundo da tela
+            self.root.configure(background= cores[0]) #Cor do plano de fundo da tela
             self.root.geometry("1350x720") #Código que faz a tela abrir em modo tela cheia
             self.root.attributes('-fullscreen', True) #Código que faz com que a tela fique em Fullscreen
             self.root.resizable(False, False) #Permite que o tamanho da tela seja reajustado
@@ -56,7 +56,11 @@ try:
 
             self.photo_bt_FARMARCIA = PhotoImage(file = bt[1]) #Imagem botão Farmacia
             self.bt_F = Button(self.frame, image= self.photo_bt_FARMARCIA, relief=FLAT, bd= 0, command= self.abrir_janela_Farmacias) #Adicionando a imagem a um botão
-            self.bt_F.place(anchor= 'center',relx= 0.5, rely=0.8, width= 425, height= 160) #Localizando o botão na tela
+            self.bt_F.place(anchor= 'center',relx= 0.25, rely=0.8, width= 425, height= 160) #Localizando o botão na tela
+
+            self.photo_bt_TFD = PhotoImage(file = bt[6]) #Imagem botão Farmacia
+            self.bt_TFD = Button(self.frame, image= self.photo_bt_TFD, relief=FLAT, bd= 0, command= self.abrir_janela_TFD) #Adicionando a imagem a um botão
+            self.bt_TFD.place(anchor= 'center',relx= 0.75, rely=0.8, width= 425, height= 160) #Localizando o botão na tela
 except Exception as e:
     print(e)
     pass
