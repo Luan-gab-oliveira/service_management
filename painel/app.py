@@ -4,6 +4,7 @@ versão playsound==1.2.2
 from modules import *
 
 get_dir = os.path.dirname(__file__)
+logs_errors = 'logs.txt'
 fonts = ['Helvetica','Arial']
 coolors = [
     '#000000', #0 - Black
@@ -17,8 +18,49 @@ coolors = [
     '#FCA311'  #8 - Orange Web
     ]
 
+@contextmanager
+def connect_server():
+    config = ConfigParser()
+    get_dir = os.path.dirname(__file__)
+    config.read('app.ini')
+    server_config = dict(config['server'])
+    conexao = pymysql.connect(
+        host=server_config['host'],
+        user=server_config['user'],
+        password=server_config['password'],
+        db=server_config['db'],
+        charset='utf8mb4',
+        cursorclass=pymysql.cursors.DictCursor
+    )
+    
+    try: #Tratamento de exeções
+        yield conexao 
+    finally: #Executa independente da exeção 
+        conexao.close() #Finaliza conexão
+
 
 class Functions():
+
+    def validar_mac(self):
+        mac_address = ':'.join(re.findall('..', '%012x' % uuid.getnode()))
+        ip = socket.gethostbyname(socket.gethostname())
+
+        with connect_server() as conexao:
+            with conexao.cursor() as cursor:
+                if cursor.execute(f'SELECT * FROM panels WHERE mac = "{mac_address}";')>0:
+                    resultado = cursor.fetchall()
+                    cursor.execute(f'UPDATE panels SET host = "{ip}" WHERE mac = "{mac_address}";')
+                    conexao.commit()
+                else:
+                    cursor.execute(f'INSERT INTO panels (host, port, mac) VALUES ("{ip}", "50000", "{mac_address}");')
+                    conexao.commit()
+
+    def tread_start_server(self):
+        t1 = threading.Thread(target=self.start_conect)
+        t1.daemon = TRUE
+        t1.start()
+
+
     def start_conect(self):
         config = ConfigParser()
         config_file = 'app.ini'
@@ -36,7 +78,7 @@ class Functions():
         config.read(config_file)
         HOST = socket.gethostbyname(socket.gethostname())
         PORT = int(config['config']['port'])
-        setor = config['config']['local']
+        setor = str(config['config']['local'])
 
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             s.bind((HOST, PORT))
@@ -53,52 +95,66 @@ class Functions():
                     if not data:
                         data = 0
                     else:
-                        data = data.decode()
-                        senha = eval(data)
-                        if senha[1] == setor:
-                            playsound('Media\Windows_unlock.wav',0)
-                            self.display_senha1.config(text=senha[0])
-                            self.display_local.config(text=senha[1])
+                        data = eval(data.decode())
+                        senha = str(data[0])
+                        senha_local = str(data[1])
+                        if senha_local == setor:
+                            
+                            playsound(r'media\toque.mp3',0)
 
-                        if senha[0] != senha_atual:    
-                            senha_atual = senha[0]                            
+                            self.display_senha1.config(text=senha)
+                            self.display_local.config(text=senha_local)
+
+                        if senha != senha_atual:    
+                            senha_atual = senha                            
                             chamada3 = chamada2
                             chamada2 = chamada1
                             chamada1 = chamada0
-                            chamada0 = f'{senha[0]} - {senha[1]}'
+                            chamada0 = f'{senha} - {senha_local}'
 
-                            self.display_senha2.config(text=senha[0])
-                            self.display_local2.config(text=senha[1])
+                            self.display_senha2.config(text=senha)
+                            self.display_local2.config(text=senha_local)
                             self.display_senha3.config(text=chamada1)
                             self.display_senha4.config(text=chamada2)
                             self.display_senha5.config(text=chamada3)
                         
-                        if senha[1] == setor:
-                            self.voice(senha[0])
+                        if senha_local == setor:
+                            self.voice(senha)
                         
-                except:
-                    continue
+                except Exception as e:
+                    data = datetime.now().strftime('%d/%m/%Y %H:%M:%S')
+                    
+                    try:
+                        with open(logs_errors, 'a') as file:
+                            file.write(f'{data}: {e}\n')
+                    except IOError:
+                        with open(logs_errors, 'w') as file:
+                            file.write(f'{data}: {e}\n')
+                    
+                    
 
     def voice(self,senha):
         data = datetime.now().strftime('%d/%m/%Y %H:%M:%S')
         try:
-            file_voice = f'Media\Voices\\{senha}.mp3'
-            texto = f'Senha {senha}, favor dirigir-se ao local de atendiemento!'
+            file_voice = fr'media\Voices\\{senha}.mp3'
+            texto = fr'Senha {senha}, favor dirigir-se ao local de atendiemento!'
             tts = gtts.gTTS(texto, lang='pt-br')
             tts.save(file_voice)
         except:
             i += 1
-            file_voice = f'Media\Voices\\{senha}{data}.mp3'
-            texto = f'Senha {senha}, favor dirigir-se ao local de atendiemento!'
+            file_voice = fr'media\Voices\\{senha}{data}.mp3'
+            texto = fr'Senha {senha}, favor dirigir-se ao local de atendiemento!'
             tts = gtts.gTTS(texto, lang='pt-br')
             tts.save(file_voice)
-        playsound(file_voice)
+        
+        playsound(file_voice)  
         os.remove(file_voice)
         
     def relogio(self):
         self.data_atual = datetime.now().strftime('%d/%m/%Y %H:%M')
         self.label_data.after(200, self.relogio)
         self.label_data.config(text=str(F'São Francisco do Sul - SC    {self.data_atual}'))
+
 
 class PainelGUI(Functions):
     def __init__(self):
@@ -113,14 +169,10 @@ class PainelGUI(Functions):
         self.widgets_frame2()
         self.widgets_frame3()
         self.widgets_frame4()
+        self.validar_mac()
         self.tread_start_server()
         self.relogio()
         self.root.mainloop()
-    
-    def tread_start_server(self):
-        t1 = threading.Thread(target=self.start_conect)
-        t1.daemon = TRUE
-        t1.start()
 
     def toggleFullScreen(self, event):
         self.fullScreenState = not self.fullScreenState
