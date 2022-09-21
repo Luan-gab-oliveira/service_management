@@ -45,9 +45,9 @@ class Functionsconfig():
         except IOError:
             config['server'] = {
                 'host': 'localhost',
-                'user': 'sms',
+                'user': '',
                 'password': '',
-                'db': 'database_att',
+                'db': '',
                 'setor': ''
             }
             with open(configFile, 'w', encoding='UTF-8') as file:

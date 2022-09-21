@@ -60,11 +60,12 @@ class Functions():
 
     # atualização da barra de status
     def update_statubar(self):
-        global opcao
-        sql = f'SELECT COUNT(senha) FROM fila_espera WHERE opcao="{opcao}" AND status = "ESPERA";'
-        consulta = consulta_database(sql)
-        if consulta != None:
-            for i in consulta:
-                espera = i['COUNT(senha)']
-            self.display_espera.config(text=espera)
-            self.display_espera.after(200, self.update_statubar)
+        pass
+        # global opcao
+        # sql = f'SELECT COUNT(senha) FROM fila_espera WHERE opcao="{opcao}" AND status = "ESPERA";'
+        # consulta = consulta_database(sql)
+        # if consulta != None:
+        #     for i in consulta:
+        #         espera = i['COUNT(senha)']
+        #     self.display_espera.config(text=espera)
+        #     self.display_espera.after(200, self.update_statubar)
