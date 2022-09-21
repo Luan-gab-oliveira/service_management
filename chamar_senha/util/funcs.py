@@ -54,7 +54,8 @@ class Functions():
     
     #função para chamar novamente senha atual
     def chamar_novamente(self):
-        global data
+        senha = self.display_senha.cget('text')
+        data = [senha,opcao]
         chamar_senha(data)
 
     # atualização da barra de status
@@ -67,7 +68,3 @@ class Functions():
                 espera = i['COUNT(senha)']
             self.display_espera.config(text=espera)
             self.display_espera.after(200, self.update_statubar)
-
-    # def open_settings(self):
-    #     ConfigGUI()
-
