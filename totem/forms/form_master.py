@@ -1,8 +1,6 @@
-from util.modulos import *
-from util.parametros import *
-from util.listas import *
-from util.models import *
 from util.funcs import *
+from util.parametros import *
+from util.models import *
 
 try:
     ###Tela Inicial###        

@@ -1,5 +1,11 @@
 import os
 
+###Definição de Horarios###
+horario = [
+    "13:40",
+    "08:00",
+    "07:40"
+]
 ###Definindo variaveis para especialidades###
 esp = [
     "Clínico Geral",
