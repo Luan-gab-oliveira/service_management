@@ -24,6 +24,7 @@ def main():
     setor = server_config['setor']
     if setor == 'PREMIR':
         PremirGUI()
+        
     else:
         Application()
 
