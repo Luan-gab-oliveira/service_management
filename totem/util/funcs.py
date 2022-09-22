@@ -169,11 +169,15 @@ class func(espera):
 
         self.bt_conv_mult = PhotoImage(file= bt[8]) #Chamando imagem 
         self.figura_bt_conv_mult = Button(self.frameMult, image=self.bt_conv_mult, relief=FLAT, bd = 0, command=self.fechar_conv) #Adicionando a imagem a um botão
-        self.figura_bt_conv_mult.place(anchor = "center", relx= 0.5, rely=0.55, width= 510, height= 150) #Localizando o botão na tela
+        self.figura_bt_conv_mult.place(anchor = "center", relx= 0.5, rely=0.5, width= 510, height= 150) #Localizando o botão na tela
 
         self.bt_prefe_mult = PhotoImage(file= bt[10]) #Chamando imagem 
         self.figura_bt_prefe_mult = Button(self.frameMult, image=self.bt_prefe_mult, relief=FLAT, bd = 0, command=self.fechar_prefe)
-        self.figura_bt_prefe_mult.place(anchor = "center", relx= 0.5, rely=0.8, width= 510, height= 150) #Localizando o botão na tela
+        self.figura_bt_prefe_mult.place(anchor = "center", relx= 0.5, rely=0.75, width= 510, height= 150) #Localizando o botão na tela
+
+        self.aviso = Label(self.frameMult, bg= cores[0], text="*As pessoas portadoras de deficiência, os idosos com idade igualou superior a 60 (sessenta) anos, as gestantes, as lactantes e as pessoas\nacompanhadas por crianças de colo terão atendimento prioritário")
+        self.aviso.configure(font=fontes[0])
+        self.aviso.place(anchor='center', relx= 0.5, rely=0.95) #Localizando o botão na tela 
 
         self.bt_voltar_mult = PhotoImage(file = bt[12]) #Chamando imagem 
         self.figura_bt_voltar_mult = Button(self.frameMult, image = self.bt_voltar_mult, relief=FLAT, bd = 0, command=self.rootMult.destroy) #Adicionando a imagem a um botão
@@ -198,11 +202,15 @@ class func(espera):
 
         self.bt_conv_cons = PhotoImage(file= bt[8]) #Chamando imagem 
         self.figura_bt_conv_cons = Button(self.frameConsultas, image=self.bt_conv_cons, relief=FLAT, bd = 0, command= self.fechar_conv) #Adicionando a imagem a um botão
-        self.figura_bt_conv_cons.place(anchor = "center", relx= 0.5, rely=0.55, width= 510, height= 150) #Localizando o botão na tela
+        self.figura_bt_conv_cons.place(anchor = "center", relx= 0.5, rely=0.5, width= 510, height= 150) #Localizando o botão na tela
 
         self.bt_prefe_cons = PhotoImage(file= bt[10]) #Chamando imagem 
         self.figura_bt_prefe_cons = Button(self.frameConsultas, image=self.bt_prefe_cons, relief=FLAT, bd = 0, command= self.fechar_prefe)
-        self.figura_bt_prefe_cons.place(anchor = "center", relx= 0.5, rely=0.8, width= 510, height= 150) #Localizando o botão na tela
+        self.figura_bt_prefe_cons.place(anchor = "center", relx= 0.5, rely=0.75, width= 510, height= 150) #Localizando o botão na tela
+
+        self.aviso = Label(self.frameConsultas, bg= cores[0], text="*As pessoas portadoras de deficiência, os idosos com idade igualou superior a 60 (sessenta) anos, as gestantes, as lactantes e as pessoas\nacompanhadas por crianças de colo terão atendimento prioritário")
+        self.aviso.configure(font=fontes[0])
+        self.aviso.place(anchor='center', relx= 0.5, rely=0.95) #Localizando o botão na tela 
 
         self.bt_voltar_cons = PhotoImage(file = bt[12]) #Chamando imagem 
         self.figura_bt_voltar_cons = Button(self.frameConsultas, image = self.bt_voltar_cons, relief=FLAT, bd = 0, command= self.rootConsultas.destroy) #Adicionando a imagem a um botão
@@ -227,11 +235,15 @@ class func(espera):
 
         self.bt_conv_ultr = PhotoImage(file= bt[8]) #Chamando imagem 
         self.figura_conv_ultr = Button(self.frameUltrassom, image=self.bt_conv_ultr, relief=FLAT, bd = 0, command= self.fechar_conv) #Adicionando a imagem a um botão
-        self.figura_conv_ultr.place(anchor = "center", relx= 0.5, rely=0.55, width= 510, height= 150) #Localizando o botão na tela
+        self.figura_conv_ultr.place(anchor = "center", relx= 0.5, rely=0.5, width= 510, height= 150) #Localizando o botão na tela
 
         self.bt_prefe_ultr = PhotoImage(file= bt[10]) #Chamando imagem 
         self.figura_prefe_ultr = Button(self.frameUltrassom, image=self.bt_prefe_ultr, relief=FLAT, bd = 0, command= self.fechar_prefe)
-        self.figura_prefe_ultr.place(anchor = "center", relx= 0.5, rely=0.8, width= 510, height= 150) #Localizando o botão na tela
+        self.figura_prefe_ultr.place(anchor = "center", relx= 0.5, rely=0.75, width= 510, height= 150) #Localizando o botão na tela
+
+        self.aviso = Label(self.frameUltrassom, bg= cores[0], text="*As pessoas portadoras de deficiência, os idosos com idade igualou superior a 60 (sessenta) anos, as gestantes, as lactantes e as pessoas\nacompanhadas por crianças de colo terão atendimento prioritário")
+        self.aviso.configure(font=fontes[0])
+        self.aviso.place(anchor='center', relx= 0.5, rely=0.95) #Localizando o botão na tela 
 
         self.bt_voltar_ultr = PhotoImage(file = bt[12]) #Chamando imagem 
         self.figura_voltar_ultr = Button(self.frameUltrassom, image = self.bt_voltar_ultr, relief=FLAT, bd = 0, command= self.rootUltrassom.destroy) #Adicionando a imagem a um botão
@@ -262,11 +274,15 @@ class func(espera):
 
         self.bt_conv_tfd = PhotoImage(file= bt[8]) #Chamando imagem 
         self.figura_bt_conv_tfd = Button(self.frameTFD, image=self.bt_conv_tfd, relief=FLAT, bd = 0, command= self.fechar_conv) #Adicionando a imagem a um botão
-        self.figura_bt_conv_tfd.place(anchor = "center", relx= 0.5, rely=0.55, width= 510, height= 150) #Localizando o botão na tela
+        self.figura_bt_conv_tfd.place(anchor = "center", relx= 0.5, rely=0.5, width= 510, height= 150) #Localizando o botão na tela
 
         self.bt_prefe_tfd = PhotoImage(file= bt[10]) #Chamando imagem 
         self.figura_bt_prefe_tfd = Button(self.frameTFD, image=self.bt_prefe_tfd, relief=FLAT, bd = 0, command= self.fechar_prefe)
-        self.figura_bt_prefe_tfd.place(anchor = "center", relx= 0.5, rely=0.8, width= 510, height= 150) #Localizando o botão na tela
+        self.figura_bt_prefe_tfd.place(anchor = "center", relx= 0.5, rely=0.75, width= 510, height= 150) #Localizando o botão na tela
+
+        self.aviso = Label(self.frameTFD, bg= cores[0], text="*As pessoas portadoras de deficiência, os idosos com idade igualou superior a 60 (sessenta) anos, as gestantes, as lactantes e as pessoas\nacompanhadas por crianças de colo terão atendimento prioritário")
+        self.aviso.configure(font=fontes[0])
+        self.aviso.place(anchor='center', relx= 0.5, rely=0.95) #Localizando o botão na tela 
 
         self.bt_voltar_tfd = PhotoImage(file = bt[12]) #Chamando imagem 
         self.figura_bt_voltar_tfd = Button(self.frameTFD, image = self.bt_voltar_tfd, relief=FLAT, bd = 0, command= self.rootTFD.destroy) #Adicionando a imagem a um botão
@@ -296,11 +312,15 @@ class func(espera):
 
         self.btconv_imgAE = PhotoImage(file= bt[8]) #Imagem Botão Convencional
         self.btconv_AE = Button(self.frameAE, image=self.btconv_imgAE, relief=FLAT, bd = 0, command= self.fechar_conv) #Adicionando a imagem a um botão
-        self.btconv_AE.place(anchor = "center", relx= 0.5, rely=0.55, width= 510, height= 150) #Localizando o botão na tela
+        self.btconv_AE.place(anchor = "center", relx= 0.5, rely=0.5, width= 510, height= 150) #Localizando o botão na tela
 
         self.btprefe_imgAE = PhotoImage(file= bt[10]) #Imagem Botão Preferencial
         self.btprefe_AE = Button(self.frameAE, image=self.btprefe_imgAE, relief=FLAT, bd = 0, command= self.fechar_prefe) #Adicionando a imagem a um botão
-        self.btprefe_AE.place(anchor = "center", relx= 0.5, rely=0.8, width= 510, height= 150) #Localizando o botão na tela
+        self.btprefe_AE.place(anchor = "center", relx= 0.5, rely=0.75, width= 510, height= 150) #Localizando o botão na tela
+
+        self.aviso = Label(self.frameAE, bg= cores[0], text="*As pessoas portadoras de deficiência, os idosos com idade igualou superior a 60 (sessenta) anos, as gestantes, as lactantes e as pessoas\nacompanhadas por crianças de colo terão atendimento prioritário")
+        self.aviso.configure(font=fontes[0])
+        self.aviso.place(anchor='center', relx= 0.5, rely=0.95) #Localizando o botão na tela 
 
         self.btvoltar_imgAE = PhotoImage(file = bt[12]) #Imagem Botão Voltar 
         self.btvoltar_AE = Button(self.frameAE, image = self.btvoltar_imgAE, relief=FLAT, bd = 0, command= self.rootAE.destroy) #Adicionando a imagem a um botão
@@ -449,11 +469,15 @@ class func(espera):
 
         self.btconv_imgAB = PhotoImage(file= bt[8]) #Imagem Botão Convencional
         self.btconv_AB = Button(self.frame_AB, image=self.btconv_imgAB, relief=FLAT, bd = 0, command= self.fechar_conv) #Adicionando a imagem a um botão
-        self.btconv_AB.place(anchor = "center", relx= 0.5, rely=0.55, width= 510, height= 150) #Localizando o botão na tela
+        self.btconv_AB.place(anchor = "center", relx= 0.5, rely=0.5, width= 510, height= 150) #Localizando o botão na tela
 
         self.btprefe_imgAB = PhotoImage(file= bt[10]) #Imagem Botão Preferencial
         self.btprefe_AB = Button(self.frame_AB, image=self.btprefe_imgAB, relief=FLAT, bd = 0, command= self.fechar_prefe) #Adicionando a imagem a um botão
-        self.btprefe_AB.place(anchor = "center", relx= 0.5, rely=0.8, width= 510, height= 150) #Localizando o botão na tela
+        self.btprefe_AB.place(anchor = "center", relx= 0.5, rely=0.75, width= 510, height= 150) #Localizando o botão na tela
+
+        self.aviso = Label(self.frame_AB, bg= cores[0], text="*As pessoas portadoras de deficiência, os idosos com idade igualou superior a 60 (sessenta) anos, as gestantes, as lactantes e as pessoas\nacompanhadas por crianças de colo terão atendimento prioritário")
+        self.aviso.configure(font=fontes[0])
+        self.aviso.place(anchor='center', relx= 0.5, rely=0.95) #Localizando o botão na tela 
 
         self.btvoltar_imgAB = PhotoImage(file = bt[12]) #Imagem Botão Voltar 
         self.btvoltar_AB = Button(self.frame_AB, image = self.btvoltar_imgAB, relief=FLAT, bd = 0, command= self.root_AB.destroy) #Adicionando a imagem a um botão
@@ -478,11 +502,15 @@ class func(espera):
 
         self.photo2200 = PhotoImage(file= bt[8]) #Imagem Botão Convencional
         self.btconv = Button(self.frame_FE, image=self.photo2200, relief=FLAT, bd = 0, command= self.fechar_conv) #Adicionando a imagem a um botão
-        self.btconv.place(anchor = "center", relx= 0.5, rely=0.55, width= 510, height= 150) #Localizando o botão na tela
+        self.btconv.place(anchor = "center", relx= 0.5, rely=0.5, width= 510, height= 150) #Localizando o botão na tela
 
         self.btprefe_imgFE = PhotoImage(file= bt[10]) #Imagem Botão Preferencial
         self.btprefe_FE = Button(self.frame_FE, image=self.btprefe_imgFE, relief=FLAT, bd = 0, command= self.fechar_prefe) #Adicionando a imagem a um botão
-        self.btprefe_FE.place(anchor = "center", relx= 0.5, rely=0.8, width= 510, height= 150) #Localizando o botão na tela
+        self.btprefe_FE.place(anchor = "center", relx= 0.5, rely=0.75, width= 510, height= 150) #Localizando o botão na tela
+
+        self.aviso = Label(self.frame_FE, bg= cores[0], text="*As pessoas portadoras de deficiência, os idosos com idade igualou superior a 60 (sessenta) anos, as gestantes, as lactantes e as pessoas\nacompanhadas por crianças de colo terão atendimento prioritário")
+        self.aviso.configure(font=fontes[0])
+        self.aviso.place(anchor='center', relx= 0.5, rely=0.95) #Localizando o botão na tela 
 
         self.btvoltar_imgFE = PhotoImage(file = bt[12]) #Imagem Botão Voltar 
         self.btvoltar_FE = Button(self.frame_FE, image = self.btvoltar_imgFE, relief=FLAT, bd = 0, command= self.root_FE.destroy) #Adicionando a imagem a um botão
@@ -507,11 +535,15 @@ class func(espera):
 
         self.btconv_imgFAC = PhotoImage(file= bt[8]) #Imagem Botão Convencional
         self.btconv_FAC = Button(self.frame_FAC, image=self.btconv_imgFAC, relief=FLAT, bd = 0, command= self.fechar_conv) #Adicionando a imagem a um botão
-        self.btconv_FAC.place(anchor = "center", relx= 0.5, rely=0.55, width= 510, height= 150) #Localizando o botão na tela
+        self.btconv_FAC.place(anchor = "center", relx= 0.5, rely=0.5, width= 510, height= 150) #Localizando o botão na tela
 
         self.btprefe_imgFAC = PhotoImage(file= bt[10]) #Imagem Botão Preferencial
         self.btprefe_FAC = Button(self.frame_FAC, image=self.btprefe_imgFAC, relief=FLAT, bd = 0, command= self.fechar_prefe) #Adicionando a imagem a um botão
-        self.btprefe_FAC.place(anchor = "center", relx= 0.5, rely=0.8, width= 510, height= 150) #Localizando o botão na tela
+        self.btprefe_FAC.place(anchor = "center", relx= 0.5, rely=0.75, width= 510, height= 150) #Localizando o botão na tela
+
+        self.aviso = Label(self.frame_FAC, bg= cores[0], text="*As pessoas portadoras de deficiência, os idosos com idade igualou superior a 60 (sessenta) anos, as gestantes, as lactantes e as pessoas\nacompanhadas por crianças de colo terão atendimento prioritário")
+        self.aviso.configure(font=fontes[0])
+        self.aviso.place(anchor='center', relx= 0.5, rely=0.95) #Localizando o botão na tela 
 
         self.btvoltar_imgFAC = PhotoImage(file = bt[12]) #Imagem Botão Voltar 
         self.btvoltar_FAC = Button(self.frame_FAC, image = self.btvoltar_imgFAC, relief=FLAT, bd = 0, command= self.root_FAC.destroy) #Adicionando a imagem a um botão

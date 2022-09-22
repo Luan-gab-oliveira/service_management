@@ -1,4 +1,5 @@
 import os
+from util.modulos import *
 
 ###Definição de Horarios###
 horario = [
@@ -119,3 +120,10 @@ cores = [
     '#f0f0f0',
     '#c7d0d8',
     ]
+
+###Definindo variaveis para fontes
+fonte0 = tkFont.Font(family= "Arial", size= 16, weight= "bold")
+
+fontes = [
+    fonte0
+]
