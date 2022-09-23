@@ -55,10 +55,10 @@ class func(espera):
             self.root_horario.after(8000,self.root_horario.destroy)
 
         elif ref == 1:
-            self.farmacia()
+            self.premir()
 
         elif ref == 2:
-            self.premir()
+            self.farmacia()
 
         elif ref == 3:
             self.aut_exa()  
@@ -175,7 +175,7 @@ class func(espera):
         self.figura_bt_prefe_mult = Button(self.frameMult, image=self.bt_prefe_mult, relief=FLAT, bd = 0, command=self.fechar_prefe)
         self.figura_bt_prefe_mult.place(anchor = "center", relx= 0.5, rely=0.75, width= 510, height= 150) #Localizando o botão na tela
 
-        self.aviso = Label(self.frameMult, bg= cores[0], text="*As pessoas portadoras de deficiência, os idosos com idade igualou superior a 60 (sessenta) anos, as gestantes, as lactantes e as pessoas\nacompanhadas por crianças de colo terão atendimento prioritário")
+        self.aviso = Label(self.frameMult, bg= cores[0], text="*As pessoas portadoras de deficiência, os idosos com idade igualou superior a 60 (sessenta) anos,\nas gestantes, as lactantes e as pessoas acompanhadas por crianças de colo terão\natendimento prioritário")
         self.aviso.configure(font=fontes[0])
         self.aviso.place(anchor='center', relx= 0.5, rely=0.95) #Localizando o botão na tela 
 
@@ -208,7 +208,7 @@ class func(espera):
         self.figura_bt_prefe_cons = Button(self.frameConsultas, image=self.bt_prefe_cons, relief=FLAT, bd = 0, command= self.fechar_prefe)
         self.figura_bt_prefe_cons.place(anchor = "center", relx= 0.5, rely=0.75, width= 510, height= 150) #Localizando o botão na tela
 
-        self.aviso = Label(self.frameConsultas, bg= cores[0], text="*As pessoas portadoras de deficiência, os idosos com idade igualou superior a 60 (sessenta) anos, as gestantes, as lactantes e as pessoas\nacompanhadas por crianças de colo terão atendimento prioritário")
+        self.aviso = Label(self.frameConsultas, bg= cores[0], text="*As pessoas portadoras de deficiência, os idosos com idade igualou superior a 60 (sessenta) anos,\nas gestantes, as lactantes e as pessoas acompanhadas por crianças de colo terão\natendimento prioritário")
         self.aviso.configure(font=fontes[0])
         self.aviso.place(anchor='center', relx= 0.5, rely=0.95) #Localizando o botão na tela 
 
@@ -241,7 +241,7 @@ class func(espera):
         self.figura_prefe_ultr = Button(self.frameUltrassom, image=self.bt_prefe_ultr, relief=FLAT, bd = 0, command= self.fechar_prefe)
         self.figura_prefe_ultr.place(anchor = "center", relx= 0.5, rely=0.75, width= 510, height= 150) #Localizando o botão na tela
 
-        self.aviso = Label(self.frameUltrassom, bg= cores[0], text="*As pessoas portadoras de deficiência, os idosos com idade igualou superior a 60 (sessenta) anos, as gestantes, as lactantes e as pessoas\nacompanhadas por crianças de colo terão atendimento prioritário")
+        self.aviso = Label(self.frameUltrassom, bg= cores[0], text="*As pessoas portadoras de deficiência, os idosos com idade igualou superior a 60 (sessenta) anos,\nas gestantes, as lactantes e as pessoas acompanhadas por crianças de colo terão\natendimento prioritário")
         self.aviso.configure(font=fontes[0])
         self.aviso.place(anchor='center', relx= 0.5, rely=0.95) #Localizando o botão na tela 
 
@@ -280,7 +280,7 @@ class func(espera):
         self.figura_bt_prefe_tfd = Button(self.frameTFD, image=self.bt_prefe_tfd, relief=FLAT, bd = 0, command= self.fechar_prefe)
         self.figura_bt_prefe_tfd.place(anchor = "center", relx= 0.5, rely=0.75, width= 510, height= 150) #Localizando o botão na tela
 
-        self.aviso = Label(self.frameTFD, bg= cores[0], text="*As pessoas portadoras de deficiência, os idosos com idade igualou superior a 60 (sessenta) anos, as gestantes, as lactantes e as pessoas\nacompanhadas por crianças de colo terão atendimento prioritário")
+        self.aviso = Label(self.frameTFD, bg= cores[0], text="*As pessoas portadoras de deficiência, os idosos com idade igualou superior a 60 (sessenta) anos,\nas gestantes, as lactantes e as pessoas acompanhadas por crianças de colo terão\natendimento prioritário")
         self.aviso.configure(font=fontes[0])
         self.aviso.place(anchor='center', relx= 0.5, rely=0.95) #Localizando o botão na tela 
 
@@ -318,7 +318,7 @@ class func(espera):
         self.btprefe_AE = Button(self.frameAE, image=self.btprefe_imgAE, relief=FLAT, bd = 0, command= self.fechar_prefe) #Adicionando a imagem a um botão
         self.btprefe_AE.place(anchor = "center", relx= 0.5, rely=0.75, width= 510, height= 150) #Localizando o botão na tela
 
-        self.aviso = Label(self.frameAE, bg= cores[0], text="*As pessoas portadoras de deficiência, os idosos com idade igualou superior a 60 (sessenta) anos, as gestantes, as lactantes e as pessoas\nacompanhadas por crianças de colo terão atendimento prioritário")
+        self.aviso = Label(self.frameAE, bg= cores[0], text="*As pessoas portadoras de deficiência, os idosos com idade igualou superior a 60 (sessenta) anos,\nas gestantes, as lactantes e as pessoas acompanhadas por crianças de colo terão\natendimento prioritário")
         self.aviso.configure(font=fontes[0])
         self.aviso.place(anchor='center', relx= 0.5, rely=0.95) #Localizando o botão na tela 
 
@@ -475,7 +475,7 @@ class func(espera):
         self.btprefe_AB = Button(self.frame_AB, image=self.btprefe_imgAB, relief=FLAT, bd = 0, command= self.fechar_prefe) #Adicionando a imagem a um botão
         self.btprefe_AB.place(anchor = "center", relx= 0.5, rely=0.75, width= 510, height= 150) #Localizando o botão na tela
 
-        self.aviso = Label(self.frame_AB, bg= cores[0], text="*As pessoas portadoras de deficiência, os idosos com idade igualou superior a 60 (sessenta) anos, as gestantes, as lactantes e as pessoas\nacompanhadas por crianças de colo terão atendimento prioritário")
+        self.aviso = Label(self.frame_AB, bg= cores[0], text="*As pessoas portadoras de deficiência, os idosos com idade igualou superior a 60 (sessenta) anos,\nas gestantes, as lactantes e as pessoas acompanhadas por crianças de colo terão\natendimento prioritário")
         self.aviso.configure(font=fontes[0])
         self.aviso.place(anchor='center', relx= 0.5, rely=0.95) #Localizando o botão na tela 
 
@@ -508,7 +508,7 @@ class func(espera):
         self.btprefe_FE = Button(self.frame_FE, image=self.btprefe_imgFE, relief=FLAT, bd = 0, command= self.fechar_prefe) #Adicionando a imagem a um botão
         self.btprefe_FE.place(anchor = "center", relx= 0.5, rely=0.75, width= 510, height= 150) #Localizando o botão na tela
 
-        self.aviso = Label(self.frame_FE, bg= cores[0], text="*As pessoas portadoras de deficiência, os idosos com idade igualou superior a 60 (sessenta) anos, as gestantes, as lactantes e as pessoas\nacompanhadas por crianças de colo terão atendimento prioritário")
+        self.aviso = Label(self.frame_FE, bg= cores[0], text="*As pessoas portadoras de deficiência, os idosos com idade igualou superior a 60 (sessenta) anos,\nas gestantes, as lactantes e as pessoas acompanhadas por crianças de colo terão\natendimento prioritário")
         self.aviso.configure(font=fontes[0])
         self.aviso.place(anchor='center', relx= 0.5, rely=0.95) #Localizando o botão na tela 
 
@@ -541,7 +541,7 @@ class func(espera):
         self.btprefe_FAC = Button(self.frame_FAC, image=self.btprefe_imgFAC, relief=FLAT, bd = 0, command= self.fechar_prefe) #Adicionando a imagem a um botão
         self.btprefe_FAC.place(anchor = "center", relx= 0.5, rely=0.75, width= 510, height= 150) #Localizando o botão na tela
 
-        self.aviso = Label(self.frame_FAC, bg= cores[0], text="*As pessoas portadoras de deficiência, os idosos com idade igualou superior a 60 (sessenta) anos, as gestantes, as lactantes e as pessoas\nacompanhadas por crianças de colo terão atendimento prioritário")
+        self.aviso = Label(self.frame_FAC, bg= cores[0], text="*As pessoas portadoras de deficiência, os idosos com idade igualou superior a 60 (sessenta) anos,\nas gestantes, as lactantes e as pessoas acompanhadas por crianças de colo terão\natendimento prioritário")
         self.aviso.configure(font=fontes[0])
         self.aviso.place(anchor='center', relx= 0.5, rely=0.95) #Localizando o botão na tela 
 
