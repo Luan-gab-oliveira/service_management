@@ -93,7 +93,7 @@ class PremirGUI(Functions):
             cursor='hand2',
             highlightbackground=coolors[1], highlightcolor=coolors[1], activebackground=coolors[1], 
             highlightthickness=0,
-            command=self.chamar_proxima
+            command=lambda: self.chamar_proxima('mul')
         )
         self.btn_proxima.place(rely=0.225, relx=0.15, relheight=0.15, relwidth=0.75)
 
@@ -105,7 +105,7 @@ class PremirGUI(Functions):
             cursor='hand2',
             highlightbackground=coolors[1], highlightcolor=coolors[1], activebackground=coolors[1], 
             highlightthickness=0,
-            command=self.chamar_anterior
+            command= lambda: self.chamar_proxima('con')
         )
         self.btn_anterior.place(rely=0.425, relx=0.15, relheight=0.15, relwidth=0.75)
 
@@ -116,14 +116,14 @@ class PremirGUI(Functions):
             cursor='hand2',
             highlightbackground=coolors[1], highlightcolor=coolors[1], activebackground=coolors[1], 
             highlightthickness=0,
-            command= self.chamar_novamente
+            command= lambda: self.chamar_proxima('ult')
         )
         self.btn_novamente.place(rely=0.625, relx=0.15, relheight=0.15, relwidth=0.75)
 
-        self.label = Label(self.frame3, text='Fila de espera - Multiprofissionais: #M / Consultas: #C / Ultrassom: #U')
-        self.label.config(
+        self.display_espera = Label(self.frame3, text='Fila de espera - Multiprofissionais: 0 / Consultas: 0 / Ultrassom: 0')
+        self.display_espera.config(
             font=(fonts[0],12, 'normal'),foreground=coolors[2], background=coolors[4], anchor='w')
-        self.label.place(relx=0.02 ,relwidth=0.96 ,relheight=1)
+        self.display_espera.place(relx=0.02 ,relwidth=0.96 ,relheight=1)
 
         # self.display_espera = Label(self.frame3, text='0')
         # self.display_espera.config(

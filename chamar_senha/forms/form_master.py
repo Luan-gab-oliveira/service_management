@@ -109,12 +109,7 @@ class Application(Functions):
         )
         self.btn_novamente.place(rely=0.625, relx=0.15, relheight=0.15, relwidth=0.75)
 
-        self.label = Label(self.frame3, text=f'Fila de espera {opcao}:')
-        self.label.config(
-            font=(fonts[0],12, 'normal'),foreground=coolors[2], background=coolors[4], anchor='w')
-        self.label.place(relx=0.02 ,relwidth=0.25 ,relheight=1)
-
-        self.display_espera = Label(self.frame3, text='0')
+        self.display_espera = Label(self.frame3, text='Fila de espera:')
         self.display_espera.config(
             font=(fonts[0],12, 'normal'),foreground=coolors[2], background=coolors[4], anchor='w')
-        self.display_espera.place(relx=0.25 ,relwidth=0.1,relheight=1)
+        self.display_espera.place(relx=0.02 ,relwidth=0.25 ,relheight=1)
