@@ -4,8 +4,8 @@ from util.espera import *
  ###Classe para Funções###
 class func(espera):
     global senha, opc, atendimento, senhal, ref
-    ###Função para aviso de HORARIO EXCEDENTE
 
+    ###Função para aviso de HORARIO EXCEDENTE
     def horario_ex(self):
         global senha, opc, atendimento, tela, senhal, ref
         if hora_atual >= horario[0]:
@@ -55,10 +55,10 @@ class func(espera):
             self.root_horario.after(8000,self.root_horario.destroy)
 
         elif ref == 1:
-            self.farmacia()
+            self.premir()
 
         elif ref == 2:
-            self.premir()
+            self.farmacia()
 
         elif ref == 3:
             self.aut_exa()  
@@ -149,241 +149,10 @@ class func(espera):
                 imprimir(senha, opc)
                 print(senha)
 
-    ###Função Escolha Preferencial ou Convencional PREMIR Multiprofissionais###
-    def abrir_janela_Mult(self): 
-        self.rootMult = tk.Toplevel() #Variavel para atribuir tela principal
-        self.rootMult.configure(background= cores[0]) #Cor de fundo
-        self.rootMult.attributes('-fullscreen', True) #Modo tela Fullscreen ligado
-        self.fullScreenState = False
-        self.frameMult =Frame(self.rootMult, bg = cores[0]) #Definindo um Frame para a tela 
-        self.frameMult.place(anchor='center',relx= 0.5,rely= 0.5, relwidth= 0.96, relheight= 0.96)  #Localizando o Frame na tela 
-        global senha, opc, atendimento, tela, senhal
-        senha = senhal[1]
-        opc = opcao[1] 
-        tela = 1
 
-        #Imagens na Tela 
-        self.fundo_mult = PhotoImage(file= planos[1]) #Plano de fundo principal
-        figura_fundo_Mult = Label(self.frameMult, image= self.fundo_mult, bd= 0) #Chamando imagem 
-        figura_fundo_Mult.place(anchor= 'center',relx=0.5, rely=0.4, width= 500, height= 500) #Localizando a imagem na tela
 
-        self.bt_conv_mult = PhotoImage(file= bt[8]) #Chamando imagem 
-        self.figura_bt_conv_mult = Button(self.frameMult, image=self.bt_conv_mult, relief=FLAT, bd = 0, command=self.fechar_conv) #Adicionando a imagem a um botão
-        self.figura_bt_conv_mult.place(anchor = "center", relx= 0.5, rely=0.5, width= 510, height= 150) #Localizando o botão na tela
+###############################################      PREMIR      ###############################################
 
-        self.bt_prefe_mult = PhotoImage(file= bt[10]) #Chamando imagem 
-        self.figura_bt_prefe_mult = Button(self.frameMult, image=self.bt_prefe_mult, relief=FLAT, bd = 0, command=self.fechar_prefe)
-        self.figura_bt_prefe_mult.place(anchor = "center", relx= 0.5, rely=0.75, width= 510, height= 150) #Localizando o botão na tela
-
-        self.aviso = Label(self.frameMult, bg= cores[0], text="*As pessoas portadoras de deficiência, os idosos com idade igualou superior a 60 (sessenta) anos, as gestantes, as lactantes e as pessoas\nacompanhadas por crianças de colo terão atendimento prioritário")
-        self.aviso.configure(font=fontes[0])
-        self.aviso.place(anchor='center', relx= 0.5, rely=0.95) #Localizando o botão na tela 
-
-        self.bt_voltar_mult = PhotoImage(file = bt[12]) #Chamando imagem 
-        self.figura_bt_voltar_mult = Button(self.frameMult, image = self.bt_voltar_mult, relief=FLAT, bd = 0, command=self.rootMult.destroy) #Adicionando a imagem a um botão
-        self.figura_bt_voltar_mult.place(anchor='center', relx= 0.13, rely=0.08, width= 200, height= 80) #Localizando o botão na tela
-    ###Função Escolha Preferencial ou Convencional PREMIR Consultas###
-    def abrir_janela_Consultas(self): 
-        self.rootConsultas = tk.Toplevel() #Variavel para atribuir tela principal
-        self.rootConsultas.configure(background= cores[0]) #Cor de fundo
-        self.rootConsultas.attributes('-fullscreen', True) #Modo tela Fullscreen ligado
-        self.fullScreenState = False
-        self.frameConsultas =Frame(self.rootConsultas, bg = cores[0]) #Definindo um Frame para a tela 
-        self.frameConsultas.place(anchor='center',relx= 0.5,rely= 0.5, relwidth= 0.96, relheight= 0.96)  #Localizando o Frame na tela 
-        global senha, opc, atendimento, tela, senhal
-        senha = senhal[1]
-        opc = opcao[1] 
-        tela = 3
-
-        #Imagens na Tela 
-        self.fundo_Consultas = PhotoImage(file= planos[1]) #Plano de fundo principal
-        figura_fundo_Consultas = Label(self.frameConsultas, image= self.fundo_Consultas, bd= 0) #Chamando imagem 
-        figura_fundo_Consultas.place(anchor= 'center',relx=0.5, rely=0.4, width= 500, height= 500) #Localizando a imagem na tela
-
-        self.bt_conv_cons = PhotoImage(file= bt[8]) #Chamando imagem 
-        self.figura_bt_conv_cons = Button(self.frameConsultas, image=self.bt_conv_cons, relief=FLAT, bd = 0, command= self.fechar_conv) #Adicionando a imagem a um botão
-        self.figura_bt_conv_cons.place(anchor = "center", relx= 0.5, rely=0.5, width= 510, height= 150) #Localizando o botão na tela
-
-        self.bt_prefe_cons = PhotoImage(file= bt[10]) #Chamando imagem 
-        self.figura_bt_prefe_cons = Button(self.frameConsultas, image=self.bt_prefe_cons, relief=FLAT, bd = 0, command= self.fechar_prefe)
-        self.figura_bt_prefe_cons.place(anchor = "center", relx= 0.5, rely=0.75, width= 510, height= 150) #Localizando o botão na tela
-
-        self.aviso = Label(self.frameConsultas, bg= cores[0], text="*As pessoas portadoras de deficiência, os idosos com idade igualou superior a 60 (sessenta) anos, as gestantes, as lactantes e as pessoas\nacompanhadas por crianças de colo terão atendimento prioritário")
-        self.aviso.configure(font=fontes[0])
-        self.aviso.place(anchor='center', relx= 0.5, rely=0.95) #Localizando o botão na tela 
-
-        self.bt_voltar_cons = PhotoImage(file = bt[12]) #Chamando imagem 
-        self.figura_bt_voltar_cons = Button(self.frameConsultas, image = self.bt_voltar_cons, relief=FLAT, bd = 0, command= self.rootConsultas.destroy) #Adicionando a imagem a um botão
-        self.figura_bt_voltar_cons.place(anchor='center', relx= 0.13, rely=0.08, width= 200, height= 80) #Localizando o botão na tela
-    ###Função Escolha Preferencial ou Convencional PREMIR Ultrassom###
-    def abrir_janela_Ultrassom(self): 
-        self.rootUltrassom = tk.Toplevel() #Variavel para atribuir tela principal
-        self.rootUltrassom.configure(background= cores[0]) #Cor de fundo
-        self.rootUltrassom.attributes('-fullscreen', True) #Modo tela Fullscreen ligado
-        self.fullScreenState = False 
-        self.frameUltrassom =Frame(self.rootUltrassom, bg = cores[0]) #Definindo um Frame para a tela 
-        self.frameUltrassom.place(anchor='center',relx= 0.5,rely= 0.5, relwidth= 0.96, relheight= 0.96)  #Localizando o Frame na tela 
-        global senha, opc, atendimento, tela, senhal
-        senha = senhal[1]
-        opc = opcao[1] 
-        tela = 2
-
-        #Imagens na Tela 
-        self.fundo_ultr = PhotoImage(file= planos[1]) #Plano de fundo principal
-        figura_fundo_ultr = Label(self.frameUltrassom, image= self.fundo_ultr, bd= 0) #Chamando imagem 
-        figura_fundo_ultr.place(anchor= 'center',relx=0.5, rely=0.4, width= 500, height= 500) #Localizando a imagem na tela
-
-        self.bt_conv_ultr = PhotoImage(file= bt[8]) #Chamando imagem 
-        self.figura_conv_ultr = Button(self.frameUltrassom, image=self.bt_conv_ultr, relief=FLAT, bd = 0, command= self.fechar_conv) #Adicionando a imagem a um botão
-        self.figura_conv_ultr.place(anchor = "center", relx= 0.5, rely=0.5, width= 510, height= 150) #Localizando o botão na tela
-
-        self.bt_prefe_ultr = PhotoImage(file= bt[10]) #Chamando imagem 
-        self.figura_prefe_ultr = Button(self.frameUltrassom, image=self.bt_prefe_ultr, relief=FLAT, bd = 0, command= self.fechar_prefe)
-        self.figura_prefe_ultr.place(anchor = "center", relx= 0.5, rely=0.75, width= 510, height= 150) #Localizando o botão na tela
-
-        self.aviso = Label(self.frameUltrassom, bg= cores[0], text="*As pessoas portadoras de deficiência, os idosos com idade igualou superior a 60 (sessenta) anos, as gestantes, as lactantes e as pessoas\nacompanhadas por crianças de colo terão atendimento prioritário")
-        self.aviso.configure(font=fontes[0])
-        self.aviso.place(anchor='center', relx= 0.5, rely=0.95) #Localizando o botão na tela 
-
-        self.bt_voltar_ultr = PhotoImage(file = bt[12]) #Chamando imagem 
-        self.figura_voltar_ultr = Button(self.frameUltrassom, image = self.bt_voltar_ultr, relief=FLAT, bd = 0, command= self.rootUltrassom.destroy) #Adicionando a imagem a um botão
-        self.figura_voltar_ultr.place(anchor='center', relx= 0.13, rely=0.08, width= 200, height= 80) #Localizando o botão na tela
-    
-    ###Função Escolha Preferencial ou Convencional TFD###
-    def abrir_janela_TFD(self): 
-        global ref
-        ref = 4
-        self.horario_ex()
-        
-    def tfd(self):
-        self.rootTFD = tk.Toplevel() #Variavel para atribuir tela principal
-        self.rootTFD.configure(background= cores[0]) #Cor de fundo
-        self.rootTFD.attributes('-fullscreen', True) #Modo tela Fullscreen ligado
-        self.fullScreenState = False
-        self.frameTFD =Frame(self.rootTFD, bg = cores[0]) #Definindo um Frame para a tela 
-        self.frameTFD.place(anchor='center',relx= 0.5,rely= 0.5, relwidth= 0.96, relheight= 0.96)  #Localizando o Frame na tela 
-        global senha, opc, atendimento, tela, senhal
-        senha = senhal[0]
-        opc = opcao[0] 
-        tela = 8
-
-        #Imagens na Tela 
-        self.fundo_TFD = PhotoImage(file= planos[1]) #Plano de fundo principal
-        figura_fundo_TFD = Label(self.frameTFD, image= self.fundo_TFD, bd= 0) #Chamando imagem 
-        figura_fundo_TFD.place(anchor= 'center',relx=0.5, rely=0.4, width= 500, height= 500) #Localizando a imagem na tela
-
-        self.bt_conv_tfd = PhotoImage(file= bt[8]) #Chamando imagem 
-        self.figura_bt_conv_tfd = Button(self.frameTFD, image=self.bt_conv_tfd, relief=FLAT, bd = 0, command= self.fechar_conv) #Adicionando a imagem a um botão
-        self.figura_bt_conv_tfd.place(anchor = "center", relx= 0.5, rely=0.5, width= 510, height= 150) #Localizando o botão na tela
-
-        self.bt_prefe_tfd = PhotoImage(file= bt[10]) #Chamando imagem 
-        self.figura_bt_prefe_tfd = Button(self.frameTFD, image=self.bt_prefe_tfd, relief=FLAT, bd = 0, command= self.fechar_prefe)
-        self.figura_bt_prefe_tfd.place(anchor = "center", relx= 0.5, rely=0.75, width= 510, height= 150) #Localizando o botão na tela
-
-        self.aviso = Label(self.frameTFD, bg= cores[0], text="*As pessoas portadoras de deficiência, os idosos com idade igualou superior a 60 (sessenta) anos, as gestantes, as lactantes e as pessoas\nacompanhadas por crianças de colo terão atendimento prioritário")
-        self.aviso.configure(font=fontes[0])
-        self.aviso.place(anchor='center', relx= 0.5, rely=0.95) #Localizando o botão na tela 
-
-        self.bt_voltar_tfd = PhotoImage(file = bt[12]) #Chamando imagem 
-        self.figura_bt_voltar_tfd = Button(self.frameTFD, image = self.bt_voltar_tfd, relief=FLAT, bd = 0, command= self.rootTFD.destroy) #Adicionando a imagem a um botão
-        self.figura_bt_voltar_tfd.place(anchor='center', relx= 0.13, rely=0.08, width= 200, height= 80) #Localizando o botão na tela 
-    ###Função Escolha Preferencial ou Convencional AUTORIZAÇÃO DE EXAMES###
-    def abrir_janela_AE(self):
-        global ref
-        ref = 3
-        self.horario_ex()
-        
-    def aut_exa(self):
-        self.rootAE = tk.Toplevel() #Variavel para atribuir tela principal
-        self.rootAE.configure(background= cores[0]) #Cor de fundo
-        self.rootAE.attributes('-fullscreen', True) #Modo tela Fullscreen ligado
-        self.fullScreenState = False
-        self.frameAE =Frame(self.rootAE, bg = cores[0]) #Definindo um Frame para a tela 
-        self.frameAE.place(anchor='center',relx= 0.5,rely= 0.5, relwidth= 0.96, relheight= 0.96) #Localizando o Frame na tela
-        global senha, opc, atendimento, tela, senhal
-        senha = senhal[5]
-        opc = opcao[5]
-        tela = 7
-
-        #Imagens na Tela 
-        self.fundo_AE = PhotoImage(file= planos[1]) #Plano de fundo principal
-        figura_fundo_AE = Label(self.frameAE, image= self.fundo_AE, bd= 0) #Chamando imagem 
-        figura_fundo_AE.place(anchor= 'center',relx=0.5, rely=0.4, width= 500, height= 500) #Localizando a imagem na tela
-
-        self.btconv_imgAE = PhotoImage(file= bt[8]) #Imagem Botão Convencional
-        self.btconv_AE = Button(self.frameAE, image=self.btconv_imgAE, relief=FLAT, bd = 0, command= self.fechar_conv) #Adicionando a imagem a um botão
-        self.btconv_AE.place(anchor = "center", relx= 0.5, rely=0.5, width= 510, height= 150) #Localizando o botão na tela
-
-        self.btprefe_imgAE = PhotoImage(file= bt[10]) #Imagem Botão Preferencial
-        self.btprefe_AE = Button(self.frameAE, image=self.btprefe_imgAE, relief=FLAT, bd = 0, command= self.fechar_prefe) #Adicionando a imagem a um botão
-        self.btprefe_AE.place(anchor = "center", relx= 0.5, rely=0.75, width= 510, height= 150) #Localizando o botão na tela
-
-        self.aviso = Label(self.frameAE, bg= cores[0], text="*As pessoas portadoras de deficiência, os idosos com idade igualou superior a 60 (sessenta) anos, as gestantes, as lactantes e as pessoas\nacompanhadas por crianças de colo terão atendimento prioritário")
-        self.aviso.configure(font=fontes[0])
-        self.aviso.place(anchor='center', relx= 0.5, rely=0.95) #Localizando o botão na tela 
-
-        self.btvoltar_imgAE = PhotoImage(file = bt[12]) #Imagem Botão Voltar 
-        self.btvoltar_AE = Button(self.frameAE, image = self.btvoltar_imgAE, relief=FLAT, bd = 0, command= self.rootAE.destroy) #Adicionando a imagem a um botão
-        self.btvoltar_AE.place(anchor='center', relx= 0.13, rely=0.08, width= 200, height= 80) #Localizando o botão na tela 
-    ###Função para Tela Farmacias###
-    def abrir_janela_Farmacias(self):
-        global ref
-        ref = 2
-        self.horario_ex()
-
-    def farmacia(self):
-        self.root_farmacia = tk.Toplevel()#Abertura da tela de opções da farmacia
-        self.root_farmacia.configure(background= cores[0]) #Cor do plano de fundo da tela 
-        self.root_farmacia.attributes('-fullscreen', True) #Código que faz com que a tela fique em Fullscreen
-        self.frame_farmacia =Frame(self.root_farmacia, bd = 4, bg = cores[0]) #Frame definido para a tela 4 com fundo branco
-        self.frame_farmacia.place(anchor='center',relx= 0.5,rely= 0.5, relwidth= 0.96, relheight= 0.96) #Definição do local do frame expresso em porcentagem de tela
-
-        #Imagens na Tela 
-        self.fundo_farmacia = PhotoImage(file= planos[0]) #Plano de fundo principal
-        self.bloco_farmacia = PhotoImage(file= bloco[1]) #Blocos de Cores
-        
-
-        figura_fundo_farmacia = Label(self.frame_farmacia, image= self.fundo_farmacia, bd= 0) #Chamando imagem1
-        figura_fundo_farmacia.place(anchor= 'center',relx=0.5, rely=0.4, width= 500, height= 500) #Localizando a imagem na tela
-
-        figura_bloco_esquerda = Label(self.frame_farmacia, image= self.bloco_farmacia, bd= 0) #Chamando imagem 
-        figura_bloco_esquerda.place(anchor = "center", relx=0.17, rely=0.65) #Localizando a imagem na tela
-
-        figura_meio = Label(self.frame_farmacia, image= self.bloco_farmacia, bd= 0) #Chamando imagem 
-        figura_meio.place(anchor = "center", relx=0.5, rely=0.65) #Localizando a imagem na tela
-
-        figura_direita = Label(self.frame_farmacia, image= self.bloco_farmacia, bd= 0) #Chamando imagem
-        figura_direita.place(anchor = "center", relx=0.83, rely=0.65) #Localizando a imagem na tela
-
-        fontexemplo0 = tkFont.Font(family= 'Arial Black', size= 18) #Definindo Variavel para fonte padrão
-
-        self.bt_imgFAC= PhotoImage(file = bt[2]) #Imagem botão Farmacia Auto-custo
-        self.btFAC = Button(self.frame_farmacia, image= self.bt_imgFAC, relief=FLAT, bd= 0, command= self.abrir_janela_AutoCusto) #Adicionando a imagem a um botão
-        self.btFAC.place(anchor = "center", relx= 0.17, rely=0.47, width= 270, height= 90) #Localizando o botão na tela
-    
-        self.bt_imgFAB = PhotoImage(file= bt[3]) #Imagem botão Farmacia Atenção Básica
-        self.btFAB = Button(self.frame_farmacia, image= self.bt_imgFAB, relief=FLAT, bd= 0, command= self.abrir_janela_AtencaoBasica) #Adicionando a imagem a um botão
-        self.btFAB.place(anchor = "center", relx= 0.5, rely=0.47, width= 270, height= 90) #Localizando o botão na tela
-
-        self.bt_imgFE = PhotoImage(file = bt[4]) #Imagem botão Farmacia Estado
-        self.btFE = Button(self.frame_farmacia, image= self.bt_imgFE, relief=FLAT, bd= 0, command= self.abrir_janela_Estado) #Adicionando a imagem a um botão
-        self.btFE.place(anchor = "center", relx= 0.83, rely=0.47, width= 270, height= 90) #Localizando o botão na tela
-
-        self.bt_img_FAB = Button(self.frame_farmacia, text= 'CBAF \n\nMedicamentos \nfornecidos pelo \nMunicípio \n', relief = FLAT, bd = 0, background = cores[4], activebackground = cores[4], command= self.abrir_janela_AtencaoBasica)
-        self.bt_img_FAB.place(anchor = "center", relx= 0.17, rely=0.73, width= 270, height= 200) #Localizando o botão na tela
-        self.bt_img_FAB.configure(font= fontexemplo0)
-
-        self.bt_img_FA = Button(self.frame_farmacia, text= 'Convenio Municípal \n\nFarmâcias Externas \nconveniadas ao \nMunicípio \n', relief = FLAT, bd = 0, background = cores[4], activebackground = cores[4], command= self.abrir_janela_AutoCusto)
-        self.bt_img_FA.place(anchor = "center", relx= 0.5, rely=0.73, width= 270, height= 200) #Localizando o botão na tela
-        self.bt_img_FA.configure(font= fontexemplo0)
-
-        self.bt_img_FE = Button(self.frame_farmacia, text= 'CEAF \n\nMedicamentos \nretirados apartir \ndo Estado ou \nJudicial', relief = FLAT, bd = 0, background = cores[4], activebackground = cores[4], command= self.abrir_janela_Estado)
-        self.bt_img_FE.place(anchor = "center", relx= 0.83, rely=0.73, width= 270, height= 200) #Localizando o botão na tela
-        self.bt_img_FE.configure(font= fontexemplo0)
-        
-        self.bt_img_voltar = PhotoImage(file = bt[12]) #Imagem botão Voltar 
-        self.bt_voltar_farmacias = Button(self.frame_farmacia, image = self.bt_img_voltar, relief=FLAT, bd = 0, command= self.root_farmacia.destroy) #Adicionando a imagem a um botão
-        self.bt_voltar_farmacias.place(anchor='center', relx= 0.13, rely=0.08, width= 200, height= 80) #Localizando o botão na tela
     ###Função para Tela Premir###
     def abrir_janela_Premir(self):
         global ref
@@ -448,6 +217,171 @@ class func(espera):
         self.bt_voltar = PhotoImage(file = bt[12]) #Imagem botão Voltar
         self.btvoltar = Button(self.frame_premir, image = self.bt_voltar, relief=FLAT, bd = 0, command= self.root_premir.destroy) #Adicionando a imagem a um botão
         self.btvoltar.place(anchor='center', relx= 0.13, rely=0.08, width= 200, height= 80) #Localizando o botão na tela
+
+    ###Função Escolha Preferencial ou Convencional PREMIR Multiprofissionais###
+    def abrir_janela_Mult(self): 
+        self.rootMult = tk.Toplevel() #Variavel para atribuir tela principal
+        self.rootMult.configure(background= cores[0]) #Cor de fundo
+        self.rootMult.attributes('-fullscreen', True) #Modo tela Fullscreen ligado
+        self.fullScreenState = False
+        self.frameMult =Frame(self.rootMult, bg = cores[0]) #Definindo um Frame para a tela 
+        self.frameMult.place(anchor='center',relx= 0.5,rely= 0.5, relwidth= 0.96, relheight= 0.96)  #Localizando o Frame na tela 
+        global senha, opc, atendimento, tela, senhal
+        senha = senhal[1]
+        opc = opcao[1] 
+        tela = 1
+
+        #Imagens na Tela 
+        self.fundo_mult = PhotoImage(file= planos[1]) #Plano de fundo principal
+        figura_fundo_Mult = Label(self.frameMult, image= self.fundo_mult, bd= 0) #Chamando imagem 
+        figura_fundo_Mult.place(anchor= 'center',relx=0.5, rely=0.4, width= 500, height= 500) #Localizando a imagem na tela
+
+        self.bt_conv_mult = PhotoImage(file= bt[8]) #Chamando imagem 
+        self.figura_bt_conv_mult = Button(self.frameMult, image=self.bt_conv_mult, relief=FLAT, bd = 0, command=self.fechar_conv) #Adicionando a imagem a um botão
+        self.figura_bt_conv_mult.place(anchor = "center", relx= 0.5, rely=0.5, width= 510, height= 150) #Localizando o botão na tela
+
+        self.bt_prefe_mult = PhotoImage(file= bt[10]) #Chamando imagem 
+        self.figura_bt_prefe_mult = Button(self.frameMult, image=self.bt_prefe_mult, relief=FLAT, bd = 0, command=self.fechar_prefe)
+        self.figura_bt_prefe_mult.place(anchor = "center", relx= 0.5, rely=0.75, width= 510, height= 150) #Localizando o botão na tela
+
+        self.aviso = Label(self.frameMult, bg= cores[0], text="*As pessoas portadoras de deficiência, os idosos com idade igualou superior a 60 (sessenta) anos,\nas gestantes, as lactantes e as pessoas acompanhadas por crianças de colo terão\natendimento prioritário")
+        self.aviso.configure(font=fontes[0])
+        self.aviso.place(anchor='center', relx= 0.5, rely=0.95) #Localizando o botão na tela 
+
+        self.bt_voltar_mult = PhotoImage(file = bt[12]) #Chamando imagem 
+        self.figura_bt_voltar_mult = Button(self.frameMult, image = self.bt_voltar_mult, relief=FLAT, bd = 0, command=self.rootMult.destroy) #Adicionando a imagem a um botão
+        self.figura_bt_voltar_mult.place(anchor='center', relx= 0.13, rely=0.08, width= 200, height= 80) #Localizando o botão na tela
+
+    ###Função Escolha Preferencial ou Convencional PREMIR Ultrassom###
+    def abrir_janela_Ultrassom(self): 
+        self.rootUltrassom = tk.Toplevel() #Variavel para atribuir tela principal
+        self.rootUltrassom.configure(background= cores[0]) #Cor de fundo
+        self.rootUltrassom.attributes('-fullscreen', True) #Modo tela Fullscreen ligado
+        self.fullScreenState = False 
+        self.frameUltrassom =Frame(self.rootUltrassom, bg = cores[0]) #Definindo um Frame para a tela 
+        self.frameUltrassom.place(anchor='center',relx= 0.5,rely= 0.5, relwidth= 0.96, relheight= 0.96)  #Localizando o Frame na tela 
+        global senha, opc, atendimento, tela, senhal
+        senha = senhal[1]
+        opc = opcao[1] 
+        tela = 2
+
+        #Imagens na Tela 
+        self.fundo_ultr = PhotoImage(file= planos[1]) #Plano de fundo principal
+        figura_fundo_ultr = Label(self.frameUltrassom, image= self.fundo_ultr, bd= 0) #Chamando imagem 
+        figura_fundo_ultr.place(anchor= 'center',relx=0.5, rely=0.4, width= 500, height= 500) #Localizando a imagem na tela
+
+        self.bt_conv_ultr = PhotoImage(file= bt[8]) #Chamando imagem 
+        self.figura_conv_ultr = Button(self.frameUltrassom, image=self.bt_conv_ultr, relief=FLAT, bd = 0, command= self.fechar_conv) #Adicionando a imagem a um botão
+        self.figura_conv_ultr.place(anchor = "center", relx= 0.5, rely=0.5, width= 510, height= 150) #Localizando o botão na tela
+
+        self.bt_prefe_ultr = PhotoImage(file= bt[10]) #Chamando imagem 
+        self.figura_prefe_ultr = Button(self.frameUltrassom, image=self.bt_prefe_ultr, relief=FLAT, bd = 0, command= self.fechar_prefe)
+        self.figura_prefe_ultr.place(anchor = "center", relx= 0.5, rely=0.75, width= 510, height= 150) #Localizando o botão na tela
+
+        self.aviso = Label(self.frameUltrassom, bg= cores[0], text="*As pessoas portadoras de deficiência, os idosos com idade igualou superior a 60 (sessenta) anos,\nas gestantes, as lactantes e as pessoas acompanhadas por crianças de colo terão\natendimento prioritário")
+        self.aviso.configure(font=fontes[0])
+        self.aviso.place(anchor='center', relx= 0.5, rely=0.95) #Localizando o botão na tela 
+
+        self.bt_voltar_ultr = PhotoImage(file = bt[12]) #Chamando imagem 
+        self.figura_voltar_ultr = Button(self.frameUltrassom, image = self.bt_voltar_ultr, relief=FLAT, bd = 0, command= self.rootUltrassom.destroy) #Adicionando a imagem a um botão
+        self.figura_voltar_ultr.place(anchor='center', relx= 0.13, rely=0.08, width= 200, height= 80) #Localizando o botão na tela
+    
+    ###Função Escolha Preferencial ou Convencional PREMIR Consultas###
+    def abrir_janela_Consultas(self): 
+        self.rootConsultas = tk.Toplevel() #Variavel para atribuir tela principal
+        self.rootConsultas.configure(background= cores[0]) #Cor de fundo
+        self.rootConsultas.attributes('-fullscreen', True) #Modo tela Fullscreen ligado
+        self.fullScreenState = False
+        self.frameConsultas =Frame(self.rootConsultas, bg = cores[0]) #Definindo um Frame para a tela 
+        self.frameConsultas.place(anchor='center',relx= 0.5,rely= 0.5, relwidth= 0.96, relheight= 0.96)  #Localizando o Frame na tela 
+        global senha, opc, atendimento, tela, senhal
+        senha = senhal[1]
+        opc = opcao[1] 
+        tela = 3
+
+        #Imagens na Tela 
+        self.fundo_Consultas = PhotoImage(file= planos[1]) #Plano de fundo principal
+        figura_fundo_Consultas = Label(self.frameConsultas, image= self.fundo_Consultas, bd= 0) #Chamando imagem 
+        figura_fundo_Consultas.place(anchor= 'center',relx=0.5, rely=0.4, width= 500, height= 500) #Localizando a imagem na tela
+
+        self.bt_conv_cons = PhotoImage(file= bt[8]) #Chamando imagem 
+        self.figura_bt_conv_cons = Button(self.frameConsultas, image=self.bt_conv_cons, relief=FLAT, bd = 0, command= self.fechar_conv) #Adicionando a imagem a um botão
+        self.figura_bt_conv_cons.place(anchor = "center", relx= 0.5, rely=0.5, width= 510, height= 150) #Localizando o botão na tela
+
+        self.bt_prefe_cons = PhotoImage(file= bt[10]) #Chamando imagem 
+        self.figura_bt_prefe_cons = Button(self.frameConsultas, image=self.bt_prefe_cons, relief=FLAT, bd = 0, command= self.fechar_prefe)
+        self.figura_bt_prefe_cons.place(anchor = "center", relx= 0.5, rely=0.75, width= 510, height= 150) #Localizando o botão na tela
+
+        self.aviso = Label(self.frameConsultas, bg= cores[0], text="*As pessoas portadoras de deficiência, os idosos com idade igualou superior a 60 (sessenta) anos,\nas gestantes, as lactantes e as pessoas acompanhadas por crianças de colo terão\natendimento prioritário")
+        self.aviso.configure(font=fontes[0])
+        self.aviso.place(anchor='center', relx= 0.5, rely=0.95) #Localizando o botão na tela 
+
+        self.bt_voltar_cons = PhotoImage(file = bt[12]) #Chamando imagem 
+        self.figura_bt_voltar_cons = Button(self.frameConsultas, image = self.bt_voltar_cons, relief=FLAT, bd = 0, command= self.rootConsultas.destroy) #Adicionando a imagem a um botão
+        self.figura_bt_voltar_cons.place(anchor='center', relx= 0.13, rely=0.08, width= 200, height= 80) #Localizando o botão na tela
+
+
+
+###############################################      FARMACIAS      ###############################################
+    ###Função para Tela Farmacias###
+    def abrir_janela_Farmacias(self):
+        global ref
+        ref = 2
+        self.horario_ex()
+
+    def farmacia(self):
+        self.root_farmacia = tk.Toplevel()#Abertura da tela de opções da farmacia
+        self.root_farmacia.configure(background= cores[0]) #Cor do plano de fundo da tela 
+        self.root_farmacia.attributes('-fullscreen', True) #Código que faz com que a tela fique em Fullscreen
+        self.frame_farmacia =Frame(self.root_farmacia, bd = 4, bg = cores[0]) #Frame definido para a tela 4 com fundo branco
+        self.frame_farmacia.place(anchor='center',relx= 0.5,rely= 0.5, relwidth= 0.96, relheight= 0.96) #Definição do local do frame expresso em porcentagem de tela
+
+        #Imagens na Tela 
+        self.fundo_farmacia = PhotoImage(file= planos[0]) #Plano de fundo principal
+        self.bloco_farmacia = PhotoImage(file= bloco[1]) #Blocos de Cores
+        
+
+        figura_fundo_farmacia = Label(self.frame_farmacia, image= self.fundo_farmacia, bd= 0) #Chamando imagem1
+        figura_fundo_farmacia.place(anchor= 'center',relx=0.5, rely=0.4, width= 500, height= 500) #Localizando a imagem na tela
+
+        figura_bloco_esquerda = Label(self.frame_farmacia, image= self.bloco_farmacia, bd= 0) #Chamando imagem 
+        figura_bloco_esquerda.place(anchor = "center", relx=0.17, rely=0.65) #Localizando a imagem na tela
+
+        figura_meio = Label(self.frame_farmacia, image= self.bloco_farmacia, bd= 0) #Chamando imagem 
+        figura_meio.place(anchor = "center", relx=0.5, rely=0.65) #Localizando a imagem na tela
+
+        figura_direita = Label(self.frame_farmacia, image= self.bloco_farmacia, bd= 0) #Chamando imagem
+        figura_direita.place(anchor = "center", relx=0.83, rely=0.65) #Localizando a imagem na tela
+
+        fontexemplo0 = tkFont.Font(family= 'Arial Black', size= 18) #Definindo Variavel para fonte padrão
+
+        self.bt_imgFAC= PhotoImage(file = bt[2]) #Imagem botão Farmacia Auto-custo
+        self.btFAC = Button(self.frame_farmacia, image= self.bt_imgFAC, relief=FLAT, bd= 0, command= self.abrir_janela_AutoCusto) #Adicionando a imagem a um botão
+        self.btFAC.place(anchor = "center", relx= 0.17, rely=0.47, width= 270, height= 90) #Localizando o botão na tela
+    
+        self.bt_imgFAB = PhotoImage(file= bt[3]) #Imagem botão Farmacia Atenção Básica
+        self.btFAB = Button(self.frame_farmacia, image= self.bt_imgFAB, relief=FLAT, bd= 0, command= self.abrir_janela_AtencaoBasica) #Adicionando a imagem a um botão
+        self.btFAB.place(anchor = "center", relx= 0.5, rely=0.47, width= 270, height= 90) #Localizando o botão na tela
+
+        self.bt_imgFE = PhotoImage(file = bt[4]) #Imagem botão Farmacia Estado
+        self.btFE = Button(self.frame_farmacia, image= self.bt_imgFE, relief=FLAT, bd= 0, command= self.abrir_janela_Estado) #Adicionando a imagem a um botão
+        self.btFE.place(anchor = "center", relx= 0.83, rely=0.47, width= 270, height= 90) #Localizando o botão na tela
+
+        self.bt_img_FAB = Button(self.frame_farmacia, text= 'CBAF \n\nMedicamentos \nfornecidos pelo \nMunicípio \n', relief = FLAT, bd = 0, background = cores[4], activebackground = cores[4], command= self.abrir_janela_AtencaoBasica)
+        self.bt_img_FAB.place(anchor = "center", relx= 0.17, rely=0.73, width= 270, height= 200) #Localizando o botão na tela
+        self.bt_img_FAB.configure(font= fontexemplo0)
+
+        self.bt_img_FA = Button(self.frame_farmacia, text= 'Convenio Municípal \n\nFarmâcias Externas \nconveniadas ao \nMunicípio \n', relief = FLAT, bd = 0, background = cores[4], activebackground = cores[4], command= self.abrir_janela_AutoCusto)
+        self.bt_img_FA.place(anchor = "center", relx= 0.5, rely=0.73, width= 270, height= 200) #Localizando o botão na tela
+        self.bt_img_FA.configure(font= fontexemplo0)
+
+        self.bt_img_FE = Button(self.frame_farmacia, text= 'CEAF \n\nMedicamentos \nretirados apartir \ndo Estado ou \nJudicial', relief = FLAT, bd = 0, background = cores[4], activebackground = cores[4], command= self.abrir_janela_Estado)
+        self.bt_img_FE.place(anchor = "center", relx= 0.83, rely=0.73, width= 270, height= 200) #Localizando o botão na tela
+        self.bt_img_FE.configure(font= fontexemplo0)
+        
+        self.bt_img_voltar = PhotoImage(file = bt[12]) #Imagem botão Voltar 
+        self.bt_voltar_farmacias = Button(self.frame_farmacia, image = self.bt_img_voltar, relief=FLAT, bd = 0, command= self.root_farmacia.destroy) #Adicionando a imagem a um botão
+        self.bt_voltar_farmacias.place(anchor='center', relx= 0.13, rely=0.08, width= 200, height= 80) #Localizando o botão na tela
     
     ###Função Escolha Preferencial ou Convencional FARMACIA BASICA###
     def abrir_janela_AtencaoBasica(self): 
@@ -475,7 +409,7 @@ class func(espera):
         self.btprefe_AB = Button(self.frame_AB, image=self.btprefe_imgAB, relief=FLAT, bd = 0, command= self.fechar_prefe) #Adicionando a imagem a um botão
         self.btprefe_AB.place(anchor = "center", relx= 0.5, rely=0.75, width= 510, height= 150) #Localizando o botão na tela
 
-        self.aviso = Label(self.frame_AB, bg= cores[0], text="*As pessoas portadoras de deficiência, os idosos com idade igualou superior a 60 (sessenta) anos, as gestantes, as lactantes e as pessoas\nacompanhadas por crianças de colo terão atendimento prioritário")
+        self.aviso = Label(self.frame_AB, bg= cores[0], text="*As pessoas portadoras de deficiência, os idosos com idade igualou superior a 60 (sessenta) anos,\nas gestantes, as lactantes e as pessoas acompanhadas por crianças de colo terão\natendimento prioritário")
         self.aviso.configure(font=fontes[0])
         self.aviso.place(anchor='center', relx= 0.5, rely=0.95) #Localizando o botão na tela 
 
@@ -508,7 +442,7 @@ class func(espera):
         self.btprefe_FE = Button(self.frame_FE, image=self.btprefe_imgFE, relief=FLAT, bd = 0, command= self.fechar_prefe) #Adicionando a imagem a um botão
         self.btprefe_FE.place(anchor = "center", relx= 0.5, rely=0.75, width= 510, height= 150) #Localizando o botão na tela
 
-        self.aviso = Label(self.frame_FE, bg= cores[0], text="*As pessoas portadoras de deficiência, os idosos com idade igualou superior a 60 (sessenta) anos, as gestantes, as lactantes e as pessoas\nacompanhadas por crianças de colo terão atendimento prioritário")
+        self.aviso = Label(self.frame_FE, bg= cores[0], text="*As pessoas portadoras de deficiência, os idosos com idade igualou superior a 60 (sessenta) anos,\nas gestantes, as lactantes e as pessoas acompanhadas por crianças de colo terão\natendimento prioritário")
         self.aviso.configure(font=fontes[0])
         self.aviso.place(anchor='center', relx= 0.5, rely=0.95) #Localizando o botão na tela 
 
@@ -541,12 +475,98 @@ class func(espera):
         self.btprefe_FAC = Button(self.frame_FAC, image=self.btprefe_imgFAC, relief=FLAT, bd = 0, command= self.fechar_prefe) #Adicionando a imagem a um botão
         self.btprefe_FAC.place(anchor = "center", relx= 0.5, rely=0.75, width= 510, height= 150) #Localizando o botão na tela
 
-        self.aviso = Label(self.frame_FAC, bg= cores[0], text="*As pessoas portadoras de deficiência, os idosos com idade igualou superior a 60 (sessenta) anos, as gestantes, as lactantes e as pessoas\nacompanhadas por crianças de colo terão atendimento prioritário")
+        self.aviso = Label(self.frame_FAC, bg= cores[0], text="*As pessoas portadoras de deficiência, os idosos com idade igualou superior a 60 (sessenta) anos,\nas gestantes, as lactantes e as pessoas acompanhadas por crianças de colo terão\natendimento prioritário")
         self.aviso.configure(font=fontes[0])
         self.aviso.place(anchor='center', relx= 0.5, rely=0.95) #Localizando o botão na tela 
 
         self.btvoltar_imgFAC = PhotoImage(file = bt[12]) #Imagem Botão Voltar 
         self.btvoltar_FAC = Button(self.frame_FAC, image = self.btvoltar_imgFAC, relief=FLAT, bd = 0, command= self.root_FAC.destroy) #Adicionando a imagem a um botão
         self.btvoltar_FAC.place(anchor='center', relx= 0.13, rely=0.08, width= 200, height= 80) #Localizando o botão na tela   
+
+
+
+###############################################      AUTORIZAÇÃO DE EXAMES      ###############################################
+
+    ###Função Escolha Preferencial ou Convencional AUTORIZAÇÃO DE EXAMES###
+    def abrir_janela_AE(self):
+        global ref
+        ref = 3
+        self.horario_ex()
+        
+    def aut_exa(self):
+        self.rootAE = tk.Toplevel() #Variavel para atribuir tela principal
+        self.rootAE.configure(background= cores[0]) #Cor de fundo
+        self.rootAE.attributes('-fullscreen', True) #Modo tela Fullscreen ligado
+        self.fullScreenState = False
+        self.frameAE =Frame(self.rootAE, bg = cores[0]) #Definindo um Frame para a tela 
+        self.frameAE.place(anchor='center',relx= 0.5,rely= 0.5, relwidth= 0.96, relheight= 0.96) #Localizando o Frame na tela
+        global senha, opc, atendimento, tela, senhal
+        senha = senhal[5]
+        opc = opcao[5]
+        tela = 7
+
+        #Imagens na Tela 
+        self.fundo_AE = PhotoImage(file= planos[1]) #Plano de fundo principal
+        figura_fundo_AE = Label(self.frameAE, image= self.fundo_AE, bd= 0) #Chamando imagem 
+        figura_fundo_AE.place(anchor= 'center',relx=0.5, rely=0.4, width= 500, height= 500) #Localizando a imagem na tela
+
+        self.btconv_imgAE = PhotoImage(file= bt[8]) #Imagem Botão Convencional
+        self.btconv_AE = Button(self.frameAE, image=self.btconv_imgAE, relief=FLAT, bd = 0, command= self.fechar_conv) #Adicionando a imagem a um botão
+        self.btconv_AE.place(anchor = "center", relx= 0.5, rely=0.5, width= 510, height= 150) #Localizando o botão na tela
+
+        self.btprefe_imgAE = PhotoImage(file= bt[10]) #Imagem Botão Preferencial
+        self.btprefe_AE = Button(self.frameAE, image=self.btprefe_imgAE, relief=FLAT, bd = 0, command= self.fechar_prefe) #Adicionando a imagem a um botão
+        self.btprefe_AE.place(anchor = "center", relx= 0.5, rely=0.75, width= 510, height= 150) #Localizando o botão na tela
+
+        self.aviso = Label(self.frameAE, bg= cores[0], text="*As pessoas portadoras de deficiência, os idosos com idade igualou superior a 60 (sessenta) anos,\nas gestantes, as lactantes e as pessoas acompanhadas por crianças de colo terão\natendimento prioritário")
+        self.aviso.configure(font=fontes[0])
+        self.aviso.place(anchor='center', relx= 0.5, rely=0.95) #Localizando o botão na tela 
+
+        self.btvoltar_imgAE = PhotoImage(file = bt[12]) #Imagem Botão Voltar 
+        self.btvoltar_AE = Button(self.frameAE, image = self.btvoltar_imgAE, relief=FLAT, bd = 0, command= self.rootAE.destroy) #Adicionando a imagem a um botão
+        self.btvoltar_AE.place(anchor='center', relx= 0.13, rely=0.08, width= 200, height= 80) #Localizando o botão na tela 
+
+
+
+###############################################      TFD      ###############################################
+    
+    ###Função Escolha Preferencial ou Convencional TFD###
+    def abrir_janela_TFD(self): 
+        global ref
+        ref = 4
+        self.horario_ex()
+        
+    def tfd(self):
+        self.rootTFD = tk.Toplevel() #Variavel para atribuir tela principal
+        self.rootTFD.configure(background= cores[0]) #Cor de fundo
+        self.rootTFD.attributes('-fullscreen', True) #Modo tela Fullscreen ligado
+        self.fullScreenState = False
+        self.frameTFD =Frame(self.rootTFD, bg = cores[0]) #Definindo um Frame para a tela 
+        self.frameTFD.place(anchor='center',relx= 0.5,rely= 0.5, relwidth= 0.96, relheight= 0.96)  #Localizando o Frame na tela 
+        global senha, opc, atendimento, tela, senhal
+        senha = senhal[0]
+        opc = opcao[0] 
+        tela = 8
+
+        #Imagens na Tela 
+        self.fundo_TFD = PhotoImage(file= planos[1]) #Plano de fundo principal
+        figura_fundo_TFD = Label(self.frameTFD, image= self.fundo_TFD, bd= 0) #Chamando imagem 
+        figura_fundo_TFD.place(anchor= 'center',relx=0.5, rely=0.4, width= 500, height= 500) #Localizando a imagem na tela
+
+        self.bt_conv_tfd = PhotoImage(file= bt[8]) #Chamando imagem 
+        self.figura_bt_conv_tfd = Button(self.frameTFD, image=self.bt_conv_tfd, relief=FLAT, bd = 0, command= self.fechar_conv) #Adicionando a imagem a um botão
+        self.figura_bt_conv_tfd.place(anchor = "center", relx= 0.5, rely=0.5, width= 510, height= 150) #Localizando o botão na tela
+
+        self.bt_prefe_tfd = PhotoImage(file= bt[10]) #Chamando imagem 
+        self.figura_bt_prefe_tfd = Button(self.frameTFD, image=self.bt_prefe_tfd, relief=FLAT, bd = 0, command= self.fechar_prefe)
+        self.figura_bt_prefe_tfd.place(anchor = "center", relx= 0.5, rely=0.75, width= 510, height= 150) #Localizando o botão na tela
+
+        self.aviso = Label(self.frameTFD, bg= cores[0], text="*As pessoas portadoras de deficiência, os idosos com idade igualou superior a 60 (sessenta) anos,\nas gestantes, as lactantes e as pessoas acompanhadas por crianças de colo terão\natendimento prioritário")
+        self.aviso.configure(font=fontes[0])
+        self.aviso.place(anchor='center', relx= 0.5, rely=0.95) #Localizando o botão na tela 
+
+        self.bt_voltar_tfd = PhotoImage(file = bt[12]) #Chamando imagem 
+        self.figura_bt_voltar_tfd = Button(self.frameTFD, image = self.bt_voltar_tfd, relief=FLAT, bd = 0, command= self.rootTFD.destroy) #Adicionando a imagem a um botão
+        self.figura_bt_voltar_tfd.place(anchor='center', relx= 0.13, rely=0.08, width= 200, height= 80) #Localizando o botão na tela 
 
     

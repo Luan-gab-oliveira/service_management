@@ -122,7 +122,7 @@ cores = [
     ]
 
 ###Definindo variaveis para fontes
-fonte0 = tkFont.Font(family= "Arial", size= 16, weight= "bold")
+fonte0 = tkFont.Font(family= "Arial", size= 15, weight= "bold")
 
 fontes = [
     fonte0
