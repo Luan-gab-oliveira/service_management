@@ -19,7 +19,7 @@ esp = [
     "Ortopedista"
     ]
 ###Definindo variaveis para senha###
-opcao = [
+set = [
     "TFD", 
     "PREMIR",
     "F.ESTADO", 
@@ -27,13 +27,16 @@ opcao = [
     "F.BASICA", 
     "AUT.EXA."
     ]
-senhal = [
+opc = [
     "TFD", #TFD
     "PRE", #Premir  
     "FAE", #Farmacia Estada
     "FAA", #Farmacia Auto-custo
     "FAB", #Farmacia Atenção Básica
-    "EXA"  #Autorização de Exames
+    "EXA", #Autorização de Exames
+    "MUL", #Multiprofissionais 
+    "CON", #Consultas
+    "ULT"  #Ultrassom
     ]
 ###Definindo variaveis para tipo de atendimento###
 atend = [

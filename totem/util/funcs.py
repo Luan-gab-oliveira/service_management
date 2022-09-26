@@ -3,11 +3,11 @@ from util.espera import *
 
  ###Classe para Funções###
 class func(espera):
-    global senha, opc, atendimento, senhal, ref
+    global opcao, setor, atendimento, opc, ref
 
     ###Função para aviso de HORARIO EXCEDENTE
     def horario_ex(self):
-        global senha, opc, atendimento, tela, senhal, ref
+        global opcao, setor, atendimento, tela, opc, ref
         if hora_atual >= horario[0]:
             self.root_horario = tk.Toplevel() #Variavel para atribuir tela principal
             self.root_horario.title('Sistema de Senhas Secretaria Municipal de Saúde.') #Atribuir titulo a tela
@@ -67,7 +67,7 @@ class func(espera):
             self.tfd()
     ###Funções de Fechamento de cada tela###
     def fechar_conv(self): #Função fechamento de tela Conv. do TFD, AUT, FAA, FAB, FAE, PRE
-        global senha, opc, atendimento, tela
+        global opcao, setor, atendimento, tela
         atendimento = atend[1]
         threading.Thread(target=self.abrir_janela_espera())
         threading.Thread(target=self.gerar_senha).start()
@@ -95,9 +95,9 @@ class func(espera):
             self.rootTFD.destroy() #Destruir janela 2
 
     def fechar_prefe(self): #Função fechamento de tela Pref. do TFD, AUT, FAA, FAB, FAE, PRE
-        global senha, opc, atendimento, tela, senhal
+        global opcao, setor, atendimento, tela, opc
         atendimento = atend[0]
-        senha = 'P' + senha
+        opcao = 'P' + opcao
         threading.Thread(target=self.gerar_senha).start()
         self.abrir_janela_espera()
         if tela == 1:
@@ -125,11 +125,11 @@ class func(espera):
 
 
     def gerar_senha(self):
-        global senha, opc, atendimento, senhal
+        global opcao, senha, setor, atendimento, opc
         with connect_server() as conexao: #chama a função para conectar ao banco mysql
             with conexao.cursor() as cursor:
                 #caso exista uma sequencia para a opção selecionada na consulta, gera uma senha sequencial.
-                if  cursor.execute(f'SELECT senha FROM {tabela} WHERE id IN (SELECT MAX(id) FROM {tabela} WHERE opcao = "{opc}" AND atendimento = "{atendimento}");')>0: #realiza consulta em banco
+                if  cursor.execute(f'SELECT senha FROM {tabela} WHERE id IN (SELECT MAX(id) FROM {tabela} WHERE setor = "{setor}" AND atendimento = "{atendimento}");')>0: #realiza consulta em banco
                     resultado = str(cursor.fetchone()['senha']) #retorna resultado da consulta
                     if atendimento == "preferencial": #Preferencial
                         resultado = int(resultado[4:])+1 #converte o resutado, fatiando apenas os valores
@@ -137,16 +137,16 @@ class func(espera):
                         resultado = int(resultado[3:])+1 #converte o resutado, fatiando apenas os valores
 
                     resultado = str(resultado).rjust(3,'0') # adiciona 3 digitos ao resultado
-                    senha = senha + str(resultado) #seta senha
-                    sql = f"INSERT INTO {tabela} (opcao, atendimento, senha, data, status) VALUES ('{opc}','{atendimento}','{senha}','{data}', 'ESPERA')"  #seta intrução sql
+                    senha = opcao + str(resultado) #seta senha
+                    sql = f"INSERT INTO {tabela} (setor, opcao, atendimento, senha, data, status) VALUES ('{setor}','{opcao}','{atendimento}','{senha}','{data}', 'ESPERA')"  #seta intrução sql
                 
-                else: #caso não exista uma sequencia para a opção selecionada na consulta, gera uma nova senha no bloco else. 
-                    senha = senha + str('001') #seta senha
-                    sql = f"INSERT INTO {tabela} (opcao, atendimento, senha, data, status) VALUES ('{opc}','{atendimento}','{senha}','{data}', 'ESPERA')"  #seta intrução sql
+                else: #caso não exista uma sequencia para a opção selecionada na consulta, gera uma nova opcao no bloco else. 
+                    senha = opcao + str('001') #seta opcao
+                    sql = f"INSERT INTO {tabela} (setor, opcao, atendimento, senha, data, status) VALUES ('{setor}','{opcao}','{atendimento}','{senha}','{data}', 'ESPERA')"  #seta intrução sql
 
                 cursor.execute(sql) #executa instrução sql
                 conexao.commit() #commit para o interprertador entender que deve executar a instrução
-                imprimir(senha, opc)
+                imprimir(senha, setor)
                 print(senha)
 
 
@@ -226,9 +226,9 @@ class func(espera):
         self.fullScreenState = False
         self.frameMult =Frame(self.rootMult, bg = cores[0]) #Definindo um Frame para a tela 
         self.frameMult.place(anchor='center',relx= 0.5,rely= 0.5, relwidth= 0.96, relheight= 0.96)  #Localizando o Frame na tela 
-        global senha, opc, atendimento, tela, senhal
-        senha = senhal[1]
-        opc = opcao[1] 
+        global senha, setor, set, atendimento, tela, opcao, opc
+        opcao= opc[6]
+        setor= set[1] 
         tela = 1
 
         #Imagens na Tela 
@@ -260,9 +260,9 @@ class func(espera):
         self.fullScreenState = False 
         self.frameUltrassom =Frame(self.rootUltrassom, bg = cores[0]) #Definindo um Frame para a tela 
         self.frameUltrassom.place(anchor='center',relx= 0.5,rely= 0.5, relwidth= 0.96, relheight= 0.96)  #Localizando o Frame na tela 
-        global senha, opc, atendimento, tela, senhal
-        senha = senhal[1]
-        opc = opcao[1] 
+        global senha, setor, set, atendimento, tela, opcao, opc
+        opcao= opc[8]
+        setor= set[1] 
         tela = 2
 
         #Imagens na Tela 
@@ -294,9 +294,9 @@ class func(espera):
         self.fullScreenState = False
         self.frameConsultas =Frame(self.rootConsultas, bg = cores[0]) #Definindo um Frame para a tela 
         self.frameConsultas.place(anchor='center',relx= 0.5,rely= 0.5, relwidth= 0.96, relheight= 0.96)  #Localizando o Frame na tela 
-        global senha, opc, atendimento, tela, senhal
-        senha = senhal[1]
-        opc = opcao[1] 
+        global senha, setor, set, atendimento, tela, opcao, opc
+        opcao= opc[7]
+        setor= set[1] 
         tela = 3
 
         #Imagens na Tela 
@@ -391,9 +391,9 @@ class func(espera):
         self.fullScreenState = False 
         self.frame_AB =Frame(self.root_AB, bg = cores[0]) #Definindo um Frame para a tela 
         self.frame_AB.place(anchor='center',relx= 0.5,rely= 0.5, relwidth= 0.96, relheight= 0.96) #Localizando o Frame na tela 
-        global senha, opc, atendimento, tela, senhal
-        senha = senhal[4]
-        opc = opcao[4] 
+        global senha, setor, set, atendimento, tela, opcao, opc
+        opcao= opc[4]
+        setor= set[4] 
         tela = 4
         
         #Imagens na Tela 
@@ -424,9 +424,9 @@ class func(espera):
         self.fullScreenState = False
         self.frame_FE =Frame(self.root_FE, bg = cores[0]) #Definindo um Frame para a tela 
         self.frame_FE.place(anchor='center',relx= 0.5,rely= 0.5, relwidth= 0.96, relheight= 0.96) #Localizando o Frame na tela 
-        global senha, opc, atendimento, tela, senhal
-        senha = senhal[2]
-        opc = opcao[2] 
+        global senha, setor, set, atendimento, tela, opcao, opc
+        opcao= opc[2]
+        setor= set[2] 
         tela = 5
         
         #Imagens na Tela 
@@ -457,9 +457,9 @@ class func(espera):
         self.fullScreenState = False
         self.frame_FAC =Frame(self.root_FAC, bg = cores[0]) #Definindo um Frame para a tela 
         self.frame_FAC.place(anchor='center',relx= 0.5,rely= 0.5, relwidth= 0.96, relheight= 0.96) #Localizando o Frame na tela 
-        global senha, opc, atendimento, tela, senhal
-        senha = senhal[3]
-        opc = opcao[3] 
+        global senha, setor, set, atendimento, tela, opcao, opc
+        opcao= opc[3]
+        setor= set[3] 
         tela = 6
         
         #Imagens na Tela 
@@ -500,9 +500,9 @@ class func(espera):
         self.fullScreenState = False
         self.frameAE =Frame(self.rootAE, bg = cores[0]) #Definindo um Frame para a tela 
         self.frameAE.place(anchor='center',relx= 0.5,rely= 0.5, relwidth= 0.96, relheight= 0.96) #Localizando o Frame na tela
-        global senha, opc, atendimento, tela, senhal
-        senha = senhal[5]
-        opc = opcao[5]
+        global senha, setor, set, atendimento, tela, opcao, opc
+        opcao = opc[5]
+        setor= set[5]
         tela = 7
 
         #Imagens na Tela 
@@ -543,9 +543,9 @@ class func(espera):
         self.fullScreenState = False
         self.frameTFD =Frame(self.rootTFD, bg = cores[0]) #Definindo um Frame para a tela 
         self.frameTFD.place(anchor='center',relx= 0.5,rely= 0.5, relwidth= 0.96, relheight= 0.96)  #Localizando o Frame na tela 
-        global senha, opc, atendimento, tela, senhal
-        senha = senhal[0]
-        opc = opcao[0] 
+        global opcao, setor, set, atendimento, tela, opc
+        opcao= opc[0]
+        setor= set[0] 
         tela = 8
 
         #Imagens na Tela 
