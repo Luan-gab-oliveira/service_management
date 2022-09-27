@@ -93,7 +93,7 @@ class PremirGUI(Functions):
             cursor='hand2',
             highlightbackground=coolors[1], highlightcolor=coolors[1], activebackground=coolors[1], 
             highlightthickness=0,
-            command=lambda: self.chamar_proxima('mul')
+            command=lambda: self.chamar_proxima('MUL')
         )
         self.btn_proxima.place(rely=0.225, relx=0.15, relheight=0.15, relwidth=0.75)
 
@@ -105,7 +105,7 @@ class PremirGUI(Functions):
             cursor='hand2',
             highlightbackground=coolors[1], highlightcolor=coolors[1], activebackground=coolors[1], 
             highlightthickness=0,
-            command= lambda: self.chamar_proxima('con')
+            command= lambda: self.chamar_proxima('CON')
         )
         self.btn_anterior.place(rely=0.425, relx=0.15, relheight=0.15, relwidth=0.75)
 
@@ -116,7 +116,7 @@ class PremirGUI(Functions):
             cursor='hand2',
             highlightbackground=coolors[1], highlightcolor=coolors[1], activebackground=coolors[1], 
             highlightthickness=0,
-            command= lambda: self.chamar_proxima('ult')
+            command= lambda: self.chamar_proxima('ULT')
         )
         self.btn_novamente.place(rely=0.625, relx=0.15, relheight=0.15, relwidth=0.75)
 

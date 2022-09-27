@@ -67,9 +67,9 @@ class Functions():
         global setor
         
         if setor == 'PREMIR':  
-            mul = consulta_fila(f'SELECT count(senha) as total FROM fila_espera WHERE setor="{setor}" AND status = "ESPERA" AND opcao = "mul";')
-            con = consulta_fila(f'SELECT count(senha) as total FROM fila_espera WHERE setor="{setor}" AND status = "ESPERA" AND opcao = "con";')
-            ult = consulta_fila(f'SELECT count(senha) as total FROM fila_espera WHERE setor="{setor}" AND status = "ESPERA" AND opcao = "ult";') 
+            mul = consulta_fila(f'SELECT count(senha) as total FROM fila_espera WHERE setor="{setor}" AND status = "ESPERA" AND opcao = "MUL";')
+            con = consulta_fila(f'SELECT count(senha) as total FROM fila_espera WHERE setor="{setor}" AND status = "ESPERA" AND opcao = "CON";')
+            ult = consulta_fila(f'SELECT count(senha) as total FROM fila_espera WHERE setor="{setor}" AND status = "ESPERA" AND opcao = "ULT";') 
             self.display_espera.config(text=f'Fila de espera - Multiprofissionais: {mul} / Consultas: {con} / Ultrassom: {ult}')
         else:
             con = consulta_fila(f'SELECT count(senha) as total FROM fila_espera WHERE setor="{setor}" AND status = "ESPERA";')
