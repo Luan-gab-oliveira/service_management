@@ -73,10 +73,8 @@ class func(espera):
         threading.Thread(target=self.gerar_senha).start()
         if tela == 1:
             self.root_premir.destroy()
-            self.rootMult.destroy() #Destruir janela 2 Mult
         elif tela == 2:
             self.root_premir.destroy()
-            self.rootUltrassom.destroy() #Destruir janela 2 Ultrassom
         elif tela == 3:
             self.root_premir.destroy()
             self.rootConsultas.destroy() #Destruir janela 2 Consultas
@@ -102,10 +100,8 @@ class func(espera):
         self.abrir_janela_espera()
         if tela == 1:
             self.root_premir.destroy()
-            self.rootMult.destroy() #Destruir janela 2 Mult
         elif tela == 2:
             self.root_premir.destroy()
-            self.rootUltrassom.destroy() #Destruir janela 2 Ultrassom
         elif tela == 3:
             self.root_premir.destroy()
             self.rootConsultas.destroy() #Destruir janela 2 Consultas
@@ -129,7 +125,7 @@ class func(espera):
         with connect_server() as conexao: #chama a função para conectar ao banco mysql
             with conexao.cursor() as cursor:
                 #caso exista uma sequencia para a opção selecionada na consulta, gera uma senha sequencial.
-                if  cursor.execute(f'SELECT senha FROM {tabela} WHERE id IN (SELECT MAX(id) FROM {tabela} WHERE setor = "{setor}" AND atendimento = "{atendimento}");')>0: #realiza consulta em banco
+                if  cursor.execute(f'SELECT senha FROM {tabela} WHERE id IN (SELECT MAX(id) FROM {tabela} WHERE opcao = "{opcao}" AND atendimento = "{atendimento}");')>0: #realiza consulta em banco
                     resultado = str(cursor.fetchone()['senha']) #retorna resultado da consulta
                     if atendimento == "preferencial": #Preferencial
                         resultado = int(resultado[4:])+1 #converte o resutado, fatiando apenas os valores
@@ -158,6 +154,20 @@ class func(espera):
         global ref
         ref = 1
         self.horario_ex()
+    
+    def ultrassom(self):
+        global senha, setor, set, atendimento, tela, opcao, opc
+        opcao= opc[8]
+        setor= set[1] 
+        tela = 1
+        self.fechar_conv()
+
+    def multiprofissionais(self):
+        global senha, setor, set, atendimento, tela, opcao, opc
+        opcao= opc[6]
+        setor= set[1] 
+        tela = 2
+        self.fechar_conv()
         
     def premir(self):
         self.root_premir = tk.Toplevel()#Abertura da Tela 4 de Opções do Premir
@@ -191,22 +201,22 @@ class func(espera):
         self.btPconsultas.place(anchor='center',relx= 0.5, rely=0.47, width= 270, height= 80) #Localizando o botão na tela
 
         self.bt_ultrassom = PhotoImage(file= bt[11]) #Imagem botão Ultrassom
-        self.btult = Button(self.frame_premir, image= self.bt_ultrassom, relief=FLAT, bd= 0, command= self.abrir_janela_Ultrassom) #Adicionando a imagem a um botão
+        self.btult = Button(self.frame_premir, image= self.bt_ultrassom, relief=FLAT, bd= 0, command= self.ultrassom) #Adicionando a imagem a um botão
         self.btult.place(anchor='center',relx= 0.83, rely=0.47, width= 270, height= 80) #Localizando o botão na tela
 
         self.bt_multi = PhotoImage(file = bt[9]) #Imagem botão Multiprofissionais
-        self.btmult = Button(self.frame_premir, image= self.bt_multi, relief=FLAT, bd= 0, command= self.abrir_janela_Mult) #Adicionando a imagem a um botão
+        self.btmult = Button(self.frame_premir, image= self.bt_multi, relief=FLAT, bd= 0, command= self.multiprofissionais) #Adicionando a imagem a um botão
         self.btmult.place(anchor='center', relx= 0.17, rely=0.47, width= 270, height= 80) #Localizando o botão na tela
 
         self.btconsultas2 = Button(self.frame_premir, text = f"•{esp[0]} \n•{esp[1]} \n•{esp[2]} \n•{esp[3]} \n•{esp[4]} \n•{esp[5]} \n•{esp[6]} \n•{esp[7]}", relief = FLAT, bd = 0, background = cores[4], activebackground = cores[4], command= self.abrir_janela_Consultas) #Adicionando texto a um botão
         self.btconsultas2.configure(font = fontexemplo0) #Configuração fonte padrão
         self.btconsultas2.place(anchor = "center", relx= 0.5, rely=0.7, width= 270, height= 250)  #Localizando o botão na tela
         
-        self.btult2 = Button(self.frame_premir, text = "•Agendamento \n•Resultado de \nExames", relief = FLAT, bd = 0, background = cores[4], activebackground = cores[4], command= self.abrir_janela_Ultrassom) #Adicionando texto a um botão
+        self.btult2 = Button(self.frame_premir, text = "•Agendamento \n•Resultado de \nExames", relief = FLAT, bd = 0, background = cores[4], activebackground = cores[4], command= self.ultrassom) #Adicionando texto a um botão
         self.btult2.configure(font = fontexemplo0) #Configuração fonte padrão
         self.btult2.place(anchor = "center", relx= 0.83, rely=0.7, width= 270, height= 80)  #Localizando o botão na tela
         
-        self.btmult2 = Button(self.frame_premir, text = "Multiprofissonais: \n\n•Psícologa \n•Terapia Ocupacional \n•Assistente Social \n •Fonoaudióloga", relief = FLAT, bd = 0, background = cores[4], activebackground = cores[4], command= self.abrir_janela_Mult) #Adicionando texto a um botão
+        self.btmult2 = Button(self.frame_premir, text = "Multiprofissonais: \n\n•Psícologa \n•Terapia Ocupacional \n•Assistente Social \n •Fonoaudióloga", relief = FLAT, bd = 0, background = cores[4], activebackground = cores[4], command= self.multiprofissionais) #Adicionando texto a um botão
         self.btmult2.configure(font = fontexemplo0) #Configuração fonte padrão
         self.btmult2.place(anchor = "center", relx= 0.17, rely=0.67, width= 270, height= 220)  #Localizando o botão na tela
 
@@ -218,74 +228,6 @@ class func(espera):
         self.btvoltar = Button(self.frame_premir, image = self.bt_voltar, relief=FLAT, bd = 0, command= self.root_premir.destroy) #Adicionando a imagem a um botão
         self.btvoltar.place(anchor='center', relx= 0.13, rely=0.08, width= 200, height= 80) #Localizando o botão na tela
 
-    ###Função Escolha Preferencial ou Convencional PREMIR Multiprofissionais###
-    def abrir_janela_Mult(self): 
-        self.rootMult = tk.Toplevel() #Variavel para atribuir tela principal
-        self.rootMult.configure(background= cores[0]) #Cor de fundo
-        self.rootMult.attributes('-fullscreen', True) #Modo tela Fullscreen ligado
-        self.fullScreenState = False
-        self.frameMult =Frame(self.rootMult, bg = cores[0]) #Definindo um Frame para a tela 
-        self.frameMult.place(anchor='center',relx= 0.5,rely= 0.5, relwidth= 0.96, relheight= 0.96)  #Localizando o Frame na tela 
-        global senha, setor, set, atendimento, tela, opcao, opc
-        opcao= opc[6]
-        setor= set[1] 
-        tela = 1
-
-        #Imagens na Tela 
-        self.fundo_mult = PhotoImage(file= planos[1]) #Plano de fundo principal
-        figura_fundo_Mult = Label(self.frameMult, image= self.fundo_mult, bd= 0) #Chamando imagem 
-        figura_fundo_Mult.place(anchor= 'center',relx=0.5, rely=0.4, width= 500, height= 500) #Localizando a imagem na tela
-
-        self.bt_conv_mult = PhotoImage(file= bt[8]) #Chamando imagem 
-        self.figura_bt_conv_mult = Button(self.frameMult, image=self.bt_conv_mult, relief=FLAT, bd = 0, command=self.fechar_conv) #Adicionando a imagem a um botão
-        self.figura_bt_conv_mult.place(anchor = "center", relx= 0.5, rely=0.5, width= 510, height= 150) #Localizando o botão na tela
-
-        self.bt_prefe_mult = PhotoImage(file= bt[10]) #Chamando imagem 
-        self.figura_bt_prefe_mult = Button(self.frameMult, image=self.bt_prefe_mult, relief=FLAT, bd = 0, command=self.fechar_prefe)
-        self.figura_bt_prefe_mult.place(anchor = "center", relx= 0.5, rely=0.75, width= 510, height= 150) #Localizando o botão na tela
-
-        self.aviso = Label(self.frameMult, bg= cores[0], text="*As pessoas portadoras de deficiência, os idosos com idade igualou superior a 60 (sessenta) anos,\nas gestantes, as lactantes e as pessoas acompanhadas por crianças de colo terão\natendimento prioritário")
-        self.aviso.configure(font=fontes[0])
-        self.aviso.place(anchor='center', relx= 0.5, rely=0.95) #Localizando o botão na tela 
-
-        self.bt_voltar_mult = PhotoImage(file = bt[12]) #Chamando imagem 
-        self.figura_bt_voltar_mult = Button(self.frameMult, image = self.bt_voltar_mult, relief=FLAT, bd = 0, command=self.rootMult.destroy) #Adicionando a imagem a um botão
-        self.figura_bt_voltar_mult.place(anchor='center', relx= 0.13, rely=0.08, width= 200, height= 80) #Localizando o botão na tela
-
-    ###Função Escolha Preferencial ou Convencional PREMIR Ultrassom###
-    def abrir_janela_Ultrassom(self): 
-        self.rootUltrassom = tk.Toplevel() #Variavel para atribuir tela principal
-        self.rootUltrassom.configure(background= cores[0]) #Cor de fundo
-        self.rootUltrassom.attributes('-fullscreen', True) #Modo tela Fullscreen ligado
-        self.fullScreenState = False 
-        self.frameUltrassom =Frame(self.rootUltrassom, bg = cores[0]) #Definindo um Frame para a tela 
-        self.frameUltrassom.place(anchor='center',relx= 0.5,rely= 0.5, relwidth= 0.96, relheight= 0.96)  #Localizando o Frame na tela 
-        global senha, setor, set, atendimento, tela, opcao, opc
-        opcao= opc[8]
-        setor= set[1] 
-        tela = 2
-
-        #Imagens na Tela 
-        self.fundo_ultr = PhotoImage(file= planos[1]) #Plano de fundo principal
-        figura_fundo_ultr = Label(self.frameUltrassom, image= self.fundo_ultr, bd= 0) #Chamando imagem 
-        figura_fundo_ultr.place(anchor= 'center',relx=0.5, rely=0.4, width= 500, height= 500) #Localizando a imagem na tela
-
-        self.bt_conv_ultr = PhotoImage(file= bt[8]) #Chamando imagem 
-        self.figura_conv_ultr = Button(self.frameUltrassom, image=self.bt_conv_ultr, relief=FLAT, bd = 0, command= self.fechar_conv) #Adicionando a imagem a um botão
-        self.figura_conv_ultr.place(anchor = "center", relx= 0.5, rely=0.5, width= 510, height= 150) #Localizando o botão na tela
-
-        self.bt_prefe_ultr = PhotoImage(file= bt[10]) #Chamando imagem 
-        self.figura_prefe_ultr = Button(self.frameUltrassom, image=self.bt_prefe_ultr, relief=FLAT, bd = 0, command= self.fechar_prefe)
-        self.figura_prefe_ultr.place(anchor = "center", relx= 0.5, rely=0.75, width= 510, height= 150) #Localizando o botão na tela
-
-        self.aviso = Label(self.frameUltrassom, bg= cores[0], text="*As pessoas portadoras de deficiência, os idosos com idade igualou superior a 60 (sessenta) anos,\nas gestantes, as lactantes e as pessoas acompanhadas por crianças de colo terão\natendimento prioritário")
-        self.aviso.configure(font=fontes[0])
-        self.aviso.place(anchor='center', relx= 0.5, rely=0.95) #Localizando o botão na tela 
-
-        self.bt_voltar_ultr = PhotoImage(file = bt[12]) #Chamando imagem 
-        self.figura_voltar_ultr = Button(self.frameUltrassom, image = self.bt_voltar_ultr, relief=FLAT, bd = 0, command= self.rootUltrassom.destroy) #Adicionando a imagem a um botão
-        self.figura_voltar_ultr.place(anchor='center', relx= 0.13, rely=0.08, width= 200, height= 80) #Localizando o botão na tela
-    
     ###Função Escolha Preferencial ou Convencional PREMIR Consultas###
     def abrir_janela_Consultas(self): 
         self.rootConsultas = tk.Toplevel() #Variavel para atribuir tela principal
