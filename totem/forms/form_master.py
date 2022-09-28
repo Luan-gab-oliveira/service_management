@@ -62,7 +62,7 @@ try:
             
             self.photo_bt_CSUS = PhotoImage(file = bt[13]) #Imagem botão Cartão SUS
             self.bt_SUS = Button(self.frame, image = self.photo_bt_CSUS, bd = 0, relief=FLAT, command= self.abrir_janela_CSUS) #Adicionando a imagem a um botão
-            self.bt_SUS.place(anchor= 'center',relx= 0.5, rely=0.85, width= 425, height= 160) #Localizando o botão na tela
+            self.bt_SUS.place(anchor= 'center',relx= 0.5, rely=0.86, width= 425, height= 160) #Localizando o botão na tela
 
 
 
