@@ -25,7 +25,8 @@ set = [
     "F.ESTADO", 
     "F.AUTO C.", 
     "F.BASICA", 
-    "AUT.EXA."
+    "AUT.EXA.",
+    "Cartão SUS"
     ]
 opc = [
     "TFD", #TFD
@@ -36,7 +37,8 @@ opc = [
     "EXA", #Autorização de Exames
     "MUL", #Multiprofissionais 
     "CON", #Consultas
-    "ULT"  #Ultrassom
+    "ULT", #Ultrassom
+    "SUS"
     ]
 ###Definindo variaveis para tipo de atendimento###
 atend = [
@@ -63,6 +65,7 @@ btmult = fr"{get_dir}\Botões\btmult.png"
 btpref = fr"{get_dir}\Botões\btpref.png"
 btult = fr"{get_dir}\Botões\btult.png"
 btvoltar = fr"{get_dir}\Botões\btvoltar.png"
+btCSUS = fr"{get_dir}\Botões\btCSUS.png"
 
 #Atribuindo Lista de Botões 
 bt = [ 
@@ -78,7 +81,8 @@ bt = [
     btmult,
     btpref,
     btult,
-    btvoltar
+    btvoltar,
+    btCSUS
     ]
 
 ###Definindo variaveis para os blocos e seus diretorios###

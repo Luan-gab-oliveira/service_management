@@ -65,6 +65,9 @@ class func(espera):
 
         elif ref == 4:
             self.tfd()
+
+        elif ref == 5:
+            self.cartao_sus()
     ###Funções de Fechamento de cada tela###
     def fechar_conv(self): #Função fechamento de tela Conv. do TFD, AUT, FAA, FAB, FAE, PRE
         global opcao, setor, atendimento, tela
@@ -91,6 +94,8 @@ class func(espera):
             self.rootAE.destroy() #Destruir janela 21
         elif tela == 8:
             self.rootTFD.destroy() #Destruir janela 2
+        elif tela == 9:
+            self.rootCSUS.destroy()
 
     def fechar_prefe(self): #Função fechamento de tela Pref. do TFD, AUT, FAA, FAB, FAE, PRE
         global opcao, setor, atendimento, tela, opc
@@ -118,6 +123,8 @@ class func(espera):
             self.rootAE.destroy() #Destruir janela 21
         elif tela == 8:
             self.rootTFD.destroy() #Destruir janela 2
+        elif tela == 9:
+            self.rootCSUS.destroy()
 
 
     def gerar_senha(self):
@@ -511,4 +518,47 @@ class func(espera):
         self.figura_bt_voltar_tfd = Button(self.frameTFD, image = self.bt_voltar_tfd, relief=FLAT, bd = 0, command= self.rootTFD.destroy) #Adicionando a imagem a um botão
         self.figura_bt_voltar_tfd.place(anchor='center', relx= 0.13, rely=0.08, width= 200, height= 80) #Localizando o botão na tela 
 
-    
+
+
+###############################################      Cartão SUS      ###############################################
+
+    ###Função Escolha Preferencial ou Convencional AUTORIZAÇÃO DE EXAMES###
+    def abrir_janela_CSUS(self):
+        global ref
+        ref = 5
+        self.horario_ex()
+        
+    def cartao_sus(self):
+        self.rootCSUS = tk.Toplevel() #Variavel para atribuir tela principal
+        self.rootCSUS.configure(background= cores[0]) #Cor de fundo
+        self.rootCSUS.attributes('-fullscreen', True) #Modo tela Fullscreen ligado
+        self.fullScreenState = False
+        self.frameCSUS =Frame(self.rootCSUS, bg = cores[0]) #Definindo um Frame para a tela 
+        self.frameCSUS.place(anchor='center',relx= 0.5,rely= 0.5, relwidth= 0.96, relheight= 0.96) #Localizando o Frame na tela
+        global opcao, opc, atendimento, tela, setor, set
+        opcao = opc[9]
+        setor = set[6]
+        tela = 9
+
+        #Imagens na Tela 
+        self.fundo_CSUS = PhotoImage(file= planos[1]) #Plano de fundo principal
+        figura_fundo_CSUS = Label(self.frameCSUS, image= self.fundo_CSUS, bd= 0) #Chamando imagem 
+        figura_fundo_CSUS.place(anchor= 'center',relx=0.5, rely=0.4, width= 500, height= 500) #Localizando a imagem na tela
+
+        self.btconv_imgCSUS = PhotoImage(file= bt[8]) #Imagem Botão Convencional
+        self.btconv_CSUS = Button(self.frameCSUS, image=self.btconv_imgCSUS, relief=FLAT, bd = 0, command= self.fechar_conv) #Adicionando a imagem a um botão
+        self.btconv_CSUS.place(anchor = "center", relx= 0.5, rely=0.5, width= 510, height= 150) #Localizando o botão na tela
+
+        self.btprefe_imgCSUS = PhotoImage(file= bt[10]) #Imagem Botão Preferencial
+        self.btprefe_CSUS = Button(self.frameCSUS, image=self.btprefe_imgCSUS, relief=FLAT, bd = 0, command= self.fechar_prefe) #Adicionando a imagem a um botão
+        self.btprefe_CSUS.place(anchor = "center", relx= 0.5, rely=0.75, width= 510, height= 150) #Localizando o botão na tela
+
+        self.aviso = Label(self.frameCSUS, bg= cores[0], text="*As pessoas portadoras de deficiência, os idosos com idade igualou superior a 60 (sessenta) anos, as gestantes, as lactantes e as pessoas\nacompanhadas por crianças de colo terão atendimento prioritário")
+        self.aviso.configure(font=fontes[0])
+        self.aviso.place(anchor='center', relx= 0.5, rely=0.95) #Localizando o botão na tela 
+
+        self.btvoltar_imgCSUS = PhotoImage(file = bt[12]) #Imagem Botão Voltar 
+        self.btvoltar_CSUS = Button(self.frameCSUS, image = self.btvoltar_imgCSUS, relief=FLAT, bd = 0, command= self.rootCSUS.destroy) #Adicionando a imagem a um botão
+        self.btvoltar_CSUS.place(anchor='center', relx= 0.13, rely=0.08, width= 200, height= 80) #Localizando o botão na tela 
+
+
