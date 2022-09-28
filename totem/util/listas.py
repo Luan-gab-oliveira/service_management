@@ -25,7 +25,7 @@ set = [
     "F.ESTADO", 
     "F.AUTO C.", 
     "F.BASICA", 
-    "AUT.EXA.",
+    "AUT_EXAMES",
     "Cartão SUS"
     ]
 opc = [

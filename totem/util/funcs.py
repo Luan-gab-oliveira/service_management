@@ -132,7 +132,7 @@ class func(espera):
         with connect_server() as conexao: #chama a função para conectar ao banco mysql
             with conexao.cursor() as cursor:
                 #caso exista uma sequencia para a opção selecionada na consulta, gera uma senha sequencial.
-                if  cursor.execute(f'SELECT senha FROM {tabela} WHERE id IN (SELECT MAX(id) FROM {tabela} WHERE opcao = "{opcao}" AND atendimento = "{atendimento}");')>0: #realiza consulta em banco
+                if  cursor.execute(f'SELECT senha FROM {tabela} WHERE id IN (SELECT MAX(id) FROM {tabela} WHERE opcao = "{opc}" AND atendimento = "{atendimento}");')>0: #realiza consulta em banco
                     resultado = str(cursor.fetchone()['senha']) #retorna resultado da consulta
                     if atendimento == "preferencial": #Preferencial
                         resultado = int(resultado[4:])+1 #converte o resutado, fatiando apenas os valores
