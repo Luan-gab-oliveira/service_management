@@ -40,7 +40,7 @@ try:
             ###Imagens na Tela### 
             self.photo_plano_de_fundo = PhotoImage(file= planos[0]) #Plano de fundo principal
             plano_de_fundo = Label(self.frame, image= self.photo_plano_de_fundo, bd= 0) #Chamando imagem 
-            plano_de_fundo.place(anchor= 'center',relx=0.5, rely=0.4, width= 500, height= 500) #Localizando a imagem na tela         
+            plano_de_fundo.place(anchor= 'center',relx=0.5, rely=0.4, width= 550, height= 500) #Localizando a imagem na tela         
         
         def widgets(self):
             ###Botões###

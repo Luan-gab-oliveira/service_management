@@ -189,7 +189,7 @@ class func(espera):
 
 
         figura_fundo_premir = Label(self.frame_premir, image= self.fundo_premir, bd= 0) #Chamando imagem 
-        figura_fundo_premir.place(anchor= 'center',relx=0.5, rely=0.4, width= 500, height= 500) #Localizando a imagem na tela
+        figura_fundo_premir.place(anchor= 'center',relx=0.5, rely=0.4, width= 550, height= 500) #Localizando a imagem na tela
 
         bloco_meio = Label(self.frame_premir, image= self.bloco, bd= 0) #Chamando imagem 
         bloco_meio.place(anchor = "center", relx=0.17, rely=0.65) #Localizando a imagem na tela
@@ -251,7 +251,7 @@ class func(espera):
         #Imagens na Tela 
         self.fundo_Consultas = PhotoImage(file= planos[1]) #Plano de fundo principal
         figura_fundo_Consultas = Label(self.frameConsultas, image= self.fundo_Consultas, bd= 0) #Chamando imagem 
-        figura_fundo_Consultas.place(anchor= 'center',relx=0.5, rely=0.4, width= 500, height= 500) #Localizando a imagem na tela
+        figura_fundo_Consultas.place(anchor= 'center',relx=0.5, rely=0.4, width= 550, height= 500) #Localizando a imagem na tela
 
         self.bt_conv_cons = PhotoImage(file= bt[8]) #Chamando imagem 
         self.figura_bt_conv_cons = Button(self.frameConsultas, image=self.bt_conv_cons, relief=FLAT, bd = 0, command= self.fechar_conv) #Adicionando a imagem a um botão
@@ -291,7 +291,7 @@ class func(espera):
         
 
         figura_fundo_farmacia = Label(self.frame_farmacia, image= self.fundo_farmacia, bd= 0) #Chamando imagem1
-        figura_fundo_farmacia.place(anchor= 'center',relx=0.5, rely=0.4, width= 500, height= 500) #Localizando a imagem na tela
+        figura_fundo_farmacia.place(anchor= 'center',relx=0.5, rely=0.4, width= 550, height= 500) #Localizando a imagem na tela
 
         figura_bloco_esquerda = Label(self.frame_farmacia, image= self.bloco_farmacia, bd= 0) #Chamando imagem 
         figura_bloco_esquerda.place(anchor = "center", relx=0.17, rely=0.65) #Localizando a imagem na tela
@@ -348,7 +348,7 @@ class func(espera):
         #Imagens na Tela 
         self.fundo_AB = PhotoImage(file= planos[1]) #Plano de fundo principal
         figura_fundo_AB = Label(self.frame_AB, image= self.fundo_AB, bd= 0) #Chamando imagem 
-        figura_fundo_AB.place(anchor= 'center',relx=0.5, rely=0.4, width= 500, height= 500) #Localizando a imagem na tela
+        figura_fundo_AB.place(anchor= 'center',relx=0.5, rely=0.4, width= 550, height= 500) #Localizando a imagem na tela
 
         self.btconv_imgAB = PhotoImage(file= bt[8]) #Imagem Botão Convencional
         self.btconv_AB = Button(self.frame_AB, image=self.btconv_imgAB, relief=FLAT, bd = 0, command= self.fechar_conv) #Adicionando a imagem a um botão
@@ -381,7 +381,7 @@ class func(espera):
         #Imagens na Tela 
         self.fundo_FE = PhotoImage(file= planos[1]) #Plano de fundo principal
         figura_fundo_FE = Label(self.frame_FE, image= self.fundo_FE, bd= 0) #Chamando imagem 
-        figura_fundo_FE.place(anchor= 'center',relx=0.5, rely=0.4, width= 500, height= 500) #Localizando a imagem na tela
+        figura_fundo_FE.place(anchor= 'center',relx=0.5, rely=0.4, width= 550, height= 500) #Localizando a imagem na tela
 
         self.photo2200 = PhotoImage(file= bt[8]) #Imagem Botão Convencional
         self.btconv = Button(self.frame_FE, image=self.photo2200, relief=FLAT, bd = 0, command= self.fechar_conv) #Adicionando a imagem a um botão
@@ -414,7 +414,7 @@ class func(espera):
         #Imagens na Tela 
         self.fundo_FAC = PhotoImage(file= planos[1]) #Plano de fundo principal
         figura_fundo_FAC = Label(self.frame_FAC, image= self.fundo_FAC, bd= 0) #Chamando imagem 
-        figura_fundo_FAC.place(anchor= 'center',relx=0.5, rely=0.4, width= 500, height= 500) #Localizando a imagem na tela
+        figura_fundo_FAC.place(anchor= 'center',relx=0.5, rely=0.4, width= 550, height= 500) #Localizando a imagem na tela
 
         self.btconv_imgFAC = PhotoImage(file= bt[8]) #Imagem Botão Convencional
         self.btconv_FAC = Button(self.frame_FAC, image=self.btconv_imgFAC, relief=FLAT, bd = 0, command= self.fechar_conv) #Adicionando a imagem a um botão
@@ -457,7 +457,7 @@ class func(espera):
         #Imagens na Tela 
         self.fundo_AE = PhotoImage(file= planos[1]) #Plano de fundo principal
         figura_fundo_AE = Label(self.frameAE, image= self.fundo_AE, bd= 0) #Chamando imagem 
-        figura_fundo_AE.place(anchor= 'center',relx=0.5, rely=0.4, width= 500, height= 500) #Localizando a imagem na tela
+        figura_fundo_AE.place(anchor= 'center',relx=0.5, rely=0.4, width= 550, height= 500) #Localizando a imagem na tela
 
         self.btconv_imgAE = PhotoImage(file= bt[8]) #Imagem Botão Convencional
         self.btconv_AE = Button(self.frameAE, image=self.btconv_imgAE, relief=FLAT, bd = 0, command= self.fechar_conv) #Adicionando a imagem a um botão
@@ -500,7 +500,7 @@ class func(espera):
         #Imagens na Tela 
         self.fundo_TFD = PhotoImage(file= planos[1]) #Plano de fundo principal
         figura_fundo_TFD = Label(self.frameTFD, image= self.fundo_TFD, bd= 0) #Chamando imagem 
-        figura_fundo_TFD.place(anchor= 'center',relx=0.5, rely=0.4, width= 500, height= 500) #Localizando a imagem na tela
+        figura_fundo_TFD.place(anchor= 'center',relx=0.5, rely=0.4, width= 550, height= 500) #Localizando a imagem na tela
 
         self.bt_conv_tfd = PhotoImage(file= bt[8]) #Chamando imagem 
         self.figura_bt_conv_tfd = Button(self.frameTFD, image=self.bt_conv_tfd, relief=FLAT, bd = 0, command= self.fechar_conv) #Adicionando a imagem a um botão
@@ -543,7 +543,7 @@ class func(espera):
         #Imagens na Tela 
         self.fundo_CSUS = PhotoImage(file= planos[1]) #Plano de fundo principal
         figura_fundo_CSUS = Label(self.frameCSUS, image= self.fundo_CSUS, bd= 0) #Chamando imagem 
-        figura_fundo_CSUS.place(anchor= 'center',relx=0.5, rely=0.4, width= 500, height= 500) #Localizando a imagem na tela
+        figura_fundo_CSUS.place(anchor= 'center',relx=0.5, rely=0.4, width= 550, height= 500) #Localizando a imagem na tela
 
         self.btconv_imgCSUS = PhotoImage(file= bt[8]) #Imagem Botão Convencional
         self.btconv_CSUS = Button(self.frameCSUS, image=self.btconv_imgCSUS, relief=FLAT, bd = 0, command= self.fechar_conv) #Adicionando a imagem a um botão
@@ -553,7 +553,7 @@ class func(espera):
         self.btprefe_CSUS = Button(self.frameCSUS, image=self.btprefe_imgCSUS, relief=FLAT, bd = 0, command= self.fechar_prefe) #Adicionando a imagem a um botão
         self.btprefe_CSUS.place(anchor = "center", relx= 0.5, rely=0.75, width= 510, height= 150) #Localizando o botão na tela
 
-        self.aviso = Label(self.frameCSUS, bg= cores[0], text="*As pessoas portadoras de deficiência, os idosos com idade igualou superior a 60 (sessenta) anos, as gestantes, as lactantes e as pessoas\nacompanhadas por crianças de colo terão atendimento prioritário")
+        self.aviso = Label(self.frameCSUS, bg= cores[0], text="*As pessoas portadoras de deficiência, os idosos com idade igualou superior a 60 (sessenta) anos,\nas gestantes, as lactantes e as pessoas acompanhadas por crianças de colo terão\natendimento prioritário")
         self.aviso.configure(font=fontes[0])
         self.aviso.place(anchor='center', relx= 0.5, rely=0.95) #Localizando o botão na tela 
 
