@@ -316,13 +316,13 @@ class func(espera):
         self.btFE = Button(self.frame_farmacia, image= self.bt_imgFE, relief=FLAT, bd= 0, command= self.abrir_janela_Estado) #Adicionando a imagem a um botão
         self.btFE.place(anchor = "center", relx= 0.83, rely=0.47, width= 270, height= 90) #Localizando o botão na tela
 
-        self.bt_img_FAB = Button(self.frame_farmacia, text= 'CBAF \n\nMedicamentos \nfornecidos pelo \nMunicípio \n', relief = FLAT, bd = 0, background = cores[4], activebackground = cores[4], command= self.abrir_janela_AtencaoBasica)
-        self.bt_img_FAB.place(anchor = "center", relx= 0.17, rely=0.73, width= 270, height= 200) #Localizando o botão na tela
-        self.bt_img_FAB.configure(font= fontexemplo0)
-
         self.bt_img_FA = Button(self.frame_farmacia, text= 'Convenio Municípal \n\nFarmâcias Externas \nconveniadas ao \nMunicípio \n', relief = FLAT, bd = 0, background = cores[4], activebackground = cores[4], command= self.abrir_janela_AutoCusto)
-        self.bt_img_FA.place(anchor = "center", relx= 0.5, rely=0.73, width= 270, height= 200) #Localizando o botão na tela
+        self.bt_img_FA.place(anchor = "center", relx= 0.17, rely=0.73, width= 270, height= 200) #Localizando o botão na tela
         self.bt_img_FA.configure(font= fontexemplo0)
+
+        self.bt_img_FAB = Button(self.frame_farmacia, text= 'CBAF \n\nMedicamentos \nfornecidos pelo \nMunicípio \n', relief = FLAT, bd = 0, background = cores[4], activebackground = cores[4], command= self.abrir_janela_AtencaoBasica)
+        self.bt_img_FAB.place(anchor = "center", relx= 0.5, rely=0.73, width= 270, height= 200) #Localizando o botão na tela
+        self.bt_img_FAB.configure(font= fontexemplo0)
 
         self.bt_img_FE = Button(self.frame_farmacia, text= 'CEAF \n\nMedicamentos \nretirados apartir \ndo Estado ou \nJudicial', relief = FLAT, bd = 0, background = cores[4], activebackground = cores[4], command= self.abrir_janela_Estado)
         self.bt_img_FE.place(anchor = "center", relx= 0.83, rely=0.73, width= 270, height= 200) #Localizando o botão na tela
