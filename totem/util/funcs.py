@@ -65,6 +65,9 @@ class func(espera):
 
         elif ref == 4:
             self.tfd()
+
+        elif ref == 5:
+            self.cartao_sus()
     ###Funções de Fechamento de cada tela###
     def fechar_conv(self): #Função fechamento de tela Conv. do TFD, AUT, FAA, FAB, FAE, PRE
         global opcao, setor, atendimento, tela
@@ -91,10 +94,13 @@ class func(espera):
             self.rootAE.destroy() #Destruir janela 21
         elif tela == 8:
             self.rootTFD.destroy() #Destruir janela 2
+        elif tela == 9:
+            self.rootCSUS.destroy()
 
     def fechar_prefe(self): #Função fechamento de tela Pref. do TFD, AUT, FAA, FAB, FAE, PRE
-        global opcao, setor, atendimento, tela, opc
+        global opcao, setor, atendimento, tela, opc, sigla_db
         atendimento = atend[0]
+        sigla_db = opcao
         opcao = 'P' + opcao
         threading.Thread(target=self.gerar_senha).start()
         self.abrir_janela_espera()
@@ -118,14 +124,16 @@ class func(espera):
             self.rootAE.destroy() #Destruir janela 21
         elif tela == 8:
             self.rootTFD.destroy() #Destruir janela 2
+        elif tela == 9:
+            self.rootCSUS.destroy()
 
 
     def gerar_senha(self):
-        global opcao, senha, setor, atendimento, opc
+        global opcao, senha, setor, atendimento, opc, sigla_db
         with connect_server() as conexao: #chama a função para conectar ao banco mysql
             with conexao.cursor() as cursor:
                 #caso exista uma sequencia para a opção selecionada na consulta, gera uma senha sequencial.
-                if  cursor.execute(f'SELECT senha FROM {tabela} WHERE id IN (SELECT MAX(id) FROM {tabela} WHERE opcao = "{opcao}" AND atendimento = "{atendimento}");')>0: #realiza consulta em banco
+                if  cursor.execute(f'SELECT senha FROM {tabela} WHERE id IN (SELECT MAX(id) FROM {tabela} WHERE opcao = "{sigla_db}" AND atendimento = "{atendimento}");')>0: #realiza consulta em banco
                     resultado = str(cursor.fetchone()['senha']) #retorna resultado da consulta
                     if atendimento == "preferencial": #Preferencial
                         resultado = int(resultado[4:])+1 #converte o resutado, fatiando apenas os valores
@@ -134,11 +142,27 @@ class func(espera):
 
                     resultado = str(resultado).rjust(3,'0') # adiciona 3 digitos ao resultado
                     senha = opcao + str(resultado) #seta senha
-                    sql = f"INSERT INTO {tabela} (setor, opcao, atendimento, senha, data, status) VALUES ('{setor}','{opcao}','{atendimento}','{senha}','{data}', 'ESPERA')"  #seta intrução sql
+
+                    print(setor)
+                    print(sigla_db)
+                    print(atendimento)
+                    print(senha)
+                    print(data)
+                    print(1)
+                    
+                    sql = f"INSERT INTO {tabela} (setor, opcao, atendimento, senha, data, status) VALUES ('{setor}','{sigla_db}','{atendimento}','{senha}','{data}', 'ESPERA')"  #seta intrução sql
                 
                 else: #caso não exista uma sequencia para a opção selecionada na consulta, gera uma nova opcao no bloco else. 
                     senha = opcao + str('001') #seta opcao
-                    sql = f"INSERT INTO {tabela} (setor, opcao, atendimento, senha, data, status) VALUES ('{setor}','{opcao}','{atendimento}','{senha}','{data}', 'ESPERA')"  #seta intrução sql
+
+                    print(setor)
+                    print(sigla_db)
+                    print(atendimento)
+                    print(senha)
+                    print(data)
+                    print(2)
+                
+                    sql = f"INSERT INTO {tabela} (setor, opcao, atendimento, senha, data, status) VALUES ('{setor}','{sigla_db}','{atendimento}','{senha}','{data}', 'ESPERA')"  #seta intrução sql
 
                 cursor.execute(sql) #executa instrução sql
                 conexao.commit() #commit para o interprertador entender que deve executar a instrução
@@ -182,7 +206,7 @@ class func(espera):
 
 
         figura_fundo_premir = Label(self.frame_premir, image= self.fundo_premir, bd= 0) #Chamando imagem 
-        figura_fundo_premir.place(anchor= 'center',relx=0.5, rely=0.4, width= 500, height= 500) #Localizando a imagem na tela
+        figura_fundo_premir.place(anchor= 'center',relx=0.5, rely=0.4, width= 550, height= 500) #Localizando a imagem na tela
 
         bloco_meio = Label(self.frame_premir, image= self.bloco, bd= 0) #Chamando imagem 
         bloco_meio.place(anchor = "center", relx=0.17, rely=0.65) #Localizando a imagem na tela
@@ -244,7 +268,7 @@ class func(espera):
         #Imagens na Tela 
         self.fundo_Consultas = PhotoImage(file= planos[1]) #Plano de fundo principal
         figura_fundo_Consultas = Label(self.frameConsultas, image= self.fundo_Consultas, bd= 0) #Chamando imagem 
-        figura_fundo_Consultas.place(anchor= 'center',relx=0.5, rely=0.4, width= 500, height= 500) #Localizando a imagem na tela
+        figura_fundo_Consultas.place(anchor= 'center',relx=0.5, rely=0.4, width= 550, height= 500) #Localizando a imagem na tela
 
         self.bt_conv_cons = PhotoImage(file= bt[8]) #Chamando imagem 
         self.figura_bt_conv_cons = Button(self.frameConsultas, image=self.bt_conv_cons, relief=FLAT, bd = 0, command= self.fechar_conv) #Adicionando a imagem a um botão
@@ -284,7 +308,7 @@ class func(espera):
         
 
         figura_fundo_farmacia = Label(self.frame_farmacia, image= self.fundo_farmacia, bd= 0) #Chamando imagem1
-        figura_fundo_farmacia.place(anchor= 'center',relx=0.5, rely=0.4, width= 500, height= 500) #Localizando a imagem na tela
+        figura_fundo_farmacia.place(anchor= 'center',relx=0.5, rely=0.4, width= 550, height= 500) #Localizando a imagem na tela
 
         figura_bloco_esquerda = Label(self.frame_farmacia, image= self.bloco_farmacia, bd= 0) #Chamando imagem 
         figura_bloco_esquerda.place(anchor = "center", relx=0.17, rely=0.65) #Localizando a imagem na tela
@@ -309,13 +333,13 @@ class func(espera):
         self.btFE = Button(self.frame_farmacia, image= self.bt_imgFE, relief=FLAT, bd= 0, command= self.abrir_janela_Estado) #Adicionando a imagem a um botão
         self.btFE.place(anchor = "center", relx= 0.83, rely=0.47, width= 270, height= 90) #Localizando o botão na tela
 
-        self.bt_img_FAB = Button(self.frame_farmacia, text= 'CBAF \n\nMedicamentos \nfornecidos pelo \nMunicípio \n', relief = FLAT, bd = 0, background = cores[4], activebackground = cores[4], command= self.abrir_janela_AtencaoBasica)
-        self.bt_img_FAB.place(anchor = "center", relx= 0.17, rely=0.73, width= 270, height= 200) #Localizando o botão na tela
-        self.bt_img_FAB.configure(font= fontexemplo0)
-
         self.bt_img_FA = Button(self.frame_farmacia, text= 'Convenio Municípal \n\nFarmâcias Externas \nconveniadas ao \nMunicípio \n', relief = FLAT, bd = 0, background = cores[4], activebackground = cores[4], command= self.abrir_janela_AutoCusto)
-        self.bt_img_FA.place(anchor = "center", relx= 0.5, rely=0.73, width= 270, height= 200) #Localizando o botão na tela
+        self.bt_img_FA.place(anchor = "center", relx= 0.17, rely=0.73, width= 270, height= 200) #Localizando o botão na tela
         self.bt_img_FA.configure(font= fontexemplo0)
+
+        self.bt_img_FAB = Button(self.frame_farmacia, text= 'CBAF \n\nMedicamentos \nfornecidos pelo \nMunicípio \n', relief = FLAT, bd = 0, background = cores[4], activebackground = cores[4], command= self.abrir_janela_AtencaoBasica)
+        self.bt_img_FAB.place(anchor = "center", relx= 0.5, rely=0.73, width= 270, height= 200) #Localizando o botão na tela
+        self.bt_img_FAB.configure(font= fontexemplo0)
 
         self.bt_img_FE = Button(self.frame_farmacia, text= 'CEAF \n\nMedicamentos \nretirados apartir \ndo Estado ou \nJudicial', relief = FLAT, bd = 0, background = cores[4], activebackground = cores[4], command= self.abrir_janela_Estado)
         self.bt_img_FE.place(anchor = "center", relx= 0.83, rely=0.73, width= 270, height= 200) #Localizando o botão na tela
@@ -341,7 +365,7 @@ class func(espera):
         #Imagens na Tela 
         self.fundo_AB = PhotoImage(file= planos[1]) #Plano de fundo principal
         figura_fundo_AB = Label(self.frame_AB, image= self.fundo_AB, bd= 0) #Chamando imagem 
-        figura_fundo_AB.place(anchor= 'center',relx=0.5, rely=0.4, width= 500, height= 500) #Localizando a imagem na tela
+        figura_fundo_AB.place(anchor= 'center',relx=0.5, rely=0.4, width= 550, height= 500) #Localizando a imagem na tela
 
         self.btconv_imgAB = PhotoImage(file= bt[8]) #Imagem Botão Convencional
         self.btconv_AB = Button(self.frame_AB, image=self.btconv_imgAB, relief=FLAT, bd = 0, command= self.fechar_conv) #Adicionando a imagem a um botão
@@ -374,7 +398,7 @@ class func(espera):
         #Imagens na Tela 
         self.fundo_FE = PhotoImage(file= planos[1]) #Plano de fundo principal
         figura_fundo_FE = Label(self.frame_FE, image= self.fundo_FE, bd= 0) #Chamando imagem 
-        figura_fundo_FE.place(anchor= 'center',relx=0.5, rely=0.4, width= 500, height= 500) #Localizando a imagem na tela
+        figura_fundo_FE.place(anchor= 'center',relx=0.5, rely=0.4, width= 550, height= 500) #Localizando a imagem na tela
 
         self.photo2200 = PhotoImage(file= bt[8]) #Imagem Botão Convencional
         self.btconv = Button(self.frame_FE, image=self.photo2200, relief=FLAT, bd = 0, command= self.fechar_conv) #Adicionando a imagem a um botão
@@ -407,7 +431,7 @@ class func(espera):
         #Imagens na Tela 
         self.fundo_FAC = PhotoImage(file= planos[1]) #Plano de fundo principal
         figura_fundo_FAC = Label(self.frame_FAC, image= self.fundo_FAC, bd= 0) #Chamando imagem 
-        figura_fundo_FAC.place(anchor= 'center',relx=0.5, rely=0.4, width= 500, height= 500) #Localizando a imagem na tela
+        figura_fundo_FAC.place(anchor= 'center',relx=0.5, rely=0.4, width= 550, height= 500) #Localizando a imagem na tela
 
         self.btconv_imgFAC = PhotoImage(file= bt[8]) #Imagem Botão Convencional
         self.btconv_FAC = Button(self.frame_FAC, image=self.btconv_imgFAC, relief=FLAT, bd = 0, command= self.fechar_conv) #Adicionando a imagem a um botão
@@ -450,7 +474,7 @@ class func(espera):
         #Imagens na Tela 
         self.fundo_AE = PhotoImage(file= planos[1]) #Plano de fundo principal
         figura_fundo_AE = Label(self.frameAE, image= self.fundo_AE, bd= 0) #Chamando imagem 
-        figura_fundo_AE.place(anchor= 'center',relx=0.5, rely=0.4, width= 500, height= 500) #Localizando a imagem na tela
+        figura_fundo_AE.place(anchor= 'center',relx=0.5, rely=0.4, width= 550, height= 500) #Localizando a imagem na tela
 
         self.btconv_imgAE = PhotoImage(file= bt[8]) #Imagem Botão Convencional
         self.btconv_AE = Button(self.frameAE, image=self.btconv_imgAE, relief=FLAT, bd = 0, command= self.fechar_conv) #Adicionando a imagem a um botão
@@ -493,7 +517,7 @@ class func(espera):
         #Imagens na Tela 
         self.fundo_TFD = PhotoImage(file= planos[1]) #Plano de fundo principal
         figura_fundo_TFD = Label(self.frameTFD, image= self.fundo_TFD, bd= 0) #Chamando imagem 
-        figura_fundo_TFD.place(anchor= 'center',relx=0.5, rely=0.4, width= 500, height= 500) #Localizando a imagem na tela
+        figura_fundo_TFD.place(anchor= 'center',relx=0.5, rely=0.4, width= 550, height= 500) #Localizando a imagem na tela
 
         self.bt_conv_tfd = PhotoImage(file= bt[8]) #Chamando imagem 
         self.figura_bt_conv_tfd = Button(self.frameTFD, image=self.bt_conv_tfd, relief=FLAT, bd = 0, command= self.fechar_conv) #Adicionando a imagem a um botão
@@ -511,4 +535,47 @@ class func(espera):
         self.figura_bt_voltar_tfd = Button(self.frameTFD, image = self.bt_voltar_tfd, relief=FLAT, bd = 0, command= self.rootTFD.destroy) #Adicionando a imagem a um botão
         self.figura_bt_voltar_tfd.place(anchor='center', relx= 0.13, rely=0.08, width= 200, height= 80) #Localizando o botão na tela 
 
-    
+
+
+###############################################      Cartão SUS      ###############################################
+
+    ###Função Escolha Preferencial ou Convencional AUTORIZAÇÃO DE EXAMES###
+    def abrir_janela_CSUS(self):
+        global ref
+        ref = 5
+        self.horario_ex()
+        
+    def cartao_sus(self):
+        self.rootCSUS = tk.Toplevel() #Variavel para atribuir tela principal
+        self.rootCSUS.configure(background= cores[0]) #Cor de fundo
+        self.rootCSUS.attributes('-fullscreen', True) #Modo tela Fullscreen ligado
+        self.fullScreenState = False
+        self.frameCSUS =Frame(self.rootCSUS, bg = cores[0]) #Definindo um Frame para a tela 
+        self.frameCSUS.place(anchor='center',relx= 0.5,rely= 0.5, relwidth= 0.96, relheight= 0.96) #Localizando o Frame na tela
+        global opcao, opc, atendimento, tela, setor, set
+        opcao = opc[9]
+        setor = set[6]
+        tela = 9
+
+        #Imagens na Tela 
+        self.fundo_CSUS = PhotoImage(file= planos[1]) #Plano de fundo principal
+        figura_fundo_CSUS = Label(self.frameCSUS, image= self.fundo_CSUS, bd= 0) #Chamando imagem 
+        figura_fundo_CSUS.place(anchor= 'center',relx=0.5, rely=0.4, width= 550, height= 500) #Localizando a imagem na tela
+
+        self.btconv_imgCSUS = PhotoImage(file= bt[8]) #Imagem Botão Convencional
+        self.btconv_CSUS = Button(self.frameCSUS, image=self.btconv_imgCSUS, relief=FLAT, bd = 0, command= self.fechar_conv) #Adicionando a imagem a um botão
+        self.btconv_CSUS.place(anchor = "center", relx= 0.5, rely=0.5, width= 510, height= 150) #Localizando o botão na tela
+
+        self.btprefe_imgCSUS = PhotoImage(file= bt[10]) #Imagem Botão Preferencial
+        self.btprefe_CSUS = Button(self.frameCSUS, image=self.btprefe_imgCSUS, relief=FLAT, bd = 0, command= self.fechar_prefe) #Adicionando a imagem a um botão
+        self.btprefe_CSUS.place(anchor = "center", relx= 0.5, rely=0.75, width= 510, height= 150) #Localizando o botão na tela
+
+        self.aviso = Label(self.frameCSUS, bg= cores[0], text="*As pessoas portadoras de deficiência, os idosos com idade igualou superior a 60 (sessenta) anos,\nas gestantes, as lactantes e as pessoas acompanhadas por crianças de colo terão\natendimento prioritário")
+        self.aviso.configure(font=fontes[0])
+        self.aviso.place(anchor='center', relx= 0.5, rely=0.95) #Localizando o botão na tela 
+
+        self.btvoltar_imgCSUS = PhotoImage(file = bt[12]) #Imagem Botão Voltar 
+        self.btvoltar_CSUS = Button(self.frameCSUS, image = self.btvoltar_imgCSUS, relief=FLAT, bd = 0, command= self.rootCSUS.destroy) #Adicionando a imagem a um botão
+        self.btvoltar_CSUS.place(anchor='center', relx= 0.13, rely=0.08, width= 200, height= 80) #Localizando o botão na tela 
+
+
