@@ -98,8 +98,9 @@ class func(espera):
             self.rootCSUS.destroy()
 
     def fechar_prefe(self): #Função fechamento de tela Pref. do TFD, AUT, FAA, FAB, FAE, PRE
-        global opcao, setor, atendimento, tela, opc
+        global opcao, setor, atendimento, tela, opc, sigla_db
         atendimento = atend[0]
+        sigla_db = opcao
         opcao = 'P' + opcao
         threading.Thread(target=self.gerar_senha).start()
         self.abrir_janela_espera()
@@ -128,11 +129,11 @@ class func(espera):
 
 
     def gerar_senha(self):
-        global opcao, senha, setor, atendimento, opc
+        global opcao, senha, setor, atendimento, opc, sigla_db
         with connect_server() as conexao: #chama a função para conectar ao banco mysql
             with conexao.cursor() as cursor:
                 #caso exista uma sequencia para a opção selecionada na consulta, gera uma senha sequencial.
-                if  cursor.execute(f'SELECT senha FROM {tabela} WHERE id IN (SELECT MAX(id) FROM {tabela} WHERE opcao = "{opc}" AND atendimento = "{atendimento}");')>0: #realiza consulta em banco
+                if  cursor.execute(f'SELECT senha FROM {tabela} WHERE id IN (SELECT MAX(id) FROM {tabela} WHERE opcao = "{sigla_db}" AND atendimento = "{atendimento}");')>0: #realiza consulta em banco
                     resultado = str(cursor.fetchone()['senha']) #retorna resultado da consulta
                     if atendimento == "preferencial": #Preferencial
                         resultado = int(resultado[4:])+1 #converte o resutado, fatiando apenas os valores
@@ -141,11 +142,27 @@ class func(espera):
 
                     resultado = str(resultado).rjust(3,'0') # adiciona 3 digitos ao resultado
                     senha = opcao + str(resultado) #seta senha
-                    sql = f"INSERT INTO {tabela} (setor, opcao, atendimento, senha, data, status) VALUES ('{setor}','{opcao}','{atendimento}','{senha}','{data}', 'ESPERA')"  #seta intrução sql
+
+                    print(setor)
+                    print(sigla_db)
+                    print(atendimento)
+                    print(senha)
+                    print(data)
+                    print(1)
+                    
+                    sql = f"INSERT INTO {tabela} (setor, opcao, atendimento, senha, data, status) VALUES ('{setor}','{sigla_db}','{atendimento}','{senha}','{data}', 'ESPERA')"  #seta intrução sql
                 
                 else: #caso não exista uma sequencia para a opção selecionada na consulta, gera uma nova opcao no bloco else. 
                     senha = opcao + str('001') #seta opcao
-                    sql = f"INSERT INTO {tabela} (setor, opcao, atendimento, senha, data, status) VALUES ('{setor}','{opcao}','{atendimento}','{senha}','{data}', 'ESPERA')"  #seta intrução sql
+
+                    print(setor)
+                    print(sigla_db)
+                    print(atendimento)
+                    print(senha)
+                    print(data)
+                    print(2)
+                
+                    sql = f"INSERT INTO {tabela} (setor, opcao, atendimento, senha, data, status) VALUES ('{setor}','{sigla_db}','{atendimento}','{senha}','{data}', 'ESPERA')"  #seta intrução sql
 
                 cursor.execute(sql) #executa instrução sql
                 conexao.commit() #commit para o interprertador entender que deve executar a instrução
