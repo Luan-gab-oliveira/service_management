@@ -70,8 +70,9 @@ class func(espera):
             self.cartao_sus()
     ###Funções de Fechamento de cada tela###
     def fechar_conv(self): #Função fechamento de tela Conv. do TFD, AUT, FAA, FAB, FAE, PRE
-        global opcao, setor, atendimento, tela
+        global opcao, setor, atendimento, tela, sigla_db
         atendimento = atend[1]
+        sigla_db = opcao
         threading.Thread(target=self.abrir_janela_espera())
         threading.Thread(target=self.gerar_senha).start()
         if tela == 1:
@@ -133,7 +134,7 @@ class func(espera):
         with connect_server() as conexao: #chama a função para conectar ao banco mysql
             with conexao.cursor() as cursor:
                 #caso exista uma sequencia para a opção selecionada na consulta, gera uma senha sequencial.
-                if  cursor.execute(f'SELECT senha FROM {tabela} WHERE id IN (SELECT MAX(id) FROM {tabela} WHERE opcao = "{sigla_db}" AND atendimento = "{atendimento}");')>0: #realiza consulta em banco
+                if  cursor.execute(f'SELECT senha FROM {tabela} WHERE id IN (SELECT MAX(id) FROM {tabela} WHERE opcao = "{opcao}" AND atendimento = "{atendimento}");')>0: #realiza consulta em banco
                     resultado = str(cursor.fetchone()['senha']) #retorna resultado da consulta
                     if atendimento == "preferencial": #Preferencial
                         resultado = int(resultado[4:])+1 #converte o resutado, fatiando apenas os valores
@@ -142,26 +143,10 @@ class func(espera):
 
                     resultado = str(resultado).rjust(3,'0') # adiciona 3 digitos ao resultado
                     senha = opcao + str(resultado) #seta senha
-
-                    print(setor)
-                    print(sigla_db)
-                    print(atendimento)
-                    print(senha)
-                    print(data)
-                    print(1)
-                    
                     sql = f"INSERT INTO {tabela} (setor, opcao, atendimento, senha, data, status) VALUES ('{setor}','{sigla_db}','{atendimento}','{senha}','{data}', 'ESPERA')"  #seta intrução sql
                 
                 else: #caso não exista uma sequencia para a opção selecionada na consulta, gera uma nova opcao no bloco else. 
                     senha = opcao + str('001') #seta opcao
-
-                    print(setor)
-                    print(sigla_db)
-                    print(atendimento)
-                    print(senha)
-                    print(data)
-                    print(2)
-                
                     sql = f"INSERT INTO {tabela} (setor, opcao, atendimento, senha, data, status) VALUES ('{setor}','{sigla_db}','{atendimento}','{senha}','{data}', 'ESPERA')"  #seta intrução sql
 
                 cursor.execute(sql) #executa instrução sql
