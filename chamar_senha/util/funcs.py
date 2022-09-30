@@ -13,13 +13,9 @@ class Functions():
     def chamar_proxima(self,opc):
         global data, setor,senha_anterior,senha_default, senha, atendimento, prioritario
         senha_anterior = senha_default
-        if setor == 'PREMIR':
-            sql = f'SELECT senha FROM fila_espera WHERE setor = "{setor}" AND status = "ESPERA" AND opcao="{opc}";'
-        else:
-            sql = f'SELECT senha FROM fila_espera WHERE setor = "{setor}" AND status = "ESPERA";'
         
+        sql = f'SELECT senha FROM fila_espera WHERE setor = "{setor}" AND status = "ESPERA";'
         resultado = consulta_database(sql)
-
         if resultado != None:
             if prioritario < 2:
                 atendimento = 'preferencial'
@@ -29,11 +25,14 @@ class Functions():
                 atendimento = 'convencional'
                 prioritario = 0
 
-            sql = f'SELECT senha FROM fila_espera WHERE id IN (SELECT MIN(id) FROM fila_espera WHERE setor = "{setor}" AND atendimento = "{atendimento}" AND status = "ESPERA");'
+            if setor == 'PREMIR':
+                sql = f'SELECT senha FROM fila_espera WHERE id IN (SELECT MIN(id) FROM fila_espera WHERE opcao = "{opc}" AND atendimento = "{atendimento}" AND status = "ESPERA");'    
+            else:
+                sql = f'SELECT senha FROM fila_espera WHERE id IN (SELECT MIN(id) FROM fila_espera WHERE setor = "{setor}" AND atendimento = "{atendimento}" AND status = "ESPERA");'    
             
             senha = consulta_database(sql)
             if senha == None:
-                self.chamar_proxima()
+                self.chamar_proxima(opc)
             else:
                 for i in senha:
                     senha = i['senha']
@@ -52,7 +51,7 @@ class Functions():
     # função para chamar senha anterior
     def chamar_anterior(self):
         global senha_anterior
-        data = [senha_anterior,setor]
+        data = [senha_anterior,opcao]
         chamar_senha(data)
         self.display_senha.config(text=str(senha_anterior))
     
@@ -76,4 +75,5 @@ class Functions():
             self.display_espera.config(text=f'Fila de espera {setor}: {con}')
             
         self.display_espera.after(200, self.update_statubar)
+
 

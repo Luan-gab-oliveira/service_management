@@ -82,7 +82,7 @@ class Application(Functions):
             cursor='hand2',
             highlightbackground=coolors[1], highlightcolor=coolors[1], activebackground=coolors[1], 
             highlightthickness=0,
-            command=self.chamar_proxima
+            command=lambda: self.chamar_proxima('')
         )
         self.btn_proxima.place(rely=0.225, relx=0.15, relheight=0.15, relwidth=0.75)
 
@@ -112,4 +112,4 @@ class Application(Functions):
         self.display_espera = Label(self.frame3, text='Fila de espera:')
         self.display_espera.config(
             font=(fonts[0],12, 'normal'),foreground=coolors[2], background=coolors[4], anchor='w')
-        self.display_espera.place(relx=0.02 ,relwidth=0.25 ,relheight=1)
+        self.display_espera.place(relx=0.02 ,relwidth=0.96 ,relheight=1)

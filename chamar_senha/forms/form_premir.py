@@ -124,8 +124,3 @@ class PremirGUI(Functions):
         self.display_espera.config(
             font=(fonts[0],12, 'normal'),foreground=coolors[2], background=coolors[4], anchor='w')
         self.display_espera.place(relx=0.02 ,relwidth=0.96 ,relheight=1)
-
-        # self.display_espera = Label(self.frame3, text='0')
-        # self.display_espera.config(
-        #     font=(fonts[0],12, 'normal'),foreground=coolors[2], background=coolors[4], anchor='w')
-        # self.display_espera.place(relx=0.25 ,relwidth=0.1,relheight=1)
