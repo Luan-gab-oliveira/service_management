@@ -68,6 +68,7 @@ class func(espera):
 
         elif ref == 5:
             self.cartao_sus()
+
     ###Funções de Fechamento de cada tela###
     def fechar_conv(self): #Função fechamento de tela Conv. do TFD, AUT, FAA, FAB, FAE, PRE
         global opcao, setor, atendimento, tela, sigla_db
@@ -130,6 +131,7 @@ class func(espera):
 
 
     def gerar_senha(self):
+        verificar_filaEspera()
         global opcao, senha, setor, atendimento, opc, sigla_db
         with connect_server() as conexao: #chama a função para conectar ao banco mysql
             with conexao.cursor() as cursor:

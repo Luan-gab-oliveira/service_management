@@ -31,3 +31,4 @@ def verificar_filaEspera():
                 if last_date < data:
                     cursor.execute(f'TRUNCATE TABLE {tabela};')
                     conn.commit()
+
