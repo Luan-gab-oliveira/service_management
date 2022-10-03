@@ -84,19 +84,20 @@ class Application(Functions):
             highlightthickness=0,
             command=lambda: self.chamar_proxima('')
         )
-        self.btn_proxima.place(rely=0.225, relx=0.15, relheight=0.15, relwidth=0.75)
+        self.btn_proxima.place(rely=0.425, relx=0.15, relheight=0.15, relwidth=0.75)
+        # self.btn_proxima.place(rely=0.225, relx=0.15, relheight=0.15, relwidth=0.75)
 
 
-        self.btn_anterior = Button(self.frame_2, text='Senha anterior')
-        self.btn_anterior.config(
-            font=(fonts[0], 14), justify='center',
-            background=coolors[4], bd=0, foreground=coolors[2],
-            cursor='hand2',
-            highlightbackground=coolors[1], highlightcolor=coolors[1], activebackground=coolors[1], 
-            highlightthickness=0,
-            command=self.chamar_anterior
-        )
-        self.btn_anterior.place(rely=0.425, relx=0.15, relheight=0.15, relwidth=0.75)
+        # self.btn_anterior = Button(self.frame_2, text='Senha anterior')
+        # self.btn_anterior.config(
+        #     font=(fonts[0], 14), justify='center',
+        #     background=coolors[4], bd=0, foreground=coolors[2],
+        #     cursor='hand2',
+        #     highlightbackground=coolors[1], highlightcolor=coolors[1], activebackground=coolors[1], 
+        #     highlightthickness=0,
+        #     command=self.chamar_anterior
+        # )
+        # self.btn_anterior.place(rely=0.425, relx=0.15, relheight=0.15, relwidth=0.75)
 
         self.btn_novamente = Button(self.frame_2, text='Chamar novamente')
         self.btn_novamente.config(
