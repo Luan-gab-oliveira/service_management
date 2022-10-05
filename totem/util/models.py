@@ -27,8 +27,8 @@ def verificar_filaEspera():
         with conn.cursor() as cursor:
             if  cursor.execute(f'SELECT data FROM {tabela} WHERE id IN (SELECT MAX(id) FROM {tabela});')>0:
                 last_date = datetime.strptime(str(cursor.fetchone()['data']), '%d/%m/%Y').date()
-                print(f'{data}\n{last_date}')
                 if last_date < data:
+                    cursor.execute(f'INSERT INTO atendimentos (setor, atendimentos, data) SELECT setor, COUNT(senha) As atendimentos, data from fila_espera GROUP BY setor;')
                     cursor.execute(f'TRUNCATE TABLE {tabela};')
                     conn.commit()
 
