@@ -146,13 +146,13 @@ class Functions():
         data = datetime.now().strftime('%d/%m/%Y %H:%M:%S')
         try:
             file_voice = f'Media\\Voices\\{senha}.mp3'
-            texto = fr'Senha {senha}, favor dirigir-se ao local de atendiemento!'
+            texto = fr'Senha {senha}, favor dirigir-se ao local de atendimento!'
             tts = gtts.gTTS(texto, lang='pt-br')
             tts.save(file_voice)
         except:
             i += 1
             file_voice = f'Media\\Voices\\{senha}{data}.mp3'
-            texto = fr'Senha {senha}, favor dirigir-se ao local de atendiemento!'
+            texto = fr'Senha {senha}, favor dirigir-se ao local de atendimento!'
             tts = gtts.gTTS(texto, lang='pt-br')
             tts.save(file_voice)
         
@@ -274,7 +274,7 @@ class PainelGUI(Functions):
         )
         self.display_local.place(rely=0.6,relwidth=1,relheight=0.3)
 
-        self.label = Label(self.frame_2, text='Favor dirigir-se ao local de atendiemento!')
+        self.label = Label(self.frame_2, text='Favor dirigir-se ao local de atendimento!')
         self.label.config(
             font=(fonts[0],30), foreground=coolors[0],
             background=coolors[1], justify='center'
