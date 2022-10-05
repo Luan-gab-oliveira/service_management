@@ -4,7 +4,7 @@ from datetime import datetime
 
 root = tk.Tk()                                              #Variavel Princiapal das telas 
 w, h = root.winfo_screenwidth(), root.winfo_screenheight()  #Variavel que pega as medidas da tela como referência
-password = ''                                               #Senha para fechamento do programa
+password = '28512'                                          #Senha para fechamento do programa
 atendimento = ""                                            #Variavel para escolha do tipo de atendimento                                                                                                                                                                                                                                                                                                                                                 senha###
 data = datetime.now().strftime('%d/%m/%Y')
 hora_atual = datetime.now().strftime('%H:%M')                     #Função para Coleta da Hora atual

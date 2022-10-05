@@ -37,7 +37,7 @@ def imprimir(senha, local):
         i += 1
         
     threading.Thread(target= cnv.save()).start
-    impressora = "ZDesigner_GC420d"
+    impressora = "ZDesigner GC420d"
     win32print.SetDefaultPrinter(impressora)
     win32api.ShellExecute(0,"print",senha_pdf,None, dir_app,0)
 
