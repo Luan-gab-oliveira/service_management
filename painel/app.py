@@ -1,6 +1,7 @@
 '''
 versão playsound==1.2.2
 '''
+from time import time
 from modules import *
 
 get_dir = os.path.dirname(__file__)
@@ -18,6 +19,11 @@ coolors = [
     '#7B9EB3', #7 ~ air superiority
     '#FCA311'  #8 - Orange Web
     ]
+
+config = ConfigParser()
+config_file = 'app.ini'
+config.read(config_file)
+panel = str(config['config']['painel'])
 
 @contextmanager
 def connect_server():
@@ -96,7 +102,7 @@ class Functions():
                     if not data:
                         data = 0
                     else:
-                        self.create_frame()
+                        self.close_frame()
                         data = eval(data.decode())
                         senha = str(data[0])
                         senha_local = str(data[1])
@@ -136,7 +142,8 @@ class Functions():
                             if senha_local == local:
                                 self.voice(senha)
                         
-                        self.close_frame()
+                        time.sleep(10)
+                        self.promotional_space()
                         # if senha_local == setor:
                         #     self.voice(senha)
                         
@@ -175,49 +182,12 @@ class Functions():
         self.label_data.config(text=str(F'São Francisco do Sul - SC    {self.data_atual}'))
 
     def create_frame(self):
-        self.frame_2 = Frame(self.root)
-        self.frame_2.config(background=coolors[1])
-        # self.frame_2.place(rely=0.16, relwidth=0.68, relx=0.01, relheight=0.73)
-        self.frame_2.place(rely=0.15, relwidth=0.7, relheight=0.75)
-        
-        self.label = Label(self.frame_2, text='Senha')
-        self.label.config(
-            font=(fonts[0],50,'bold'), foreground=coolors[5],
-            background=coolors[1], justify='center', anchor='s'
-        )
-        self.label.place(rely=0.10,relwidth=1,relheight=0.10)
-        
-        # display senha chamada/atualizar
-        self.display_senha1 = Label(self.frame_2, text='0000')
-        self.display_senha1.config(
-            font=(fonts[0],100,'bold'), foreground=coolors[4],
-            background=coolors[1], justify='center', anchor='n'
-        )
-        self.display_senha1.place(rely=0.2,relwidth=1,relheight=0.3)
-
-        self.label = Label(self.frame_2, text='Local')
-        self.label.config(
-            font=(fonts[0],50,'bold'), foreground=coolors[5],
-            background=coolors[1], justify='center', anchor='s'
-        )
-        self.label.place(rely=0.5,relwidth=1,relheight=0.10)
-
-        self.display_local = Label(self.frame_2, text='-')
-        self.display_local.config(
-            font=(fonts[0],100,'bold'), foreground=coolors[4],
-            background=coolors[1], justify='center', anchor='n'
-        )
-        self.display_local.place(rely=0.6,relwidth=1,relheight=0.3)
-
-        self.label = Label(self.frame_2, text='Favor dirigir-se ao local de atendimento!')
-        self.label.config(
-            font=(fonts[0],30), foreground=coolors[0],
-            background=coolors[1], justify='center'
-        )
-        self.label.place(rely=0.9,relwidth=1,relheight=0.10)
+        self.frame_img = Frame(self.root)
+        self.frame_img.config(background='#fff')
+        self.frame_img.place(rely=0.15, relwidth=0.7, relheight=0.75)
     
     def close_frame(self):
-        self.frame_2.destroy()
+        self.frame_img.destroy()
     
     def list_img(self):
         for _, _, arquivo in os.walk(fr'{get_dir}\promocional'):
@@ -225,30 +195,33 @@ class Functions():
 
         return imagens
 
+    def promotional_space(self):
+        if panel == 'TV':
+            self.create_frame()
+            self.load_img()
+
+
     def load_img(self):
         global pos_img
-        # pass
-        # self.img_promocional = Image.open(fr'{get_dir}\images\sfs.png')
-        config = ConfigParser()
-        config_file = 'app.ini'
-        config.read(config_file)
-        panel = str(config['config']['painel'])
-        if panel == 'TV':
-            listImages = self.list_img()
-            len_list = int(len(listImages))
-            print(len_list)
-            if len_list > 0:
-                if pos_img >= len_list:
-                    pos_img = 0
+        listImages = self.list_img()
+        len_list = int(len(listImages))
+        if len_list > 0:
+            if pos_img >= len_list:
+                pos_img = 0
 
+            try:
                 self.img_promocional = fr'{get_dir}\promocional\{listImages[pos_img]}'
                 self.img = ImageTk.PhotoImage(Image.open(self.img_promocional).resize((1400,800),Image.ANTIALIAS))
                 self.display_img = Label(self.frame_img, image=self.img, bd=0)
                 self.display_img.image = self.img
                 self.display_img.config(background='#fff')
                 self.display_img.place(relx=0.01,rely=0.01,relwidth=0.98, relheight=0.98)
-                self.display_img.after(6000, self.load_img)
+                self.display_img.after(10000, self.load_img)
                 pos_img += 1
+            except:
+                self.display_img.after(500, self.load_img)
+                
+
 
 class PainelGUI(Functions):
     def __init__(self):
@@ -260,13 +233,13 @@ class PainelGUI(Functions):
         self.make_root()
         self.make_frame()
         self.widgets_frame1()
-        # self.widgets_frame2()
+        self.widgets_frame2()
         self.widgets_frame3()
         self.widgets_frame4()
         self.validar_mac()
         self.tread_start_server()
         self.relogio()
-        self.load_img()
+        self.promotional_space()
         self.root.mainloop()
 
     def toggleFullScreen(self, event):
@@ -300,14 +273,10 @@ class PainelGUI(Functions):
         self.frame_1.config(background=coolors[1])
         self.frame_1.place(rely=0.0, relwidth=1, relheight=0.15)
 
-        self.frame_img = Frame(self.root)
-        self.frame_img.config(background='#fff')
-        self.frame_img.place(rely=0.15, relwidth=0.7, relheight=0.75)
-
-        # self.frame_2 = Frame(self.root)
-        # self.frame_2.config(background=coolors[1])
-        # # self.frame_2.place(rely=0.16, relwidth=0.68, relx=0.01, relheight=0.73)
-        # self.frame_2.place(rely=0.15, relwidth=0.7, relheight=0.75)
+        self.frame_2 = Frame(self.root)
+        self.frame_2.config(background=coolors[1])
+        self.frame_2.place(rely=0.16, relwidth=0.68, relx=0.01, relheight=0.73)
+        self.frame_2.place(rely=0.15, relwidth=0.7, relheight=0.75)
 
         self.frame_3 = Frame(self.root)
         self.frame_3.config(background=coolors[1])
@@ -330,7 +299,8 @@ class PainelGUI(Functions):
         self.img.config(background=coolors[4])
         self.img.place(relx=0.01, rely=0.2)
 
-        self.img = Label(self.frame_1, bd=0)
+        self.img_sus = PhotoImage(file=f'{get_dir}\images\sus.png')
+        self.img = Label(self.frame_1,image=self.img_sus, bd=0)
         self.img.config(background=coolors[4])
         self.img.place(relx=0.88, rely=0.2)
 

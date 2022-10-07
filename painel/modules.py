@@ -8,6 +8,6 @@ from contextlib import contextmanager
 from PIL import Image, ImageTk 
 import tkinter as tk
 import threading,socket, os, gtts
-import pymysql.cursors, re, uuid 
+import pymysql.cursors, re, uuid, time, multiprocessing
 
 
