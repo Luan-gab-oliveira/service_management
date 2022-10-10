@@ -15,7 +15,7 @@ coolors = [
     '#477C93', #5 - teal blue
     '#618DA0', #6 - light slate gray
     '#7B9EB3', #7 - air superiority
-    '#FCA311'  #8 - Orange Web
+    '#E84855'  #8 - Sizzling Red
     ]
         
 class Application(Functions):
@@ -74,6 +74,26 @@ class Application(Functions):
         self.display_senha.place(rely=0.25 ,relwidth=1,relheight=0.5)
 
         ## whidgets frame_2
+        configFile = r'util\settings.ini'
+        config.read(configFile)
+        server_config = dict(config['server'])
+        setor = server_config['setor']
+        if setor == 'F.ESTADO':
+            fila_state = consulta_state(f'SELECT config FROM settings WHERE option="F.BASICA";')
+            if fila_state == 'LIBERADO':
+                self.btn_state = Button(self.frame_2, text='BLOQUEAR SENHA')
+            else:
+                self.btn_state = Button(self.frame_2, text='LIBERAR SENHA')
+
+            self.btn_state.config(
+                font=(fonts[0], 14), justify='center',
+                background=coolors[7], bd=0, foreground=coolors[2],
+                cursor='hand2',
+                highlightbackground=coolors[1], highlightcolor=coolors[1], activebackground=coolors[1], 
+                highlightthickness=0,
+                command=self.fila_state
+            )
+            self.btn_state.place(rely=0.225, relx=0.15, relheight=0.15, relwidth=0.75)
 
         self.btn_proxima = Button(self.frame_2, text='Próxima senha')
         self.btn_proxima.config(
@@ -85,19 +105,6 @@ class Application(Functions):
             command=lambda: self.chamar_proxima('')
         )
         self.btn_proxima.place(rely=0.425, relx=0.15, relheight=0.15, relwidth=0.75)
-        # self.btn_proxima.place(rely=0.225, relx=0.15, relheight=0.15, relwidth=0.75)
-
-
-        # self.btn_anterior = Button(self.frame_2, text='Senha anterior')
-        # self.btn_anterior.config(
-        #     font=(fonts[0], 14), justify='center',
-        #     background=coolors[4], bd=0, foreground=coolors[2],
-        #     cursor='hand2',
-        #     highlightbackground=coolors[1], highlightcolor=coolors[1], activebackground=coolors[1], 
-        #     highlightthickness=0,
-        #     command=self.chamar_anterior
-        # )
-        # self.btn_anterior.place(rely=0.425, relx=0.15, relheight=0.15, relwidth=0.75)
 
         self.btn_novamente = Button(self.frame_2, text='Chamar novamente')
         self.btn_novamente.config(

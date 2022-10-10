@@ -1,3 +1,4 @@
+from cgitb import text
 from util.modules import *
 from util.models import *
 
@@ -47,13 +48,6 @@ class Functions():
 
         else:
             messagebox.showinfo('Atenção!','Não há senhas para chamar')
-
-    # função para chamar senha anterior
-    def chamar_anterior(self):
-        global senha_anterior
-        data = [senha_anterior,opcao]
-        chamar_senha(data)
-        self.display_senha.config(text=str(senha_anterior))
     
     #função para chamar novamente senha atual
     def chamar_novamente(self):
@@ -75,5 +69,14 @@ class Functions():
             self.display_espera.config(text=f'Fila de espera {setor}: {con}')
             
         self.display_espera.after(200, self.update_statubar)
+    
+    def fila_state(self):
+        fila_state = consulta_state(f'SELECT config FROM settings WHERE option="F.ESTADO";')
+        if fila_state == 'LIBERADO':
+            update_databe('UPDATE settings SET config = "BLOQUEADO" WHERE option="F.ESTADO";')
+            self.btn_state.config(text='LIBERAR SENHA')
+        elif fila_state == 'BLOQUEADO':
+            update_databe('UPDATE settings SET config = "LIBERADO" WHERE option="F.ESTADO";')
+            self.btn_state.config(text='BLOQUEAR SENHA')
 
 

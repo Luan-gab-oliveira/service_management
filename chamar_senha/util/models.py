@@ -43,6 +43,16 @@ def consulta_fila(sql):
             except:
                 print('erro consulta')
 
+def consulta_state(sql):
+    with start_connect() as conexao:
+        with conexao.cursor() as cursor:
+            try:
+                if cursor.execute(sql)>0:
+                    resultado = cursor.fetchone()
+                    return resultado['config']
+            except:
+                print('erro consulta')
+
 def update_databe(sql):
     with start_connect() as conexao:
         with conexao.cursor() as cursor:
@@ -76,4 +86,3 @@ def run_panel(HOST, PORT,data):
             s.sendall(str.encode(str(data)))
     except:
         print(f'Erro de conexão: {HOST} {PORT}')
-
