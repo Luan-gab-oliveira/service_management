@@ -370,38 +370,91 @@ class func(espera):
         self.btvoltar_AB = Button(self.frame_AB, image = self.btvoltar_imgAB, relief=FLAT, bd = 0, command= self.root_AB.destroy) #Adicionando a imagem a um botão
         self.btvoltar_AB.place(anchor='center', relx= 0.13, rely=0.08, width= 200, height= 80) #Localizando o botão na tela
     ###Função Escolha Preferencial ou Convencional FARMACIA ESTADO###
-    def abrir_janela_Estado(self): 
-        self.root_FE = tk.Toplevel() #Variavel para atribuir tela principal
-        self.root_FE.configure(background= cores[0]) #Cor de fundo
-        self.root_FE.attributes('-fullscreen', True) #Modo tela Fullscreen ligado
-        self.fullScreenState = False
-        self.frame_FE =Frame(self.root_FE, bg = cores[0]) #Definindo um Frame para a tela 
-        self.frame_FE.place(anchor='center',relx= 0.5,rely= 0.5, relwidth= 0.96, relheight= 0.96) #Localizando o Frame na tela 
-        global senha, setor, set, atendimento, tela, opcao, opc
-        opcao= opc[2]
-        setor= set[2] 
-        tela = 5
+    def abrir_janela_Estado(self):
+        with connect_server() as conexao:
+            with conexao.cursor() as cursor:
+                try:
+                    if cursor.execute('SELECT config FROM settings WHERE option="F.ESTADO";')>0:
+                        src = cursor.fetchone()
+                        resultado = src['config']
+                except:
+                    print('erro consulta')
         
-        #Imagens na Tela 
-        self.fundo_FE = PhotoImage(file= planos[1]) #Plano de fundo principal
-        figura_fundo_FE = Label(self.frame_FE, image= self.fundo_FE, bd= 0) #Chamando imagem 
-        figura_fundo_FE.place(anchor= 'center',relx=0.5, rely=0.4, width= 550, height= 500) #Localizando a imagem na tela
+            if resultado == 'LIBERADO':
+                self.root_FE = tk.Toplevel() #Variavel para atribuir tela principal
+                self.root_FE.configure(background= cores[0]) #Cor de fundo
+                self.root_FE.attributes('-fullscreen', True) #Modo tela Fullscreen ligado
+                self.fullScreenState = False
+                self.frame_FE =Frame(self.root_FE, bg = cores[0]) #Definindo um Frame para a tela 
+                self.frame_FE.place(anchor='center',relx= 0.5,rely= 0.5, relwidth= 0.96, relheight= 0.96) #Localizando o Frame na tela 
+                global senha, setor, set, atendimento, tela, opcao, opc
+                opcao= opc[2]
+                setor= set[2] 
+                tela = 5
+                
+                #Imagens na Tela 
+                self.fundo_FE = PhotoImage(file= planos[1]) #Plano de fundo principal
+                figura_fundo_FE = Label(self.frame_FE, image= self.fundo_FE, bd= 0) #Chamando imagem 
+                figura_fundo_FE.place(anchor= 'center',relx=0.5, rely=0.4, width= 550, height= 500) #Localizando a imagem na tela
 
-        self.photo2200 = PhotoImage(file= bt[8]) #Imagem Botão Convencional
-        self.btconv = Button(self.frame_FE, image=self.photo2200, relief=FLAT, bd = 0, command= self.fechar_conv) #Adicionando a imagem a um botão
-        self.btconv.place(anchor = "center", relx= 0.5, rely=0.5, width= 510, height= 150) #Localizando o botão na tela
+                self.photo2200 = PhotoImage(file= bt[8]) #Imagem Botão Convencional
+                self.btconv = Button(self.frame_FE, image=self.photo2200, relief=FLAT, bd = 0, command= self.fechar_conv) #Adicionando a imagem a um botão
+                self.btconv.place(anchor = "center", relx= 0.5, rely=0.5, width= 510, height= 150) #Localizando o botão na tela
 
-        self.btprefe_imgFE = PhotoImage(file= bt[10]) #Imagem Botão Preferencial
-        self.btprefe_FE = Button(self.frame_FE, image=self.btprefe_imgFE, relief=FLAT, bd = 0, command= self.fechar_prefe) #Adicionando a imagem a um botão
-        self.btprefe_FE.place(anchor = "center", relx= 0.5, rely=0.75, width= 510, height= 150) #Localizando o botão na tela
+                self.btprefe_imgFE = PhotoImage(file= bt[10]) #Imagem Botão Preferencial
+                self.btprefe_FE = Button(self.frame_FE, image=self.btprefe_imgFE, relief=FLAT, bd = 0, command= self.fechar_prefe) #Adicionando a imagem a um botão
+                self.btprefe_FE.place(anchor = "center", relx= 0.5, rely=0.75, width= 510, height= 150) #Localizando o botão na tela
 
-        self.aviso = Label(self.frame_FE, bg= cores[0], text="*As pessoas portadoras de deficiência, os idosos com idade igualou superior a 60 (sessenta) anos,\nas gestantes, as lactantes e as pessoas acompanhadas por crianças de colo terão\natendimento prioritário")
-        self.aviso.configure(font=fontes[0])
-        self.aviso.place(anchor='center', relx= 0.5, rely=0.95) #Localizando o botão na tela 
+                self.aviso = Label(self.frame_FE, bg= cores[0], text="*As pessoas portadoras de deficiência, os idosos com idade igualou superior a 60 (sessenta) anos,\nas gestantes, as lactantes e as pessoas acompanhadas por crianças de colo terão\natendimento prioritário")
+                self.aviso.configure(font=fontes[0])
+                self.aviso.place(anchor='center', relx= 0.5, rely=0.95) #Localizando o botão na tela 
 
-        self.btvoltar_imgFE = PhotoImage(file = bt[12]) #Imagem Botão Voltar 
-        self.btvoltar_FE = Button(self.frame_FE, image = self.btvoltar_imgFE, relief=FLAT, bd = 0, command= self.root_FE.destroy) #Adicionando a imagem a um botão
-        self.btvoltar_FE.place(anchor='center', relx= 0.13, rely=0.08, width= 200, height= 80) #Localizando o botão na tela
+                self.btvoltar_imgFE = PhotoImage(file = bt[12]) #Imagem Botão Voltar 
+                self.btvoltar_FE = Button(self.frame_FE, image = self.btvoltar_imgFE, relief=FLAT, bd = 0, command= self.root_FE.destroy) #Adicionando a imagem a um botão
+                self.btvoltar_FE.place(anchor='center', relx= 0.13, rely=0.08, width= 200, height= 80) #Localizando o botão na tela
+            
+            else:
+                self.root_bloq = tk.Toplevel() #Variavel para atribuir tela principal
+                self.root_bloq.title('Sistema de Senhas Secretaria Municipal de Saúde.') #Atribuir titulo a tela
+                self.root_bloq.configure(background= cores[2]) #Cor de fundo
+                self.root_bloq.geometry("1000x700") #Dimensões do tamanho da tela cheia
+                self.root_bloq.attributes('-alpha', 0.0)
+                self.root_bloq.resizable(False, False) #Negar o redimensionamento da tela
+                self.root_bloq.minsize(width=800, height= 500) #Definir tamanho minimo da tela   
+                self.frame_bloq =Frame(self.root_bloq, bg = cores[0]) #Definindo um Frame para a tela 
+                self.frame_bloq.place(anchor='center',relx= 0.5,rely= 0.5, relwidth= 0.96, relheight= 0.96) #Localizando o Frame na tela 
+
+                self.photo_bloq = PhotoImage(file= fr"{get_dir}\Plano de Fundo\Plano de Fundo horarios.png")
+                self.logo_bloq = Label(self.frame_bloq, image= self.photo_bloq, background= cores[0])
+                self.logo_bloq.place(anchor="center", relx=0.5, rely=0.5)
+
+                self.aviso = Label(self.frame_bloq, text="A fila de espera para \neste Atendimento está \nLOTADA", background= cores[0], foreground= "red")
+                self.aviso.configure(font= tkFont.Font(family="Arial", size=45, weight="bold"))
+                self.aviso.place(anchor='center', relx= 0.5, rely= 0.5)
+
+                self.aviso3 = Label(self.frame_bloq, text= "Agradecemos a sua Compreensão!", background= cores[0])
+                self.aviso3.configure(font= tkFont.Font(family="Arial", size=25))
+                self.aviso3.place(anchor='center', relx= 0.5, rely= 0.86)
+
+                ###Código para janela abrir no meio da tela###
+                self.root_bloq.update_idletasks()
+                width = self.root_bloq.winfo_width()
+                frm_width = self.root_bloq.winfo_rootx() - self.root_bloq.winfo_x()
+                win_width = width + 2 * frm_width
+
+                height = self.root_bloq.winfo_height()
+                titlebar_height = self.root_bloq.winfo_rooty() - self.root_bloq.winfo_y()
+                win_height = height + titlebar_height + frm_width
+
+                x = self.root_bloq.winfo_screenwidth() // 2 - win_width // 2
+                y = self.root_bloq.winfo_screenheight() // 2 - win_height // 2
+                self.root_bloq.geometry('{}x{}+{}+{}'.format(width, height, x, y))
+                self.root_bloq.deiconify()
+                
+                self.root_bloq.attributes('-alpha', 1.0)
+                self.root_bloq.overrideredirect(True)
+                self.root_bloq.after(8000,self.root_bloq.destroy)
+        
     ###Função Escolha Preferencial ou Convencional FARMACIA AUTO-CUSTO###
     def abrir_janela_AutoCusto(self): 
         self.root_FAC = tk.Toplevel() #Variavel para atribuir tela principal
