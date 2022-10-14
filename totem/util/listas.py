@@ -1,12 +1,14 @@
 import os
+from configparser import ConfigParser
 from util.modulos import *
 
 ###Definição de Horarios###
-horario = [
-    "13:40",
-    "08:00",
-    "07:40"
-]
+config = ConfigParser()
+get_dir = os.path.dirname(__file__)
+config.read(fr'{get_dir}\settings.ini')
+settings = dict(config['config'])
+horario = settings['horario']
+
 ###Definindo variaveis para especialidades###
 esp = [
     "Clínico Geral",

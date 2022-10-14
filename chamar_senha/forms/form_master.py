@@ -79,7 +79,7 @@ class Application(Functions):
         server_config = dict(config['server'])
         setor = server_config['setor']
         if setor == 'F.ESTADO':
-            fila_state = consulta_state(f'SELECT config FROM settings WHERE option="F.BASICA";')
+            fila_state = consulta_state(f'SELECT config FROM settings WHERE option="F.ESTADO";')
             if fila_state == 'LIBERADO':
                 self.btn_state = Button(self.frame_2, text='BLOQUEAR SENHA')
             else:

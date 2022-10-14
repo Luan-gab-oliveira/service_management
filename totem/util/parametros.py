@@ -12,4 +12,5 @@ tabela = 'fila_espera'                                      #Atribuindo nome da 
 tela = 0                                                    #Contagem do numero de telas 
 
 # imprimir pdf
+print(hora_atual)
 

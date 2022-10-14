@@ -32,6 +32,11 @@ def verificar_filaEspera():
         with conn.cursor() as cursor:
             if  cursor.execute(f'SELECT data FROM {tabela} WHERE id IN (SELECT MAX(id) FROM {tabela});')>0:
                 last_date = datetime.strptime(str(cursor.fetchone()['data']), '%d/%m/%Y').date()
+                if cursor.execute('SELECT config FROM settings WHERE option="F.ESTADO";')>0:
+                    res = cursor.fetchone()
+                    if str(res['config']) == 'BLOQUEADO':
+                        cursor.execute('UPDATE settings SET config = "LIBERADO" WHERE option="F.ESTADO";')
+                        
                 if last_date < data:
                     cursor.execute(f'INSERT INTO atendimentos (setor, atendimentos, data) SELECT setor, COUNT(senha) As atendimentos, data from fila_espera GROUP BY setor;')
                     cursor.execute(f'TRUNCATE TABLE {tabela};')

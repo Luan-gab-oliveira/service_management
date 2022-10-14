@@ -464,8 +464,8 @@ class func(espera):
         self.frame_FAC =Frame(self.root_FAC, bg = cores[0]) #Definindo um Frame para a tela 
         self.frame_FAC.place(anchor='center',relx= 0.5,rely= 0.5, relwidth= 0.96, relheight= 0.96) #Localizando o Frame na tela 
         global senha, setor, set, atendimento, tela, opcao, opc
-        opcao= opc[3]
-        setor= set[3] 
+        opcao= opc[5]
+        setor= set[5] 
         tela = 6
         
         #Imagens na Tela 
