@@ -10,13 +10,13 @@ class func(espera):
         global opcao, setor, atendimento, tela, opc, ref, hora_atual, farmaciaStop
         hora_atual = datetime.now().strftime('%d/%m/%Y %H:%M')
         hora_atual = datetime.strptime(hora_atual, '%d/%m/%Y %H:%M')
-
+        dataA = hora_atual.strftime('%d/%m/%Y') 
         config = ConfigParser()
         get_dir = os.path.dirname(__file__)
         config.read(fr'{get_dir}\settings.ini')
         settings = dict(config['config'])
-        horarioStop = datetime.strptime(f"{data} {settings['horario']}", '%d/%m/%Y %H:%M')
-        farmaciaStop = datetime.strptime(f"{data} {settings['farmacia']}", '%d/%m/%Y %H:%M')
+        horarioStop = datetime.strptime(f"{dataA} {settings['horario']}", '%d/%m/%Y %H:%M')
+        farmaciaStop = datetime.strptime(f"{dataA} {settings['farmacia']}", '%d/%m/%Y %H:%M')
 
         if hora_atual >= horarioStop:
             self.root_hrExcede()
