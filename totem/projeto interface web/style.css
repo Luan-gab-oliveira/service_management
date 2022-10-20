@@ -1,0 +1,98 @@
+main{
+    text-align: center;
+    align-items: center;
+}
+main > img{
+    display: inline;
+    margin: auto;
+    width: 50%;
+}
+
+#first_page{
+    margin-top: 210px;
+}
+
+body > a{
+    text-align: center;
+}
+
+#letra_maior{
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 1000;
+    font-size: 80px;
+    color: #346086;
+    margin: 0px 0px 150px 0px;
+}
+#letra_menor{
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 600;
+    font-size: 50px;
+    color: #346086;
+    margin-top: 100px;
+    margin-bottom: 0px;
+}
+a{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 50px;
+    color: #ffffff;
+    padding: 46px 70px 46px 70px;
+    transition: padding 0.3s, margin 0.3s;
+}
+a:hover{
+    padding: 30px 30px 30px 30px;
+    margin:  90px;
+}
+a:active{
+    padding: 71px 70px 71px 70px;
+    margin:  50px;
+}
+.form{
+    display: inline-block;
+    background-color: #346086;
+    width: 700px;
+    height: 170px;
+    text-decoration: none;
+    border-radius: 250px;
+    margin: 90px 50px;
+}
+
+.form_voltar{
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 40px;
+    display: inline-block;
+    background-color: #9fbfda;
+    padding: 20px 44px 20px 44px;
+    width: 400px;
+    height: 120px;
+    border-radius: 250px;
+    margin: 50px 0px 0px 50px;
+    color: white;
+}
+
+#prefe{
+    display: inline-block;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 40px;
+    font-weight: bold;
+    margin-top: 320px;
+    text-decoration: none;
+    color: #000000;
+}
+
+.info{
+    display: inline-block;
+    align-items: center;
+    padding: 15px;
+    width: 55px;
+    border: 10px solid #346086;
+    border-radius: 65px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 50px;
+    font-weight: bolder;
+    color: #346086;
+    margin: 150px 420px;
+}
+
+
+
