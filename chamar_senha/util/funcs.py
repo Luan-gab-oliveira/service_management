@@ -18,10 +18,10 @@ class Functions():
         sql = f'SELECT senha FROM fila_espera WHERE setor = "{setor}" AND status = "ESPERA";'
         resultado = consulta_database(sql)
         if resultado != None:
-            if prioritario < 2:
+            if prioritario < 1:
                 atendimento = 'preferencial'
                 prioritario += 1
-            elif prioritario ==2:
+            elif prioritario ==1:
                 # a cada duas preferencial chama uma convencional
                 atendimento = 'convencional'
                 prioritario = 0
