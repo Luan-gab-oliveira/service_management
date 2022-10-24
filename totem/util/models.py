@@ -41,4 +41,3 @@ def verificar_filaEspera():
                     cursor.execute(f'INSERT INTO atendimentos (setor, atendimentos, data) SELECT setor, COUNT(senha) As atendimentos, data from fila_espera GROUP BY setor;')
                     cursor.execute(f'TRUNCATE TABLE {tabela};')
                     conn.commit()
-
