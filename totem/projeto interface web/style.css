@@ -68,7 +68,16 @@ a:active{
     border-radius: 250px;
     margin: 50px 0px 0px 50px;
     color: white;
+    transition: margin 0.3s, padding 0.3s, width 0.3s, height 0.3s;
 }
+
+.form_voltar:active{
+    margin:  50px 0px 10px 70px;
+    padding: 20px 34px 20px 34px;
+    width: 350px;
+    height: 110px;
+}
+
 
 #prefe{
     display: inline-block;
