@@ -8,5 +8,5 @@ password = '28512'                                          #Senha para fechamen
 atendimento = ""                                            #Variavel para escolha do tipo de atendimento
 tabela = 'fila_espera'                                      #Atribuindo nome da tabela 
 tela = 0                                                    #Contagem do numero de telas 
-data = datetime.now().strftime('%d/%m/%Y') 
+data = datetime.now().strftime('%d/%m/%Y')
 

@@ -116,7 +116,7 @@ class func(espera):
         global opcao, setor, atendimento, tela, opc, sigla_db
         atendimento = atend[0]
         sigla_db = opcao
-        opcao = 'P' + opcao
+        opcao = 'P.' + opcao
         threading.Thread(target=self.gerar_senha).start()
         self.abrir_janela_espera()
         if tela == 1:
@@ -152,7 +152,7 @@ class func(espera):
                 if  cursor.execute(f'SELECT senha FROM {tabela} WHERE id IN (SELECT MAX(id) FROM {tabela} WHERE setor = "{setor}" AND atendimento = "{atendimento}");')>0: #realiza consulta em banco
                     resultado = str(cursor.fetchone()['senha']) #retorna resultado da consulta
                     if atendimento == "preferencial": #Preferencial
-                        resultado = int(resultado[4:])+1 #converte o resutado, fatiando apenas os valores
+                        resultado = int(resultado[5:])+1 #converte o resutado, fatiando apenas os valores
                     else: # Convencional
                         resultado = int(resultado[3:])+1 #converte o resutado, fatiando apenas os valores
 
