@@ -2773,3 +2773,31 @@
 06/10/2022 15:10:50: bad window path name ".!frame"
 06/10/2022 15:10:50: bad window path name ".!frame"
 06/10/2022 15:10:50: bad window path name ".!frame"
+27/10/2022 10:42:23: list index out of range
+27/10/2022 10:43:11: list index out of range
+27/10/2022 10:43:40: list index out of range
+27/10/2022 10:43:41: list index out of range
+27/10/2022 10:43:42: list index out of range
+27/10/2022 10:48:22: 'PainelGUI' object has no attribute 'frame_img'
+27/10/2022 10:49:18: 'PainelGUI' object has no attribute 'frame_img'
+27/10/2022 10:50:38: 'PainelGUI' object has no attribute 'frame_img'
+27/10/2022 11:02:49: 'PainelGUI' object has no attribute 'frame_img'
+27/10/2022 11:03:00: 'PainelGUI' object has no attribute 'frame_img'
+27/10/2022 11:13:01: 'PainelGUI' object has no attribute 'frame_img'
+27/10/2022 11:14:28: 'PainelGUI' object has no attribute 'frame_img'
+27/10/2022 11:15:10: 'PainelGUI' object has no attribute 'frame_img'
+27/10/2022 11:17:16: 'PainelGUI' object has no attribute 'frame_img'
+27/10/2022 11:17:33: 'PainelGUI' object has no attribute 'frame_img'
+27/10/2022 11:19:51: 'PainelGUI' object has no attribute 'frame_img'
+27/10/2022 11:22:06: 'PainelGUI' object has no attribute 'frame_img'
+27/10/2022 11:22:59: 'PainelGUI' object has no attribute 'frame_img'
+27/10/2022 11:23:54: 'PainelGUI' object has no attribute 'frame_img'
+27/10/2022 11:24:09: 'PainelGUI' object has no attribute 'frame_img'
+27/10/2022 11:29:08: 'PainelGUI' object has no attribute 'frame_img'
+27/10/2022 11:32:54: 'PainelGUI' object has no attribute 'frame_img'
+27/10/2022 11:33:18: 'PainelGUI' object has no attribute 'frame_img'
+27/10/2022 11:33:21: 'PainelGUI' object has no attribute 'frame_img'
+27/10/2022 11:40:05: 'PainelGUI' object has no attribute 'frame_img'
+27/10/2022 11:40:06: 'PainelGUI' object has no attribute 'frame_img'
+27/10/2022 11:41:42: 'PainelGUI' object has no attribute 'frame_img'
+27/10/2022 11:42:36: 'PainelGUI' object has no attribute 'frame_img'

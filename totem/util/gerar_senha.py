@@ -8,14 +8,15 @@ import win32print, win32api, os, threading
 def mm2p(milimetros): #converte milimetros em pontos
     return milimetros/0.352777
 
-def imprimir(senha, local): 
+def imprimir(senha, local, atendimento):
+    atendimento = atendimento.title()
     txt_senha = senha
     txt_local = local   
     data = datetime.now().strftime('%d/%m/%Y')
-    texto_pdf = ['Atendimento','SENHA', txt_senha, 'LOCAL', txt_local, f'São francisco do Sul, {data}']
+    texto_pdf = ['Atendimento',atendimento,'SENHA', txt_senha, 'LOCAL', txt_local, f'São francisco do Sul, {data}']
     font_style = 'Helvetica'
-    font_size = [50,40,110,40,110,30]
-    eixo = 210
+    font_size = [50,80,40,110,40,110,30]
+    eixo = 230
 
     dir_app = os.getcwd()+ r'\util\impressao'
     # dir_app = str(os.path.dirname(__file__))

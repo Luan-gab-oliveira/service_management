@@ -40,7 +40,7 @@ class Functions():
 
                 sql = f'UPDATE fila_espera SET status = "CHAMADA" WHERE senha = "{senha}"'
                 update_databe(sql)
-                data = [senha,setor]
+                data = [senha,setor,atendimento]
                 chamar_senha(data)
                 # display = senha
                 self.display_senha.config(text=str(senha))
@@ -52,7 +52,7 @@ class Functions():
     #função para chamar novamente senha atual
     def chamar_novamente(self):
         senha = self.display_senha.cget('text')
-        data = [senha,setor]
+        data = [senha,setor,atendimento]
         chamar_senha(data)
 
     # atualização da barra de status

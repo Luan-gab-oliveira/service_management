@@ -166,9 +166,7 @@ class func(espera):
 
                 cursor.execute(sql) #executa instrução sql
                 conexao.commit() #commit para o interprertador entender que deve executar a instrução
-                imprimir(senha, setor)
-                print(senha)
-
+                imprimir(senha, setor, atendimento)
 
 
 ###############################################      PREMIR      ###############################################

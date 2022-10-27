@@ -2,6 +2,7 @@
 versão playsound==1.2.2
 '''
 from time import time
+from turtle import st
 from modules import *
 
 get_dir = os.path.dirname(__file__)
@@ -17,7 +18,7 @@ coolors = [
     '#477C93', #5 ~ teal blue
     '#618DA0', #6 ~ light slate gray
     '#7B9EB3', #7 ~ air superiority
-    '#FCA311'  #8 - Orange Web
+    '#e63946'  #8 - Orange Web
     ]
 
 config = ConfigParser()
@@ -106,6 +107,7 @@ class Functions():
                         data = eval(data.decode())
                         senha = str(data[0])
                         senha_local = str(data[1])
+                        atendimento = str(data[2])
 
                         
                         for local in setor:
@@ -310,7 +312,7 @@ class PainelGUI(Functions):
             font=(fonts[0],50,'bold'), foreground=coolors[5],
             background=coolors[1], justify='center', anchor='s'
         )
-        self.label.place(rely=0.10,relwidth=1,relheight=0.10)
+        self.label.place(rely=0.02,relwidth=1,relheight=0.10)
         
         # display senha chamada/atualizar
         self.display_senha1 = Label(self.frame_2, text='0000')
@@ -318,28 +320,35 @@ class PainelGUI(Functions):
             font=(fonts[0],100,'bold'), foreground=coolors[4],
             background=coolors[1], justify='center', anchor='n'
         )
-        self.display_senha1.place(rely=0.2,relwidth=1,relheight=0.3)
+        self.display_senha1.place(rely=0.12,relwidth=1,relheight=0.22)
 
         self.label = Label(self.frame_2, text='Local')
         self.label.config(
             font=(fonts[0],50,'bold'), foreground=coolors[5],
             background=coolors[1], justify='center', anchor='s'
         )
-        self.label.place(rely=0.5,relwidth=1,relheight=0.10)
+        self.label.place(rely=0.34,relwidth=1,relheight=0.10)
 
-        self.display_local = Label(self.frame_2, text='-')
+        self.display_local = Label(self.frame_2, text='PREMIR')
         self.display_local.config(
             font=(fonts[0],100,'bold'), foreground=coolors[4],
             background=coolors[1], justify='center', anchor='n'
         )
-        self.display_local.place(rely=0.6,relwidth=1,relheight=0.3)
+        self.display_local.place(rely=0.44,relwidth=1,relheight=0.22)
 
-        self.label = Label(self.frame_2, text='Favor dirigir-se ao local de atendimento!')
+        self.label = Label(self.frame_2, text='Atendimento')
         self.label.config(
-            font=(fonts[0],30), foreground=coolors[0],
+            font=(fonts[0],50,'bold'), foreground=coolors[5],
             background=coolors[1], justify='center'
         )
-        self.label.place(rely=0.9,relwidth=1,relheight=0.10)
+        self.label.place(rely=0.66,relwidth=1,relheight=0.10)
+        
+        self.display_atendimento = Label(self.frame_2, text='PREFERENCIAL')
+        self.display_atendimento.config(
+            font=(fonts[0],70,'bold'), foreground=coolors[8],
+            background=coolors[1], justify='center'
+        )
+        self.display_atendimento.place(rely=0.76,relwidth=1,relheight=0.22)
     
     def widgets_frame3(self):
         self.label = Label(self.frame_3, text='Senha chamada')
