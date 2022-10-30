@@ -108,6 +108,7 @@ class Functions():
                         senha = str(data[0])
                         senha_local = str(data[1])
                         atendimento = str(data[2])
+                        print(atendimento)
 
                         
                         for local in setor:
@@ -126,6 +127,7 @@ class Functions():
 
                                 self.display_senha1.config(text=senha)
                                 self.display_local.config(text=senha_local)
+                                self.display_atendimento.config(text=atendimento)
 
                         if senha != senha_atual:    
                             senha_atual = senha                            
@@ -329,7 +331,7 @@ class PainelGUI(Functions):
         )
         self.label.place(rely=0.34,relwidth=1,relheight=0.10)
 
-        self.display_local = Label(self.frame_2, text='PREMIR')
+        self.display_local = Label(self.frame_2, text='')
         self.display_local.config(
             font=(fonts[0],100,'bold'), foreground=coolors[4],
             background=coolors[1], justify='center', anchor='n'
@@ -343,7 +345,7 @@ class PainelGUI(Functions):
         )
         self.label.place(rely=0.66,relwidth=1,relheight=0.10)
         
-        self.display_atendimento = Label(self.frame_2, text='PREFERENCIAL')
+        self.display_atendimento = Label(self.frame_2, text='')
         self.display_atendimento.config(
             font=(fonts[0],70,'bold'), foreground=coolors[8],
             background=coolors[1], justify='center'
