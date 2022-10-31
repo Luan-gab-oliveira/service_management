@@ -2804,3 +2804,5 @@
 29/10/2022 22:45:29: 'PainelGUI' object has no attribute 'frame_img'
 29/10/2022 22:48:00: 'PainelGUI' object has no attribute 'frame_img'
 29/10/2022 22:54:45: 'PainelGUI' object has no attribute 'frame_img'
+30/10/2022 20:42:25: 'PainelGUI' object has no attribute 'frame_img'
+30/10/2022 20:46:59: 'PainelGUI' object has no attribute 'frame_img'

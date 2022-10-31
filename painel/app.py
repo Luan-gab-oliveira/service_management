@@ -107,8 +107,8 @@ class Functions():
                         data = eval(data.decode())
                         senha = str(data[0])
                         senha_local = str(data[1])
-                        atendimento = str(data[2])
-                        print(atendimento)
+                        # atendimento = str(data[2])
+                        # print(atendimento)
 
                         
                         for local in setor:
@@ -127,7 +127,7 @@ class Functions():
 
                                 self.display_senha1.config(text=senha)
                                 self.display_local.config(text=senha_local)
-                                self.display_atendimento.config(text=atendimento)
+                                # self.display_atendimento.config(text=atendimento)
 
                         if senha != senha_atual:    
                             senha_atual = senha                            
