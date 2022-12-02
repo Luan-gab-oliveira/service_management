@@ -1,6 +1,5 @@
-from util.modules import *
 from util.funcs import *
-# from util.models import *
+from util.Gerar_relatorio.relatorio import *
 
 get_dir = os.getcwd()
 icon = fr'{get_dir}\images\sfs.ico'
@@ -18,7 +17,7 @@ coolors = [
     '#E84855'  #8 - Sizzling Red
     ]
         
-class Application(Functions):
+class Application(Functions, relatorio):
     def __init__(self):
         global senha, data, local
         self.root = tk.Tk()
@@ -93,7 +92,7 @@ class Application(Functions):
                 highlightthickness=0,
                 command=self.fila_state
             )
-            self.btn_state.place(rely=0.225, relx=0.15, relheight=0.15, relwidth=0.75)
+            self.btn_state.place(anchor= "center", rely=0.225, relx=0.5, relheight=0.15, relwidth=0.75)
 
         self.btn_proxima = Button(self.frame_2, text='Próxima senha')
         self.btn_proxima.config(
@@ -104,7 +103,7 @@ class Application(Functions):
             highlightthickness=0,
             command=lambda: self.chamar_proxima('')
         )
-        self.btn_proxima.place(rely=0.425, relx=0.15, relheight=0.15, relwidth=0.75)
+        self.btn_proxima.place(anchor= "center", rely=0.425, relx=0.5, relheight=0.15, relwidth=0.75)
 
         self.btn_novamente = Button(self.frame_2, text='Chamar novamente')
         self.btn_novamente.config(
@@ -115,9 +114,20 @@ class Application(Functions):
             highlightthickness=0,
             command= self.chamar_novamente
         )
-        self.btn_novamente.place(rely=0.625, relx=0.15, relheight=0.15, relwidth=0.75)
+        self.btn_novamente.place(anchor= "center", rely=0.625, relx=0.5, relheight=0.15, relwidth=0.75)
 
         self.display_espera = Label(self.frame3, text='Fila de espera:')
         self.display_espera.config(
             font=(fonts[0],12, 'normal'),foreground=coolors[2], background=coolors[4], anchor='w')
         self.display_espera.place(relx=0.02 ,relwidth=0.96 ,relheight=1)
+
+        self.relatorio_img = PhotoImage(file=fr"{get_dir}\images\relatorio2.png")
+        self.btn_relatorio = Button(self.frame_2, image=self.relatorio_img, compound=LEFT, text='  Gerar relatório')
+        self.btn_relatorio.config(
+            font=(fonts[0], 9), justify='center',
+            background=coolors[5], bd=0, foreground=coolors[2],
+            cursor='hand2',
+            highlightbackground=coolors[1], highlightcolor=coolors[1], activebackground=coolors[1],
+            command= self.rel_window
+        )
+        self.btn_relatorio.place(anchor= "center", rely=0.8, relx=0.5, relheight=0.1, relwidth=0.4)
